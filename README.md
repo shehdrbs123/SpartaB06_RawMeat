@@ -45,6 +45,10 @@
 
 
 ## Github 사용원칙
-- 코드 수정 시 브랜치 생성 필수
+- 하루 시작 시 Fetch Origin을 통해서 데이터 최신화 (필수!!!)
+- 코드 수정 시 브랜치 생성 필수(test 브랜치를 기준으로 생성)
 - 브랜치 생성 시 현재 수정중인 코드파일, 내용에 대한 간략한 설명 추가
+  - 예시
+    - Player.cs-플레이데이터추가
+    - 여러 파일이 예상될 경우, Player.cs,StatusScene.cs-statusScene추가 
 - Pull Request를 통한 브랜치 머지 요청
