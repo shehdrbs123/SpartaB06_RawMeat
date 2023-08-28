@@ -5,8 +5,8 @@
 
 
 ## 개발 개요
-- 기간 :2023.8.28 ~ 2023.9.1
-- 개발 도구 : C#, Dotnet 7.0 FrameWork, Visual Studio;
+- 기간 : 2023.8.28 ~ 2023.9.1
+- 개발 도구 : C#, Dotnet 7.0 FrameWork, Visual Studio
 - 개발 내용 
   - 텍스트 RPG 구현에 관한 팀 프로젝트 진행
 
@@ -30,13 +30,13 @@
   </td>
 </tr>
 <tr>
-  <td>김하늘</td><td>팀원</td>
+  <td>박지원</td><td>팀원</td>
   <td>
   스킬/인벤토리 부분 제작
   </td>
 </tr>
 <tr>
-  <td>박지원</td><td>팀원</td>
+  <td>김하늘</td><td>팀원</td>
   <td>
   전투부분 제작
   </td>
