@@ -11,20 +11,20 @@ namespace BasicTeamProject.Data
         public int MinGold { get; set; }
         public int MaxGold { get; set; }
 
-        public List<Item_> Items { get; set; } = new List<Item_>();
+        public List<Item> Items { get; set; } = new List<Item>();
         public List<float> DropPer { get; set; } = new List<float>();
 
-        public List<Item_> GetReward(out int gold)
+        public List<Item> GetReward(out int gold)
         {
             Random random = new Random();
             gold = random.Next(MinGold, MaxGold + 1);
             
-            List<Item_> items = new List<Item_>();
+            List<Item> items = new List<Item>();
             for(int i = 0; i < Items.Count; ++i)
             {
                 if (DropPer[i] > random.NextSingle() * 100f)
                 {
-                    items.Add(new Item_(Items[i]));
+                    items.Add(new Item(Items[i]));
                 }
             }
             return items;

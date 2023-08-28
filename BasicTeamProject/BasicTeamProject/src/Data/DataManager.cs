@@ -24,18 +24,18 @@ namespace BasicTeamProject.Data
             s_Instance.Monsters = new List<Monster>();
 
 
-            //s_Instance._skillDataContainer = new SkillDataContainer();
-            //s_Instance._skillDataContainer.Init("나 중에 쓰자.txt");
-            //s_Instance._itemDataContainer = new ItemDataContainer();
-            //s_Instance._itemDataContainer.Init("나 중에 쓰자.txt");
-            //s_Instance._monsterDataContainer = new MonsterDataContainer();
-            //s_Instance._monsterDataContainer.Init("Data\\DungoenData.txt");
-            //s_Instance._levelDataContainer = new LevelDataContainer();
-            //s_Instance._levelDataContainer.Init("나 중에 쓰자.txt");
-            //s_Instance._rewardDataContainer = new RewardDataContainer();
-            //s_Instance._rewardDataContainer.Init("나 중에 쓰자.txt");
-            //s_Instance._dungeonDataContainer = new DungeonDataContainer();
-            //s_Instance._dungeonDataContainer.Init("나 중에 쓰자.txt");
+            s_Instance._skillDataContainer = new SkillDataContainer();
+            s_Instance._skillDataContainer.Init("Data\\SkillData.txt");
+            s_Instance._itemDataContainer = new ItemDataContainer();
+            s_Instance._itemDataContainer.Init("Data\\ItemData.txt");
+            s_Instance._monsterDataContainer = new MonsterDataContainer();
+            s_Instance._monsterDataContainer.Init("Data\\MonsterData.txt");
+            s_Instance._levelDataContainer = new LevelDataContainer();
+            s_Instance._levelDataContainer.Init("Data\\LevelData.txt");
+            s_Instance._rewardDataContainer = new RewardDataContainer();
+            s_Instance._rewardDataContainer.Init("Data\\RewardData.txt");
+            s_Instance._dungeonDataContainer = new DungeonDataContainer();
+            s_Instance._dungeonDataContainer.Init("Data\\DungeonData.txt");
             s_Instance._sceneManager = new SceneManager();
             s_Instance._sceneManager.Init();
             s_Instance.InputMemory = new InputMemory();
@@ -58,11 +58,11 @@ namespace BasicTeamProject.Data
         {
             return _skillDataContainer.CreateSkill(name);
         }
-        public Item_ CreateItem(string name)
+        public Item CreateItem(string name)
         {
             return _itemDataContainer.CreateItem(name);
         }
-        public List<Item_> GetReward(string name, out int gold)
+        public List<Item> GetReward(string name, out int gold)
         {
             return _rewardDataContainer.GetReward(name, out gold);
         }

@@ -23,7 +23,7 @@ namespace BasicTeamProject.Data
             int maxIndex = int.Parse(data[3]);
             for (int i = 0; i < maxIndex; ++i)
             {
-                Item_ item = DataManager.Instance.CreateItem(data[4 + i * 2]);
+                Item item = DataManager.Instance.CreateItem(data[4 + i * 2]);
                 reward.Items.Add(item);
                 reward.DropPer.Add(float.Parse(data[4 + i * 2 + 1]));
             }
@@ -32,7 +32,7 @@ namespace BasicTeamProject.Data
             _rewards.Add(data[0], reward);
         }
 
-        public List<Item_> GetReward(string name, out int gold)
+        public List<Item> GetReward(string name, out int gold)
         {
             return _rewards[name].GetReward(out gold);
         }
