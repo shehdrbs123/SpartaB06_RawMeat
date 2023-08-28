@@ -63,7 +63,7 @@ namespace BasicTeamProject
                 }
                 
                 Console.Clear();
-                
+                //출력
                 manager.GetScene(manager.FunctionList[manager.InputMemory.preInput-1]).Execute();
             }
         }

@@ -10,7 +10,6 @@ public class SceneManager
     public SceneManager()
     {
         _scenes = new Dictionary<string, Scene>();
-
     }
 
     public void Init()

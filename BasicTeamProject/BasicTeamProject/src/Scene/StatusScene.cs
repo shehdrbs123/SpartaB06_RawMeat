@@ -10,6 +10,11 @@ public class StatusScene : Scene
         FunctionList.Add("MainScene");
     }
 
+    protected override void PreOperate()
+    {
+        base.PreOperate();
+    }
+
     protected override void WriteView()
     {
         Console.WriteLine("상태 보기");
