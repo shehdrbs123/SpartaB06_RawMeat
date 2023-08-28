@@ -6,29 +6,14 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Data
 {
-    public enum TypeOfAbility
-    {
-        MaxHp,
-        NowHp,
-        MaxMp,
-        NowMp,
-        Att,
-        Def,
-        Critical,
-        Dodge,
-        Exp
-    }
-    public enum ItemType
-    {
 
-    }
-    public class Item_
+    public class Item
     {
-        public Item_()
+        public Item()
         {
 
         }
-        public Item_(Item_ item)
+        public Item(Item item)
         {
             this.NameID = item.NameID;
             this.Level = item.Level;

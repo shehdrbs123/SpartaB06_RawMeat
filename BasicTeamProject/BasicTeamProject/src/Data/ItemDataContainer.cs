@@ -8,15 +8,15 @@ namespace BasicTeamProject.Data
 {
     internal class ItemDataContainer : DataReader
     {
-        private Dictionary<string, Item_> _items;
+        private Dictionary<string, Item> _items;
 
         public ItemDataContainer()
         {
-            _items = new Dictionary<string, Item_>();
+            _items = new Dictionary<string, Item>();
         }
         public override void Process(string[] data)
         {
-            Item_ item = new Item_();
+            Item item = new Item();
             item.NameID = data[0];
             item.Level = int.Parse(data[1]);
             item.Duration = int.Parse(data[2]);
@@ -62,9 +62,9 @@ namespace BasicTeamProject.Data
             _items.Add(data[0], item);
         }
 
-        public Item_ CreateItem(string name)
+        public Item CreateItem(string name)
         {
-            return new Item_(_items[name]);
+            return new Item(_items[name]);
         }
     }
 }

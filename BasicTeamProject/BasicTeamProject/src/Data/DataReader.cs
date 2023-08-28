@@ -12,6 +12,7 @@ namespace BasicTeamProject.Data
         {
             StreamReader sr = new StreamReader(path);
             string inputData = "";
+            sr.ReadLine();
             while (!sr.EndOfStream)
             {
                 inputData = sr.ReadLine();
