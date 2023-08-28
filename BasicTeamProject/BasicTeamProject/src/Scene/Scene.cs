@@ -4,10 +4,12 @@ namespace BasicTeamProject.Scene;
 
 public abstract class Scene
 {
+    protected DataManager _dataManager;
     protected List<string> FunctionList;
     public Scene()
     {
         FunctionList = new List<string>();
+        _dataManager = DataManager.Instance;
         SetFunctionList();
     }
     protected abstract void WriteView();

@@ -25,7 +25,7 @@ namespace BasicTeamProject
             manager.FunctionList = new List<string>();
             if (!_isTest)
             {
-                manager.FunctionList.Add("MainScene");
+                manager.FunctionList.Add("CreateUserScene");
             }
             else
             {
@@ -56,7 +56,7 @@ namespace BasicTeamProject
             while (IsPlay())
             {
                 //입력 받기
-                while (!TryGetKey(manager.FunctionList.Count, out manager.InputMemory.preInput))
+                while (IsCanInput()&&!TryGetKey(manager.FunctionList.Count, out manager.InputMemory.preInput))
                 {
                     Console.WriteLine("잘못 입력하셨습니다");
                     Console.Write(">>");
@@ -71,6 +71,19 @@ namespace BasicTeamProject
         private bool IsPlay()
         {
             return _isGamePlay;
+        }
+
+        private bool IsCanInput()
+        {
+            if (manager.InputMemory.InputComplete)
+            {
+                manager.InputMemory.InputComplete = false;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 

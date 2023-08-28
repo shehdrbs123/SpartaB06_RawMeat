@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Data
 {
-    internal class Monster
+    public class Monster
     {
         public Monster() 
         {

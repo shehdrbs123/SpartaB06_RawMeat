@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Data
 {
-    internal class Reward
+    public class Reward
     {
         public int MinGold { get; set; }
         public int MaxGold { get; set; }

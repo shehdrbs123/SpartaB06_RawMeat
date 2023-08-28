@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Data
 {
-    enum TypeOfAbility
+    public enum TypeOfAbility
     {
         MaxHp,
         NowHp,
@@ -18,11 +18,11 @@ namespace BasicTeamProject.Data
         Dodge,
         Exp
     }
-    enum ItemType
+    public enum ItemType
     {
 
     }
-    internal class Item_
+    public class Item_
     {
         public Item_()
         {

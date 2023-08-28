@@ -8,7 +8,7 @@ using BasicTeamProject.Scene;
 
 namespace BasicTeamProject.Data
 {
-    internal class DataManager
+    public class DataManager
     {
         static DataManager s_Instance;
         public static DataManager Instance { get { Init(); return s_Instance; } }
