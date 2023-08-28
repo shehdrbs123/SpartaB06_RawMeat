@@ -1,0 +1,6 @@
+낡은검|1|-1|Weapon|1|Attf|10
+장갑|1|-1|Equip|1|MaxMp|50
+갑옷|1|-1|Equip|1|MaxHp|50
+투구|1|-1|Equip|1|Def|5
+겁내쌘무기|5|-1|Weapon|1|Att|100
+END
