@@ -22,4 +22,4 @@ public class MainScene : Scene
         Console.WriteLine("2. 전투 시작");
         Console.WriteLine();
     }
-}
+}   
