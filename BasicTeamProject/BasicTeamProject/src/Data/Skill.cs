@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Data
 {
-    internal class Skill
+    public class Skill
     {
         public Skill()
         {
