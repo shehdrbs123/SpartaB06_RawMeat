@@ -8,6 +8,11 @@ public class MainScene : Scene
     }
 
 
+    protected override void PreOperate()
+    {
+        base.PreOperate();
+    }
+
     protected override void WriteView()
     {
         Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다");
@@ -17,6 +22,4 @@ public class MainScene : Scene
         Console.WriteLine("2. 전투 시작");
         Console.WriteLine();
     }
-
-
 }
