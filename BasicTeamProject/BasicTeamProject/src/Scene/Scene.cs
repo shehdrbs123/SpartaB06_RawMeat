@@ -10,6 +10,7 @@ public abstract class Scene
     {
         _FunctionList = new List<string>();
         _dataManager = DataManager.Instance;
+        _FunctionList.Add("MainScene");
         SetFunctionList();
     }
     protected abstract void WriteView();

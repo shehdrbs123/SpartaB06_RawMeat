@@ -72,7 +72,7 @@ namespace BasicTeamProject.Scene
                     break;
             }
             _dataManager.InputMemory.InputComplete = true;
-            _dataManager.InputMemory.preInput = 1;
+            _dataManager.InputMemory.PreInput = 1;
         }
     }
 }

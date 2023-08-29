@@ -11,7 +11,7 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            FunctionList.Add("ShopScene");
+            _FunctionList.Add("ShopScene");
         }
         protected override void afterOperate()
         {
@@ -36,7 +36,7 @@ namespace BasicTeamProject.Scene
                 }
             }
             _dataManager.InputMemory.InputComplete = true;
-            _dataManager.InputMemory.preInput = 1;
+            _dataManager.InputMemory.PreInput = 1;
         }
         protected override void WriteView()
         {
@@ -49,7 +49,7 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            FunctionList.Add("ShopScene");
+            _FunctionList.Add("ShopScene");
         }
         protected override void afterOperate()
         {
@@ -74,7 +74,7 @@ namespace BasicTeamProject.Scene
                 }
             }
             _dataManager.InputMemory.InputComplete = true;
-            _dataManager.InputMemory.preInput = 1;
+            _dataManager.InputMemory.PreInput = 1;
         }
         protected override void WriteView()
         {
@@ -87,7 +87,7 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            FunctionList.Add("ShopScene");
+            _FunctionList.Add("ShopScene");
         }
         protected override void afterOperate()
         {
@@ -112,7 +112,7 @@ namespace BasicTeamProject.Scene
                 }
             }
             _dataManager.InputMemory.InputComplete = true;
-            _dataManager.InputMemory.preInput = 1;
+            _dataManager.InputMemory.PreInput = 1;
         }
         protected override void WriteView()
         {

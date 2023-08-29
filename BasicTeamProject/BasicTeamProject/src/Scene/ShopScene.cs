@@ -10,10 +10,10 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            FunctionList.Add("MainScene");
-            FunctionList.Add("ShopInvenEquip");
-            FunctionList.Add("ShopInvenConsumable");
-            FunctionList.Add("ShopInvenAll");
+            _FunctionList.Add("MainScene");
+            _FunctionList.Add("ShopInvenEquip");
+            _FunctionList.Add("ShopInvenConsumable");
+            _FunctionList.Add("ShopInvenAll");
         }
 
         protected override void WriteView()

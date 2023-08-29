@@ -19,7 +19,7 @@ public class CreateUserScene : Scene
         string name = Console.ReadLine();
         _dataManager.Player.NameID = name;
         _dataManager.InputMemory.InputComplete = true;
-        _dataManager.InputMemory.preInput = 1; 
+        _dataManager.InputMemory.PreInput = 1; 
     }
     protected override void SetFunctionList()
     {

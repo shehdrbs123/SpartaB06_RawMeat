@@ -4,13 +4,14 @@ namespace BasicTeamProject
 {
     public class GameCore
     {
-        private DataManager manager;
+        private DataManager _manager;
+        private InputMemory _input;
         private bool _isTest = false;
         private bool _isGamePlay = true;
 
         public GameCore()
         {
-            manager = DataManager.Instance;
+            _manager = DataManager.Instance;
         }
         public void Play(bool isTest)
         {
@@ -22,10 +23,10 @@ namespace BasicTeamProject
 
         private void SetDataDefault()
         {
-            manager.FunctionList = new List<string>();
+            _manager.FunctionList = new List<string>();
             if (!_isTest)
             {
-                manager.FunctionList.Add("CreateUserScene");
+                _manager.FunctionList.Add("CreateUserScene");
             }
             else
             {
@@ -36,7 +37,7 @@ namespace BasicTeamProject
                 DataManager.Instance.Inventory.AddItem("낡은검", 1);
                 DataManager.Instance.Inventory.AddItem("겁내쌘무기", 2);
                 DataManager.Instance.Inventory.AddItem("똥", 100);
-                manager.FunctionList.Add("CreateUserScene");
+                _manager.FunctionList.Add("CreateUserScene");
                 //Console.WriteLine("보고 싶은 씬을 골라주세요");
                 //int i = 0;
                 //var pairs = SceneManager._scenes;
@@ -60,11 +61,11 @@ namespace BasicTeamProject
 
         private void GamePlay()
         {
-            manager.GetScene(manager.FunctionList[0]).Execute();
+            _manager.GetScene(_manager.FunctionList[0]).Execute();
             while (IsPlay())
             {
                 //입력 받기
-                while (IsCanInput()&&!TryGetKey(manager.FunctionList.Count, out manager.InputMemory.preInput))
+                while (IsCanInput()&&!_input.TryGetKey(_manager.FunctionList.Count,out _manager.InputMemory.PreInput))
                 {
                     Console.WriteLine("잘못 입력하셨습니다");
                     Console.Write(">>");
@@ -72,7 +73,7 @@ namespace BasicTeamProject
                 
                 Console.Clear();
                 //출력
-                manager.GetScene(manager.FunctionList[manager.InputMemory.preInput-1]).Execute();
+                _manager.GetScene(_manager.FunctionList[_manager.InputMemory.PreInput-1]).Execute();
             }
         }
 
@@ -83,9 +84,9 @@ namespace BasicTeamProject
 
         private bool IsCanInput()
         {
-            if (manager.InputMemory.InputComplete)
+            if (_manager.InputMemory.InputComplete)
             {
-                manager.InputMemory.InputComplete = false;
+                _manager.InputMemory.InputComplete = false;
                 return false;
             }
             else
@@ -94,21 +95,5 @@ namespace BasicTeamProject
             }
         }
 
-
-        private bool TryGetKey(int range, out int key)
-        {
-            key = 0;
-            bool isOk = false;
-            if (int.TryParse(Console.ReadLine(), out key))
-            {
-                if (1 <= key && key <= range)
-                {
-                    manager.InputMemory.preInput = key;
-                    isOk = true;
-                }
-            }
-
-            return isOk;
-        }
     }
 }
