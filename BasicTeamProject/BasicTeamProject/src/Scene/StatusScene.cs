@@ -21,10 +21,7 @@ public class StatusScene : Scene
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
         enter();
         //캐릭터 상태 가져와서 보여주기
-        
-        
-
-        
+        _dataManager.Player.ShowAllInfo();
         enter();
         
         Console.WriteLine("1. 나가기");
