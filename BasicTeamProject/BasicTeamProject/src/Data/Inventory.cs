@@ -152,6 +152,35 @@ public class Inventory
         return Count;
     }
 
+    public void ShowNoIndexAll()
+    {
+        foreach (var Dic in _inven)
+        {
+            foreach (var items in Dic.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    item.ShowInfo();
+                }
+            }
+        }
+    }
+
+    public int GetAllItemCount()
+    {
+        int count = 0;
+        foreach (var Dic in _inven)
+        {
+            foreach (var items in Dic.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 
     public int DeleteItem(int index, int count = 1, ItemType type = ItemType.End)
     {

@@ -11,9 +11,21 @@ namespace BasicTeamProject.Scene
         protected override void SetFunctionList()
         {
             _FunctionList.Add("MainScene");
-            _FunctionList.Add("MainScene");
+            _FunctionList.Add("InventoryEquipScene");
         }
 
+        protected override void WriteView()
+        {
+            Console.WriteLine("인벤토리");
+            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
+            enter();
+            Console.WriteLine("[아이템 목록]");
+            _dataManager.Inventory.ShowNoIndexAll();
+            enter();
+            Console.WriteLine("1. 나가기");
+            Console.WriteLine("2. 장착 관리");
+            EndView();
+        }
         protected override void afterOperate()
         {
             base.afterOperate();
@@ -26,19 +38,6 @@ namespace BasicTeamProject.Scene
             }
             _dataManager.InputMemory.PreInput = key;
             _dataManager.InputMemory.InputComplete = true;
-        }
-
-        protected override void WriteView()
-        {
-            Console.WriteLine("인벤토리");
-            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
-            enter();
-            Console.WriteLine("[아이템 목록]");
-            _dataManager.Inventory.ShowAll();
-            enter();
-            Console.WriteLine("2. 장착 관리");
-            Console.WriteLine("1. 나가기");
-            enter();
         }
     }
 }
