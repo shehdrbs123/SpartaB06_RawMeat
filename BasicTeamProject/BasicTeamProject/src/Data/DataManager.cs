@@ -22,7 +22,7 @@ namespace BasicTeamProject.Data
             s_Instance.Player = new Player();
             s_Instance.Inventory = new Inventory();
             s_Instance.Monsters = new List<Monster>();
-
+            s_Instance.Shop = new Shop();
 
             s_Instance._skillDataContainer = new SkillDataContainer();
             s_Instance._skillDataContainer.Init("Data\\SkillData.txt");
@@ -38,9 +38,14 @@ namespace BasicTeamProject.Data
             s_Instance._dungeonDataContainer.Init("Data\\DungeonData.txt");
             s_Instance._playerDataContainer = new PlayerDataContainer();
             s_Instance._playerDataContainer.Init("Data\\PlayerData.txt");
+            s_Instance._shopDataContainer = new ShopDataContainer();
+            s_Instance._shopDataContainer.Init("Data\\ShopData.txt");
             s_Instance._sceneManager = new SceneManager();
             s_Instance._sceneManager.Init();
             s_Instance.InputMemory = new InputMemory();
+
+
+            s_Instance.RenewItems(6);
         }
         public void CreateDungeon(int level)
         {
@@ -90,6 +95,12 @@ namespace BasicTeamProject.Data
         {
             _playerDataContainer.PlayerSetting(key);
         }
+        public void RenewItems(int ListCount)
+        {
+            _shopDataContainer.RenewItems(ListCount);
+        }
+
+
         MonsterDataContainer        _monsterDataContainer;
         LevelDataContainer          _levelDataContainer;
         RewardDataContainer         _rewardDataContainer;
@@ -98,11 +109,14 @@ namespace BasicTeamProject.Data
         SkillDataContainer          _skillDataContainer;
         SceneManager                _sceneManager;
         PlayerDataContainer         _playerDataContainer; 
+        ShopDataContainer           _shopDataContainer;
+
 
         public List<Monster>        Monsters;
         public Player               Player;
         public Inventory            Inventory;
         public List<string>         FunctionList;
         public InputMemory          InputMemory;
+        public Shop                 Shop;
     }
 }

@@ -73,5 +73,13 @@ namespace BasicTeamProject.Data
         {
             Console.WriteLine($"{NameID} | {Count}");
         }
+
+        public void ShowShopInfo()
+        {
+            if(Count != 1)
+                Console.WriteLine($"{NameID} | 갯수 : {Count} | 개당가격 : {Gold}");
+            else
+                Console.WriteLine($"{NameID} | 가격 : {Gold}");
+        }
     }
 }
