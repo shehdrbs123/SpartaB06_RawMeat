@@ -74,7 +74,7 @@ namespace BasicTeamProject
                 
                 Console.Clear();
                 //출력
-                _manager.GetScene(_manager.FunctionList[_manager.InputMemory.PreInput-1]).Execute();
+                _manager.GetScene(_manager.FunctionList[_manager.InputMemory.PreInput]).Execute();
             }
         }
 
