@@ -12,6 +12,7 @@ namespace BasicTeamProject
         public GameCore()
         {
             _manager = DataManager.Instance;
+            _input = DataManager.Instance.InputMemory;
         }
         public void Play(bool isTest)
         {
