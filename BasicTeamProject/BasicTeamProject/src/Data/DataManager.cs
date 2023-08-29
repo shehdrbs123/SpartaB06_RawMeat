@@ -36,6 +36,8 @@ namespace BasicTeamProject.Data
             s_Instance._rewardDataContainer.Init("Data\\RewardData.txt");
             s_Instance._dungeonDataContainer = new DungeonDataContainer();
             s_Instance._dungeonDataContainer.Init("Data\\DungeonData.txt");
+            s_Instance._playerDataContainer = new PlayerDataContainer();
+            s_Instance._playerDataContainer.Init("Data\\PlayerData.txt");
             s_Instance._sceneManager = new SceneManager();
             s_Instance._sceneManager.Init();
             s_Instance.InputMemory = new InputMemory();
@@ -62,6 +64,10 @@ namespace BasicTeamProject.Data
         {
             return _itemDataContainer.CreateItem(name);
         }
+        public Item CreateItem(string name, int count)
+        {
+            return _itemDataContainer.CreateItem(name, count);
+        }
         public List<Item> GetReward(string name, out int gold)
         {
             return _rewardDataContainer.GetReward(name, out gold);
@@ -83,8 +89,8 @@ namespace BasicTeamProject.Data
         DungeonDataContainer        _dungeonDataContainer;
         SkillDataContainer          _skillDataContainer;
         SceneManager                _sceneManager;
-        
-        
+        PlayerDataContainer         _playerDataContainer; 
+
         public List<Monster>        Monsters;
         public Player               Player;
         public Inventory            Inventory;

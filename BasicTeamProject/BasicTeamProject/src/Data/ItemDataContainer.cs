@@ -19,42 +19,44 @@ namespace BasicTeamProject.Data
             Item item = new Item();
             item.NameID = data[0];
             item.Level = int.Parse(data[1]);
-            item.Duration = int.Parse(data[2]);
-            item.Type = (ItemType)Enum.Parse(typeof(ItemType), data[3]);
-            
-            int maxIndex = int.Parse(data[4]);
+            item.MaxCount = int.Parse(data[2]); 
+            item.Duration = int.Parse(data[3]);
+            item.Type = (ItemType)Enum.Parse(typeof(ItemType), data[4]);
+            item.EquipType = (EquipType)Enum.Parse(typeof(EquipType), data[5]);
+            item.Gold = int.Parse(data[6]);
+            int maxIndex = int.Parse(data[7]);
             for(int i = 0; i < maxIndex; i++)
             {
-                switch ((TypeOfAbility)Enum.Parse(typeof(TypeOfAbility), data[5 + i * 2]))
+                switch ((TypeOfAbility)Enum.Parse(typeof(TypeOfAbility), data[8 + i * 2]))
                 {
                     case TypeOfAbility.MaxHp: 
-                        item.MaxHp += int.Parse(data[5 + i * 2 + 1]);
-                        item.NowHp += int.Parse(data[5 + i * 2 + 1]);
+                        item.MaxHp +=       int.Parse(data[8 + i * 2 + 1]);
+                        item.CurrentHp +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
-                    case TypeOfAbility.NowHp:
-                        item.NowHp += int.Parse(data[5 + i * 2 + 1]);
+                    case TypeOfAbility.CurrentHp:
+                        item.CurrentHp +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.MaxMp:
-                        item.MaxMp += int.Parse(data[5 + i * 2 + 1]);
-                        item.NowMp += int.Parse(data[5 + i * 2 + 1]);
+                        item.MaxMp +=       int.Parse(data[8 + i * 2 + 1]);
+                        item.CurrentMp +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
-                    case TypeOfAbility.NowMp:
-                        item.NowMp += int.Parse(data[5 + i * 2 + 1]);
+                    case TypeOfAbility.CurrentMp:
+                        item.CurrentMp +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.Att:
-                        item.Att += int.Parse(data[5 + i * 2 + 1]);
+                        item.Att +=         int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.Def:
-                        item.Def += int.Parse(data[5 + i * 2 + 1]);
+                        item.Def +=         int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.Critical:
-                        item.Critical += int.Parse(data[5 + i * 2 + 1]);
+                        item.Critical +=    int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.Dodge:
-                        item.Dodge += int.Parse(data[5 + i * 2 + 1]);
+                        item.Dodge +=       int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.Exp:
-                        item.Exp += int.Parse(data[5 + i * 2 + 1]);
+                        item.Exp +=         int.Parse(data[8 + i * 2 + 1]);
                         break;
                 }
             }
@@ -65,6 +67,10 @@ namespace BasicTeamProject.Data
         public Item CreateItem(string name)
         {
             return new Item(_items[name]);
+        }
+        public Item CreateItem(string name, int count)
+        {
+            return new Item(_items[name], count);
         }
     }
 }

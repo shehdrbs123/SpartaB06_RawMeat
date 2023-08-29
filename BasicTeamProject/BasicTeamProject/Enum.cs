@@ -9,9 +9,9 @@ namespace BasicTeamProject
     public enum TypeOfAbility
     {
         MaxHp,
-        NowHp,
+        CurrentHp,
         MaxMp,
-        NowMp,
+        CurrentMp,
         Att,
         Def,
         Critical,
@@ -21,8 +21,19 @@ namespace BasicTeamProject
     }
     public enum ItemType
     {
-        Weapon,
         Equip,
-        Consumable
+        Consumable,
+        End
+    }
+    public enum EquipType
+    {
+        Weapon,
+        장갑,
+        투구,
+        신발,
+        바지,
+        갑옷,
+        Consumable,
+        End
     }
 }
