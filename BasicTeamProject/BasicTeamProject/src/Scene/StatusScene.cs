@@ -7,7 +7,7 @@ public class StatusScene : Scene
 {
     protected override void SetFunctionList()
     {
-        FunctionList.Add("MainScene");
+        _FunctionList.Add("MainScene");
     }
 
     protected override void PreOperate()

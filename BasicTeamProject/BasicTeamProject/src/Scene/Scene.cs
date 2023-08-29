@@ -5,10 +5,10 @@ namespace BasicTeamProject.Scene;
 public abstract class Scene
 {
     protected DataManager _dataManager;
-    protected List<string> FunctionList;
+    protected List<string> _FunctionList;
     public Scene()
     {
-        FunctionList = new List<string>();
+        _FunctionList = new List<string>();
         _dataManager = DataManager.Instance;
         SetFunctionList();
     }
@@ -16,12 +16,12 @@ public abstract class Scene
 
     protected virtual void PreOperate()
     {
-        
+
     }
 
     protected virtual void afterOperate()
     {
-        DataManager.Instance.FunctionList = FunctionList;
+        DataManager.Instance.FunctionList = _FunctionList;
     }
 
     protected abstract void SetFunctionList();
