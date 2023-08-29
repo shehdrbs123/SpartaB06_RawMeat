@@ -82,6 +82,14 @@ namespace BasicTeamProject.Data
             return _sceneManager.GetScene(name);
         }
 
+        public void PlayerSetting(string key)
+        {
+            _playerDataContainer.PlayerSetting(key);
+        }
+        public void PlayerSetting(int key)
+        {
+            _playerDataContainer.PlayerSetting(key);
+        }
         MonsterDataContainer        _monsterDataContainer;
         LevelDataContainer          _levelDataContainer;
         RewardDataContainer         _rewardDataContainer;

@@ -32,45 +32,22 @@ namespace BasicTeamProject.Scene
             Console.WriteLine("1.전사, 2.도적, 3.마법사");
             int job = int.Parse(Console.ReadLine());
             Player tempUser = _dataManager.Player;
-            tempUser.MaxExp = _dataManager.GetMaxExp(tempUser.Level);
             
-            switch(job)
-            {
-                case 1:
-                    tempUser.job = Data.Player.Job.전사;
-                    tempUser.MaxHp = 100;
-                    tempUser.MaxMp = 50;
-                    tempUser.Att = 5;
-                    tempUser.Def = 10;
-                    tempUser.Critical = 5;
-                    tempUser.Dodge = 10;
-                    tempUser.Skills.Add(_dataManager.CreateSkill("강한공격"));
-                    tempUser.Skills.Add(_dataManager.CreateSkill("방어모드"));
+            //둘다 만들었는데 일단 아래꺼가 짧으니까 아래걸로
+            //switch(job)
+            //{
+            //    case 1:
+            //        _dataManager.PlayerSetting("전사");
+            //        break;
+            //    case 2:
+            //        _dataManager.PlayerSetting("도적");
+            //        break;
+            //    case 3:
+            //        _dataManager.PlayerSetting("마법사");
+            //        break;
+            //}
+            _dataManager.PlayerSetting(job);
 
-                    break;
-                case 2:
-                    tempUser.job = Data.Player.Job.도적;
-                    tempUser.MaxHp = 80;
-                    tempUser.MaxMp = 80;
-                    tempUser.Att = 3;
-                    tempUser.Def = 7;
-                    tempUser.Critical = 40;
-                    tempUser.Dodge = 50;
-                    tempUser.Skills.Add(_dataManager.CreateSkill("공허돌진"));
-                    tempUser.Skills.Add(_dataManager.CreateSkill("강한대포"));
-                    break;
-                case 3:
-                    tempUser.job = Data.Player.Job.마법사;
-                    tempUser.MaxHp = 100;
-                    tempUser.MaxMp = 50;
-                    tempUser.Att = 5;
-                    tempUser.Def = 10;
-                    tempUser.Critical = 5;
-                    tempUser.Dodge = 10;
-                    tempUser.Skills.Add(_dataManager.CreateSkill("브레스"));
-                    tempUser.Skills.Add(_dataManager.CreateSkill("꼬리치기"));
-                    break;
-            }
             _dataManager.InputMemory.InputComplete = true;
             _dataManager.InputMemory.PreInput = 1;
         }
