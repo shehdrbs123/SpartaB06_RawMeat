@@ -22,7 +22,9 @@ namespace BasicTeamProject.Data
             mon.NameID = data[0];
             mon.Level = int.Parse(data[1]);
             mon.MaxHp = int.Parse(data[2]);
+            mon.CurrentHp = mon.MaxHp;
             mon.MaxMp = int.Parse(data[3]);
+            mon.CurrentMp = mon.MaxMp;
             mon.Att = int.Parse(data[4]);
             mon.Def = int.Parse(data[5]);
             mon.Critical = float.Parse(data[6]);

@@ -16,7 +16,9 @@ namespace BasicTeamProject.Data
             this.NameID = mon.NameID;
             this.Level = mon.Level;
             this.MaxHp = mon.MaxHp;
+            this.CurrentHp = mon.CurrentHp;
             this.MaxMp = mon.MaxMp;
+            this.CurrentMp = mon.CurrentMp;
             this.Att = mon.Att;
             this.Def = mon.Def;
             this.Critical = mon.Critical;
@@ -31,7 +33,9 @@ namespace BasicTeamProject.Data
         public string NameID { get; set; }
         public int Level { get; set; }
         public int MaxHp { get; set; }
+        public int CurrentHp { get; set; }
         public int MaxMp { get; set; }
+        public int CurrentMp { get; set; }
         public float Att { get; set; }
         public float Def { get; set; }
         public float Critical { get; set; }

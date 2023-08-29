@@ -29,6 +29,14 @@ namespace BasicTeamProject
             }
             else
             {
+                DataManager.Instance.Inventory.AddItem("낡은검", 1);
+                DataManager.Instance.Inventory.AddItem("낡은검", 1);
+                DataManager.Instance.Inventory.AddItem("낡은검", 1);
+                DataManager.Instance.Inventory.AddItem("낡은검", 1);
+                DataManager.Instance.Inventory.AddItem("낡은검", 1);
+                DataManager.Instance.Inventory.AddItem("겁내쌘무기", 2);
+                DataManager.Instance.Inventory.AddItem("똥", 100);
+                manager.FunctionList.Add("CreateUserScene");
                 //Console.WriteLine("보고 싶은 씬을 골라주세요");
                 //int i = 0;
                 //var pairs = SceneManager._scenes;

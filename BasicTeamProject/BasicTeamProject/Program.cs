@@ -4,7 +4,7 @@ using BasicTeamProject;
 
 public class Program
 {
-    private static  bool isTestMode = false;
+    private static  bool isTestMode = true;
     public static void Main()
     {
         GameCore engine = new GameCore();
