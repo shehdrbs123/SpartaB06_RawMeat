@@ -6,21 +6,19 @@ public class InputMemory
     public bool InputComplete;
     private int _start;
     private int _end;
-    
+
+    public InputMemory()
+    {
+        _start = 0;
+        _end = 0;
+    }
 
     public void SetRange(int start, int end)
     {
         _start = start;
         _end = end;
     }
-
-    public bool TryGetKey(int range, out int key)
-    {
-        _start = 0;
-        _end = range;
-        return TryGetKey(out key);
-    }
-
+    
     public bool TryGetKey(out int key)
     {
         key = 0;
@@ -35,4 +33,17 @@ public class InputMemory
         }
         return isOk;
     }
+
+    public bool TryGetKey(int range, out int key)
+    {
+        SetRange(0,range);
+        return TryGetKey(out key);
+    }
+
+    public bool TryGetKey(int start, int end, out int key)
+    {
+        SetRange(start,end);
+        return TryGetKey(out key);
+    }
+
 }
