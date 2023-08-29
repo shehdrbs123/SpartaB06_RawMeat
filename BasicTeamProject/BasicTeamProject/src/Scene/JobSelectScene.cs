@@ -30,7 +30,13 @@ namespace BasicTeamProject.Scene
             base.afterOperate();
             Console.WriteLine("직업을 입력해 주세요");
             Console.WriteLine("1.전사, 2.도적, 3.마법사");
-            int job = int.Parse(Console.ReadLine());
+            int job;
+            while (!_dataManager.InputMemory.TryGetKey(1,3,out job))
+            {
+                Console.WriteLine("잘못 입력하셨습니다");
+                Console.Write(">>");
+            }
+            
             Player tempUser = _dataManager.Player;
             
             //둘다 만들었는데 일단 아래꺼가 짧으니까 아래걸로
