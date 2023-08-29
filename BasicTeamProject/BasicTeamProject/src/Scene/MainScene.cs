@@ -4,7 +4,7 @@ public class MainScene : Scene
 {
     protected override void SetFunctionList()
     {
-        FunctionList.Add("StatusScene");
+        _FunctionList.Add("StatusScene");
     }
 
 

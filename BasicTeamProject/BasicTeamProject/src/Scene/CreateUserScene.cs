@@ -1,5 +1,9 @@
 ﻿using BasicTeamProject.Data;
 namespace BasicTeamProject.Scene;
+/// <summary>
+/// 작업자 : 노동균
+/// 클래스 역할 : 유저이름을 입력받아 유저캐릭터에 적용 해주는 클래스
+/// </summary>
 public class CreateUserScene : Scene
 {
     protected override void WriteView()
@@ -19,6 +23,6 @@ public class CreateUserScene : Scene
     }
     protected override void SetFunctionList()
     {
-        FunctionList.Add("MainScene");
+        _FunctionList.Add("JobSelectScene");
     }
 }
