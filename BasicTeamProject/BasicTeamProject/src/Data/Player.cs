@@ -2,11 +2,16 @@
 
 public class Player
 {
+    public enum Job
+    {
+        전사=0,도적,마법사
+    }
     public Player()
     {
         
     }
     public string NameID { get; set; }
+    public Job job { get; set; }
     public int Level { get; set; }
     public int MaxHp { get; set; }
     public int MaxMp { get; set; }
