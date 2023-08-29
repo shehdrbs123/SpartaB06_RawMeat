@@ -50,6 +50,7 @@ namespace BasicTeamProject.Data
             this.Exp = item.Exp;
             this.Count = Count;
             this.MaxCount = item.MaxCount;
+            this.Gold = item.Gold;
         }
         public string NameID { get; set; }
         public int Level { get; set; }
