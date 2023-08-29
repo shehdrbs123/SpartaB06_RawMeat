@@ -21,4 +21,6 @@ public class Player
     public float Dodge { get; set; }
     public int Exp { get; set; }
     public List<Skill> Skills { get; set; } = new List<Skill>();
+
+    public int Gold { get; set; }
 }
