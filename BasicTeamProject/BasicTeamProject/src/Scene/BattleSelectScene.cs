@@ -11,9 +11,9 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("BattleSelectScene");
-            _FunctionList.Add("BattleSelectScene");
-            _FunctionList.Add("BattleSelectScene");
+            _FunctionList.Add("BattleScene");
+            _FunctionList.Add("RealBattleScene");
+            _FunctionList.Add("RealBattleScene");
         }
 
         protected override void WriteView()
@@ -23,13 +23,14 @@ namespace BasicTeamProject.Scene
             for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
                 var monster = _dataManager.Monsters[i];
-                Console.WriteLine($"{i + 1}.레벨: {monster.Level} 이름: {monster.NameID} 체력: {monster.MaxHp}");
+                if (monster.CurrentHp <= 0) continue;
+                Console.WriteLine($"{i + 1}.Lv.{monster.Level} {monster.NameID} HP: {monster.MaxHp}");
             }
             enter();
 
             Console.WriteLine("[플레이어 정보]");
             enter();
-            Console.WriteLine($"레벨: {_dataManager.Player.Level}\n이름: {_dataManager.Player.NameID}" +
+            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}" +
                 $"({_dataManager.Player.job})\n체력: {_dataManager.Player.CurrentHP}");
 
             enter();
