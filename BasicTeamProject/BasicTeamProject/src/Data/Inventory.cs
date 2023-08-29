@@ -287,5 +287,23 @@ public class Inventory
         return _inven[i][select][index];
     }
 
+    public bool GetEquippedIndex(EquipType type, out int index)
+    {
+        index = 0;
+        foreach (var Dic in _inven)
+        {
+            foreach (var items in Dic.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    index++;
+                    if (item.EquipType == type && item.IsEquipped)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
     Dictionary<ItemType, Dictionary<string, List<Item>>> _inven;
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasicTeamProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,14 +30,28 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            int key;
+            int key, index;
             _dataManager.InputMemory.SetRange(0, _dataManager.Inventory.GetAllItemCount());
             while (!_dataManager.InputMemory.TryGetKey(out key))
             {
                 Console.WriteLine("잘못 입력하셨습니다");
                 Console.Write(">>");
             }
-            _dataManager.Inventory.GetItem(key).IsEquipped = !_dataManager.Inventory.GetItem(key).IsEquipped;
+
+            if (key != 0)
+            {
+                var tempItem = _dataManager.Inventory.GetItem(key);
+                if (tempItem.EquipType != EquipType.End)
+                {
+                    if (!tempItem.IsEquipped && _dataManager.Inventory.GetEquippedIndex(tempItem.EquipType, out index))
+                        _dataManager.Inventory.GetItem(index).IsEquipped = false;
+
+                    _dataManager.Inventory.GetItem(key).IsEquipped = !_dataManager.Inventory.GetItem(key).IsEquipped;
+                }
+                tempItem.ShowInfo();
+                Console.WriteLine(tempItem.EquipType.ToString());
+            }
+
             _dataManager.InputMemory.PreInput = (key == 0 ? 1 : 2);
             _dataManager.InputMemory.InputComplete = true;
         }
