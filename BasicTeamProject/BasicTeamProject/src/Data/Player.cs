@@ -38,8 +38,20 @@ public class Player
         Def = Data.Def;
         Critical = Data.Critical;
         Dodge = Data.Dodge;
+    }
 
-}
+    public void ShowAllInfo()
+    {
+        Console.WriteLine("[캐릭터 정보]");
+        Console.WriteLine($"이름 : {NameID}");
+        Console.WriteLine($"Lv. {Level,2}");
+        Console.WriteLine($"Chad ( {Enum.GetNames<Job>()[(int)job]} )");
+        Console.WriteLine($"공격력 : {Att}");
+        Console.WriteLine($"방어력 : {Def}");
+        Console.WriteLine($"체 력 : {CurrentHP}/{MaxHp}");
+        Console.WriteLine($"Gold : {Gold}");
+        Console.WriteLine($"Exp : {CurrentExp}");
+    }
 }
 
 public struct PlayerPasingData
