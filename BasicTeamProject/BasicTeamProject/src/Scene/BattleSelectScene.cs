@@ -7,30 +7,23 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Scene
 {
-    public class BattleScene : Scene
+    public class BattleSelectScene : Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("MainScene");
             _FunctionList.Add("BattleSelectScene");
-        }
-
-        protected override void PreOperate()
-        {
-            base.PreOperate();
-            if (_dataManager.Monsters.Count == 0)
-            {
-                _dataManager.CreateDungeon(1);
-            }
+            _FunctionList.Add("BattleSelectScene");
+            _FunctionList.Add("BattleSelectScene");
         }
 
         protected override void WriteView()
         {
-            Console.WriteLine("전투 시작");
+            Console.WriteLine("전투");
             enter();
-            foreach (var monster in _dataManager.Monsters)
+            for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
-                Console.WriteLine($"레벨: {monster.Level} 이름: {monster.NameID} 체력: {monster.MaxHp}");
+                var monster = _dataManager.Monsters[i];
+                Console.WriteLine($"{i + 1}.레벨: {monster.Level} 이름: {monster.NameID} 체력: {monster.MaxHp}");
             }
             enter();
 
@@ -40,9 +33,9 @@ namespace BasicTeamProject.Scene
                 $"({_dataManager.Player.job})\n체력: {_dataManager.Player.CurrentHP}");
 
             enter();
-            Console.WriteLine("0. 나가기");
-            Console.WriteLine("1. 공격");
+            Console.WriteLine("0. 취소");
             enter();
+
         }
     }
 }
