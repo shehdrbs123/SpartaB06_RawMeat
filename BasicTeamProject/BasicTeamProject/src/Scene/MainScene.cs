@@ -23,8 +23,6 @@ public class MainScene : Scene
         Console.WriteLine("1. 상태 보기");
         Console.WriteLine("2. 인벤토리");
         Console.WriteLine("3. 상점 가기");
-        Console.WriteLine();
-        
         
         // 공격씬 
         

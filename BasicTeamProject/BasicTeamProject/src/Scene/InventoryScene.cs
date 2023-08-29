@@ -22,21 +22,21 @@ namespace BasicTeamProject.Scene
             Console.WriteLine("[아이템 목록]");
             _dataManager.Inventory.ShowNoIndexAll();
             enter();
-            Console.WriteLine("1. 나가기");
-            Console.WriteLine("2. 장착 관리");
+            Console.WriteLine("0. 나가기");
+            Console.WriteLine("1. 장착 관리");
             EndView();
         }
         protected override void afterOperate()
         {
             base.afterOperate();
             int key;
-            _dataManager.InputMemory.SetRange(1, 2);
+            _dataManager.InputMemory.SetRange(0, 1);
             while (!_dataManager.InputMemory.TryGetKey(out key))
             {
                 Console.WriteLine("잘못 입력하셨습니다");
                 Console.Write(">>");
             }
-            _dataManager.InputMemory.PreInput = key;
+            _dataManager.InputMemory.PreInput = key + 1;
             _dataManager.InputMemory.InputComplete = true;
         }
     }

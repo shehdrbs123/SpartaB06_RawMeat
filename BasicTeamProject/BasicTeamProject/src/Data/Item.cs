@@ -32,6 +32,7 @@ namespace BasicTeamProject.Data
             this.Count = item.Count;
             this.MaxCount = item.MaxCount;
             this.Gold = item.Gold;
+            this.IsEquipped = item.IsEquipped;
         }
         public Item(Item item, int Count)
         {
@@ -51,6 +52,7 @@ namespace BasicTeamProject.Data
             this.Count = Count;
             this.MaxCount = item.MaxCount;
             this.Gold = item.Gold;
+            this.IsEquipped = item.IsEquipped;
         }
         public string NameID { get; set; }
         public int Level { get; set; }
@@ -69,8 +71,11 @@ namespace BasicTeamProject.Data
         public float Dodge { get; set; }
         public int Exp { get; set; }
         public int Gold { get; set; }
+        public bool IsEquipped { get; set; } = false;
         public void ShowInfo()
         {
+            if (IsEquipped)
+                Console.Write("[E]");
             Console.WriteLine($"{NameID} | {Count}");
         }
     }

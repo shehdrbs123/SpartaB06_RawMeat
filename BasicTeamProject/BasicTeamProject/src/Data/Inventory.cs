@@ -241,6 +241,51 @@ public class Inventory
         return count * gold;
     }
 
-    
+    public Item? GetItem(int index, ItemType type = ItemType.End)
+    {
+        ItemType i = 0;
+        string select = "";
+        if (type == ItemType.End)
+        {
+            foreach (var Dic in _inven)
+            {
+                foreach (var items in Dic.Value)
+                {
+                    if (index - items.Value.Count > 0)
+                        index -= items.Value.Count;
+                    else
+                    {
+                        select = items.Key;
+                        index -= 1;
+                        break;
+                    }
+                }
+
+                if (select != "")
+                    break;
+                ++i;
+            }
+        }
+        else
+        {
+            i = type;
+            foreach (var items in _inven[type])
+            {
+                if (index - items.Value.Count > 0)
+                    index -= items.Value.Count;
+                else
+                {
+                    select = items.Key;
+                    index -= 1;
+                    break;
+                }
+            }
+        }
+        if (select == "")
+            return null;
+
+        return _inven[i][select][index];
+    }
+
     Dictionary<ItemType, Dictionary<string, List<Item>>> _inven;
 }

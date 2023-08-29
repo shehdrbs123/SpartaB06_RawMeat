@@ -36,7 +36,8 @@ namespace BasicTeamProject.Scene
                 Console.WriteLine("잘못 입력하셨습니다");
                 Console.Write(">>");
             }
-            _dataManager.InputMemory.PreInput = key == 0 ? 0 : 1;
+            _dataManager.Inventory.GetItem(key).IsEquipped = !_dataManager.Inventory.GetItem(key).IsEquipped;
+            _dataManager.InputMemory.PreInput = (key == 0 ? 1 : 2);
             _dataManager.InputMemory.InputComplete = true;
         }
     }
