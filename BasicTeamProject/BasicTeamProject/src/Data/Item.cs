@@ -39,6 +39,7 @@ namespace BasicTeamProject.Data
             this.Level = item.Level;
             this.Duration = item.Duration;
             this.Type = item.Type;
+            this.EquipType = item.EquipType;
             this.MaxHp = item.MaxHp;
             this.MaxMp = item.MaxMp;
             this.CurrentHp = item.CurrentHp;
