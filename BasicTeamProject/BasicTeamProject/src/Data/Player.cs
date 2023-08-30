@@ -128,15 +128,17 @@ public class Player : ISkillStatus
         return 0;
 
     }
-    public int GetDamage(int index)
+    public int GetDamage()
     {
+        int damage;
         if (CurrentSkill > 0)
         {
+            damage = UseSkill(CurrentSkill);
             CurrentSkill = -1;
-            return UseSkill(index);
         }
         else
-            return (int)Att;
+            damage = (int)(Att+ExtraAtt);
+        return damage;
     }
 
     public void EndDungeon()

@@ -12,7 +12,7 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("BattleSkillSelectScene");
+            _FunctionList.Add("BattleSelectScene");
         }
 
         protected override void WriteView()
