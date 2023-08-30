@@ -86,10 +86,43 @@ namespace BasicTeamProject.Data
             _items.Clear();
         }
 
-        public void AddItem(Item item)
+        public void AddItem(Item? item)
         {
             _items.Add(item);
         }
 
+        public string GetSaveData()
+        {
+            string str = "";
+            foreach (Item item in _items)
+            {
+                if (item is not null)
+                    str += item.NameID + "|" + item.Count.ToString() + "|" + item.IsEquipped.ToString() + "|";
+                else
+                    str += "NULL|";
+            }
+            str = str.Remove(str.Length - 1);
+            return str;
+        }
+        public void SetData(string[] data)
+        {
+            _items.Clear();
+            for (int i = 0; i < data.Length;)
+            {
+                if (data[i] == "NULL")
+                {
+                    AddItem(null);
+                    ++i;
+                }
+                else
+                {
+                    string name = data[i];
+                    int count = int.Parse(data[i + 1]);
+                    bool equip = Boolean.Parse(data[i + 2]);
+                    AddItem(DataManager.Instance.CreateItem(name, count));
+                    i += 3;
+                }
+            }
+        }
     }
 }
