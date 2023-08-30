@@ -33,8 +33,7 @@ namespace BasicTeamProject.Scene
         {
             base.afterOperate();
             int key, index;
-            _dataManager.InputMemory.SetRange(0, _dataManager.Inventory.GetAllItemCount());
-            while (!_dataManager.InputMemory.TryGetKey(out key))
+            while (!_dataManager.InputMemory.TryGetKey(_dataManager.Inventory.GetAllItemCount() + 1, out key))
             {
                 Console.WriteLine("잘못 입력하셨습니다");
                 Console.Write(">>");
@@ -50,8 +49,6 @@ namespace BasicTeamProject.Scene
 
                     _dataManager.Player.ToggleEquip(tempItem);
                 }
-                tempItem.ShowInfo(0);
-                Console.WriteLine(tempItem.EquipType.ToString());
             }
             _dataManager.InputMemory.PreInput = (key == 0 ? 0 : 1);
             _dataManager.InputMemory.InputComplete = true;
