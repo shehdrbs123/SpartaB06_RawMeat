@@ -66,7 +66,7 @@ namespace BasicTeamProject
             while (IsPlay())
             {
                 //입력 받기
-                while (IsCanInput()&&!_input.TryGetKey(_manager.FunctionList.Count,out _manager.InputMemory.PreInput))
+                while (IsCanInput()&&!_input.TryGetKey(out _manager.InputMemory.PreInput))
                 {
                     Console.WriteLine("잘못 입력하셨습니다");
                     Console.Write(">>");

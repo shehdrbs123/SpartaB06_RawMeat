@@ -38,20 +38,6 @@ namespace BasicTeamProject.Scene
             }
             
             Player tempUser = _dataManager.Player;
-            
-            //둘다 만들었는데 일단 아래꺼가 짧으니까 아래걸로
-            //switch(job)
-            //{
-            //    case 1:
-            //        _dataManager.PlayerSetting("전사");
-            //        break;
-            //    case 2:
-            //        _dataManager.PlayerSetting("도적");
-            //        break;
-            //    case 3:
-            //        _dataManager.PlayerSetting("마법사");
-            //        break;
-            //}
             _dataManager.PlayerSetting(job);
 
             _dataManager.InputMemory.InputComplete = true;
