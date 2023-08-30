@@ -15,7 +15,7 @@ namespace BasicTeamProject.Data
         {
             this.NameID = skill.NameID;
             this.Mp = skill.Mp;
-            this.ResetCoolTime = skill.CoolTime;
+            this.ResetCoolTime = skill.ResetCoolTime;
             this.isPer = skill.isPer;
             this.isBuff = skill.isBuff;
             this.Value = skill.Value;
