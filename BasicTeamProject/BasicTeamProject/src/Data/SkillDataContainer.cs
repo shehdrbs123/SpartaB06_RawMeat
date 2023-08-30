@@ -21,12 +21,18 @@ namespace BasicTeamProject.Data
             Skill skill = new Skill();
             skill.NameID = data[0];
             skill.Mp = int.Parse(data[1]);
-            skill.CoolTime = int.Parse(data[2]);
+            skill.CoolTime = 0;
             skill.ResetCoolTime = int.Parse(data[2]);
-            if (data[3] != "Att")
-                skill.Buff = (TypeOfAbility)Enum.Parse(typeof(TypeOfAbility), data[3]);
-            skill.duration = int.Parse(data[4]);
-            skill.DamegePer = float.Parse(data[5]) / 100f;
+            skill.Type = (TypeOfAbility)Enum.Parse(typeof(TypeOfAbility), data[3]);
+            skill.isBuff = Boolean.Parse(data[4]); ;
+            skill.Duration = 0;
+            skill.ResetDuration = int.Parse(data[5]);
+            skill.isPer = Boolean.Parse(data[6]);
+
+            if (skill.isPer == true)
+                skill.Value = float.Parse(data[7]) / 100f;
+            else
+                skill.Value = float.Parse(data[7]);
 
             _skills.Add(data[0], skill);
         }

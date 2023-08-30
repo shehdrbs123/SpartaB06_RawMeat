@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTeamProject.Data
 {
-    public class Monster
+    public class Monster : ISkillStatus
     {
         public Monster() 
         {

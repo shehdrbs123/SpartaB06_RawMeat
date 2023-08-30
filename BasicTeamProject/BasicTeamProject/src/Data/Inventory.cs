@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using static BasicTeamProject.Data.Item;
 
 namespace BasicTeamProject.Data;
 
@@ -109,33 +110,32 @@ public class Inventory
         }
     }
 
-    public int ShowItem(ItemType type)
+    public int ShowItem(ItemType type, Item.ShowType showType = ShowType.End)
     {
         int Count = 1;
         foreach (var items in _inven[type])
         {
             foreach (var item in items.Value)
             {
-                Console.Write($"{Count++}. ");
-                item.ShowInfo();
+                item.ShowInfo(Count++, showType);
             }
         }
-        return Count;
+        return Count - 1;
     }
-    public int ShowItem(int index)
+    public int ShowItem(int index, Item.ShowType showType = ShowType.End)
     {
         int Count = 1;
         foreach (var items in _inven[(ItemType)index])
         {
             foreach (var item in items.Value)
             {
-                Console.Write($"{Count++}. ");
-                item.ShowInfo();
+                item.ShowInfo(Count++, showType);
             }
         }
-        return Count;
+        return Count - 1;
     }
-    public int ShowAll()
+
+    public int ShowAll(Item.ShowType showType = ShowType.End)
     {
         int Count = 1;
         foreach (var Dic in _inven)
@@ -144,12 +144,11 @@ public class Inventory
             {
                 foreach (var item in items.Value)
                 {
-                    Console.Write($"{Count++}. ");
-                    item.ShowInfo();
+                    item.ShowInfo(Count++, showType);
                 }
             }
         }
-        return Count;
+        return Count - 1;
     }
 
     public void ShowNoIndexAll()
@@ -160,7 +159,7 @@ public class Inventory
             {
                 foreach (var item in items.Value)
                 {
-                    item.ShowInfo();
+                    item.ShowInfo(0);
                 }
             }
         }
@@ -182,7 +181,7 @@ public class Inventory
         return count;
     }
 
-    public int DeleteItem(int index, int count = 1, ItemType type = ItemType.End)
+    public int DeleteItem(int index, ref int count, ItemType type = ItemType.End)
     {
         //End면 전체보기에서 고른거고.. 타입을 정해주면 그 타입에서 고른거고..
         //반환값을 안받으면 버린거고 받으면 판거고

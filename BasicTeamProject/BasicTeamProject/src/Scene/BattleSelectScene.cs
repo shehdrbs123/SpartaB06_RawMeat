@@ -30,7 +30,7 @@ namespace BasicTeamProject.Scene
             Console.WriteLine("[플레이어 정보]");
             enter();
             Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}" +
-                $"({_dataManager.Player.job})\n체력: {_dataManager.Player.CurrentHP}");
+                $"({_dataManager.Player.job})\n체력: {_dataManager.Player.CurrentHp}");
 
             enter();
             Console.WriteLine("0. 취소");

@@ -50,6 +50,11 @@ namespace BasicTeamProject.Scene
 
                     _dataManager.Player.ToggleEquip(tempItem);
                 }
+<<<<<<< Updated upstream
+=======
+                tempItem.ShowInfo(0);
+                Console.WriteLine(tempItem.EquipType.ToString());
+>>>>>>> Stashed changes
             }
             _dataManager.InputMemory.PreInput = (key == 0 ? 0 : 1);
             _dataManager.InputMemory.InputComplete = true;
