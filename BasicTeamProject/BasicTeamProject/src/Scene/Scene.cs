@@ -22,7 +22,7 @@ public abstract class Scene
 
     protected virtual void afterOperate()
     {
-        _dataManager.FunctionList = _FunctionList;
+       
     }
 
     protected abstract void SetFunctionList();
@@ -48,6 +48,12 @@ public abstract class Scene
         PreOperate();
         WriteView();
         afterOperate();
+        SetToManagerFunctionList();
         EndView();
+    }
+
+    private void SetToManagerFunctionList()
+    {
+        _dataManager.FunctionList = _FunctionList;
     }
 }
