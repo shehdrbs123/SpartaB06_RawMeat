@@ -77,21 +77,34 @@ public class Player : ISkillStatus
         if (item.IsEquipped)
         {
             item.IsEquipped = false;
+            Att -= item.Att;
             ExtraAtt -= item.Att;
+            Critical -= item.Critical;
             ExtraCritical -= item.Critical;
+            Def -= item.Def;
             ExtraDef -= item.Def;
+            Dodge -= item.Dodge;
             ExtraDodge -= item.Dodge;
+            MaxHP -= item.MaxHP;
             ExtraMaxHP -= item.MaxHP;
+            MaxMP -= item.MaxMP;
             ExtraMaxMP -= item.MaxMP;
+            CurrentHP = Math.Clamp(CurrentHP, 0, MaxHP);
         }
         else
         {
             item.IsEquipped = true;
+            Att += item.Att;
             ExtraAtt += item.Att;
+            Critical += item.Critical;
             ExtraCritical += item.Critical;
+            Def += item.Def;
             ExtraDef += item.Def;
+            Dodge += item.Dodge;
             ExtraDodge += item.Dodge;
+            MaxHP += item.MaxHP;
             ExtraMaxHP += item.MaxHP;
+            MaxMP += item.MaxMP;
             ExtraMaxMP += item.MaxMP;
         }
     }
