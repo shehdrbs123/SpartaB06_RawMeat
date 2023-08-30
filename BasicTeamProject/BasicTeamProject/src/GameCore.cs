@@ -33,9 +33,9 @@ namespace BasicTeamProject
             {
                 DataManager.Instance.Inventory.AddItem("낡은검", 1);
                 DataManager.Instance.Inventory.AddItem("낡은검", 1);
-                DataManager.Instance.Inventory.AddItem("낡은검", 1);
-                DataManager.Instance.Inventory.AddItem("낡은검", 1);
-                DataManager.Instance.Inventory.AddItem("낡은검", 1);
+                DataManager.Instance.Inventory.AddItem("장갑", 1);
+                DataManager.Instance.Inventory.AddItem("갑옷", 1);
+                DataManager.Instance.Inventory.AddItem("투구", 1);
                 DataManager.Instance.Inventory.AddItem("겁내쌘무기", 2);
                 DataManager.Instance.Inventory.AddItem("똥", 100);
                 _manager.FunctionList.Add("CreateUserScene");

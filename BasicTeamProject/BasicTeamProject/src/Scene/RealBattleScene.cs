@@ -25,9 +25,14 @@ namespace BasicTeamProject.Scene
             monster.CurrentHp -= (int)_dataManager.Player.Att;
             if (monster.CurrentHp > 0) 
             {
+<<<<<<< Updated upstream
                 _dataManager.Player.CurrentHP -= (int)monster.Att;
             }
             _dataManager.InputMemory.SetRange(0,1);
+=======
+                _dataManager.Player.CurrentHp -= (int)monster.Att;
+            } 
+>>>>>>> Stashed changes
         }
 
         protected override void WriteView()
@@ -56,7 +61,7 @@ namespace BasicTeamProject.Scene
 
             enter();
             Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}");
-            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}");
+            Console.WriteLine($"HP {_dataManager.Player.CurrentHp}");
             Thread.Sleep(300);
 
             enter();

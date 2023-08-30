@@ -21,9 +21,8 @@ namespace BasicTeamProject.Data
             int i = 1;
             foreach(Item item in _items)
             {
-                Console.Write($"{i++}");
                 if (item is not null)
-                    item.ShowShopInfo();
+                    item.ShowInfo(i++, Item.ShowType.Goods);
                 else
                     Console.WriteLine("판매 완료");
             }

@@ -32,10 +32,10 @@ namespace BasicTeamProject.Scene
                     {
                         if (1 <= itemCount)
                         {
-                            int gold = _dataManager.Inventory.DeleteItem(key, itemCount, ItemType.Equip);
+                            int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Equip);
                             if(gold > 0)
                             {
-                                Console.WriteLine("판매완료!");
+                                Console.WriteLine($"{itemCount}개 판매완료!");
                                 Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
                                 Console.ReadLine();
                             }
@@ -52,9 +52,13 @@ namespace BasicTeamProject.Scene
         }
         protected override void WriteView()
         {
+            Console.WriteLine("아이템을 판매하기 위해 장비창을 열었습니다.");
+            enter();
+            Console.WriteLine("[아이템 목록]");
+            count = _dataManager.Inventory.ShowItem(ItemType.Equip, Item.ShowType.Sell);
+            enter();
             Console.WriteLine("0. 나가기");
-            count = _dataManager.Inventory.ShowItem(ItemType.Equip);
-            //여기서 카운트를 한번 더 받고... 팔아야됨?
+            enter();
         }
         int count;
     }
@@ -82,10 +86,10 @@ namespace BasicTeamProject.Scene
                     {
                         if (1 <= itemCount)
                         {
-                            int gold = _dataManager.Inventory.DeleteItem(key, itemCount, ItemType.Consumable);
+                            int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Consumable);
                             if (gold > 0)
                             {
-                                Console.WriteLine("판매완료!");
+                                Console.WriteLine($"{itemCount}개 판매완료!");
                                 Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
                                 Console.ReadLine();
                             }
@@ -101,8 +105,13 @@ namespace BasicTeamProject.Scene
         }
         protected override void WriteView()
         {
+            Console.WriteLine("아이템을 판매하기 위해 소비창을 열었습니다.");
+            enter();
+            Console.WriteLine("[아이템 목록]");
+            count = _dataManager.Inventory.ShowItem(ItemType.Consumable, Item.ShowType.Sell);
+            enter();
             Console.WriteLine("0. 나가기");
-            count = _dataManager.Inventory.ShowItem(ItemType.Consumable);
+            enter();
         }
         int count;
     }
@@ -131,10 +140,10 @@ namespace BasicTeamProject.Scene
                     {
                         if (1 <= itemCount)
                         {
-                            int gold = _dataManager.Inventory.DeleteItem(key, itemCount);
+                            int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount);
                             if (gold > 0)
                             {
-                                Console.WriteLine("판매완료!");
+                                Console.WriteLine($"{itemCount}개 판매완료!");
                                 Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
                                 Console.ReadLine();
                             }
@@ -150,8 +159,13 @@ namespace BasicTeamProject.Scene
         }
         protected override void WriteView()
         {
+            Console.WriteLine("아이템을 판매하기 위해 인벤토리를 열었습니다.");
+            enter();
+            Console.WriteLine("[아이템 목록]");
+            count = _dataManager.Inventory.ShowAll(Item.ShowType.Sell);
+            enter();
             Console.WriteLine("0. 나가기");
-            count = _dataManager.Inventory.ShowAll();
+            enter();
         }
         int count;
     }
