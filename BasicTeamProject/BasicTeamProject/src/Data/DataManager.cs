@@ -100,6 +100,32 @@ namespace BasicTeamProject.Data
             _shopDataContainer.RenewItems(ListCount);
         }
 
+        public void DataSave()
+        {
+            StreamWriter sw = new StreamWriter("Data\\SaveData.txt");
+            sw.WriteLine(Player.GetSaveData());
+            sw.WriteLine(Inventory.GetSaveData());
+            sw.WriteLine(Shop.GetSaveData());
+            sw.Close();
+        }
+        public bool DataLoad()
+        {
+            StreamReader sr = new StreamReader("Data\\SaveData.txt");
+            string inputData = sr.ReadLine();
+            if (inputData == "")
+                return false;
+            string[] data = inputData.Split('|');
+            Player.SetData(data);
+            inputData = sr.ReadLine();
+            data = inputData.Split('|');
+            Inventory.SetData(data);
+            inputData = sr.ReadLine();
+            data = inputData.Split('|');
+            Shop.SetData(data);
+            sr.Close();
+
+            return true;
+        }
 
         MonsterDataContainer        _monsterDataContainer;
         LevelDataContainer          _levelDataContainer;

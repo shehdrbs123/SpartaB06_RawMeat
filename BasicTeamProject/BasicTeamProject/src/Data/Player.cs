@@ -127,12 +127,59 @@ public class Player : ISkillStatus
         return 0;
 
     }
-
     public void EndDungeon()
     {
         foreach (Skill skill in Skills)
         {
             skill.ResetSkill(this);
+        }
+    }
+
+    public string GetSaveData()
+    {
+        string str = NameID + "|" + job.ToString() + "|" +
+                Level.ToString() + "|" + CurrentHP.ToString() + "|" +
+                CurrentMP.ToString() + "|" + CurrentExp.ToString() + "|" +
+                MaxHP.ToString() + "|" + MaxMP.ToString() + "|" +
+                Att.ToString() + "|" + Def.ToString() + "|" +
+                Critical.ToString() + "|" + Dodge.ToString() + "|" +
+                ExtraMaxHP.ToString() + "|" + ExtraMaxMP.ToString() + "|" +
+                ExtraAtt.ToString() + "|" + ExtraDef.ToString() + "|" +
+                ExtraCritical.ToString() + "|" + ExtraDodge.ToString() + "|" +
+                Gold.ToString() + "|" + Skills.Count.ToString() + "|";
+        for (int i = 0; i < Skills.Count; ++i)
+        {
+            str += Skills[i].NameID + "|";
+        }
+        str = str.Remove(str.Length - 1);
+        return str;
+    }
+    public void SetData(string[] data)
+    {
+        NameID = data[0];
+        job = (Job)Enum.Parse(typeof(Job), data[1]);
+        Level = int.Parse(data[2]);
+        CurrentHP = int.Parse(data[3]);
+        CurrentMP = int.Parse(data[4]);
+        CurrentExp = int.Parse(data[5]);
+        MaxHP = int.Parse(data[6]);
+        MaxMP = int.Parse(data[7]);
+        Att = int.Parse(data[8]);
+        Def = int.Parse(data[9]);
+        Critical = int.Parse(data[10]);
+        Dodge = int.Parse(data[11]);
+        ExtraMaxHP = int.Parse(data[12]);
+        ExtraMaxMP = int.Parse(data[13]);
+        ExtraAtt = int.Parse(data[14]);
+        ExtraDef = int.Parse(data[15]);
+        ExtraCritical = int.Parse(data[16]);
+        ExtraDodge = int.Parse(data[17]);
+        Gold = int.Parse(data[18]);
+        int count = int.Parse(data[19]);
+        Skills.Clear();
+        for (int i = 0; i < count; i++)
+        {
+            Skills.Add(new Skill(DataManager.Instance.CreateSkill(data[20+i])));
         }
     }
 }

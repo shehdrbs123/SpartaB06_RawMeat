@@ -1,4 +1,6 @@
-﻿namespace BasicTeamProject.Scene;
+﻿using BasicTeamProject.Data;
+
+namespace BasicTeamProject.Scene;
 
 public class MainScene : Scene
 {
@@ -9,6 +11,7 @@ public class MainScene : Scene
         _FunctionList.Add("BattleScene");
         _FunctionList.Add("ShopScene");
         _FunctionList.Add("HospitalScene");
+        _FunctionList.Add("SaveScene");
     }
 
 
@@ -27,6 +30,7 @@ public class MainScene : Scene
         Console.WriteLine("3. 전투 시작");
         Console.WriteLine("4. 상점 가기");
         Console.WriteLine("5. 병원 가기");
+        Console.WriteLine("6. 저장 하기");
         Console.WriteLine();        
     }
 }   

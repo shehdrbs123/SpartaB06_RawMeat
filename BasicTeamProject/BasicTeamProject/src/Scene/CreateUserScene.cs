@@ -14,15 +14,22 @@ public class CreateUserScene : Scene
     protected override void afterOperate()
     {
         base.afterOperate();
-        Console.Write("이름을 입력해 주세요");
+        Console.Write("이름을 입력해 주세요 (1. 불러오기)");
         Console.Write(">>");
         string name = Console.ReadLine();
         _dataManager.Player.NameID = name;
         _dataManager.InputMemory.InputComplete = true;
-        _dataManager.InputMemory.PreInput = 1; 
+
+        _dataManager.InputMemory.PreInput = 1;
+
+        if (name == "1")
+        {
+            _dataManager.InputMemory.PreInput = 2;
+        }
     }
     protected override void SetFunctionList()
     {
         _FunctionList.Add("JobSelectScene");
+        _FunctionList.Add("LoadScene");
     }
 }
