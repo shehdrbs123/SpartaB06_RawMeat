@@ -8,10 +8,10 @@ namespace BasicTeamProject
 {
     public enum TypeOfAbility
     {
-        MaxHp,
-        CurrentHp,
-        MaxMp,
-        CurrentMp,
+        MaxHP,
+        CurrentHP,
+        MaxMP,
+        CurrentMP,
         Att,
         Def,
         Critical,

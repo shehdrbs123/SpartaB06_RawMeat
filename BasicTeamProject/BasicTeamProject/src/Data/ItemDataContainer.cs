@@ -29,19 +29,19 @@ namespace BasicTeamProject.Data
             {
                 switch ((TypeOfAbility)Enum.Parse(typeof(TypeOfAbility), data[8 + i * 2]))
                 {
-                    case TypeOfAbility.MaxHp: 
-                        item.MaxHp +=       int.Parse(data[8 + i * 2 + 1]);
-                        item.CurrentHp +=   int.Parse(data[8 + i * 2 + 1]);
+                    case TypeOfAbility.MaxHP: 
+                        item.MaxHP +=       int.Parse(data[8 + i * 2 + 1]);
+                        item.CurrentHP +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
-                    case TypeOfAbility.CurrentHp:
-                        item.CurrentHp +=   int.Parse(data[8 + i * 2 + 1]);
+                    case TypeOfAbility.CurrentHP:
+                        item.CurrentHP +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
-                    case TypeOfAbility.MaxMp:
-                        item.MaxMp +=       int.Parse(data[8 + i * 2 + 1]);
-                        item.CurrentMp +=   int.Parse(data[8 + i * 2 + 1]);
+                    case TypeOfAbility.MaxMP:
+                        item.MaxMP +=       int.Parse(data[8 + i * 2 + 1]);
+                        item.CurrentMP +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
-                    case TypeOfAbility.CurrentMp:
-                        item.CurrentMp +=   int.Parse(data[8 + i * 2 + 1]);
+                    case TypeOfAbility.CurrentMP:
+                        item.CurrentMP +=   int.Parse(data[8 + i * 2 + 1]);
                         break;
                     case TypeOfAbility.Att:
                         item.Att +=         int.Parse(data[8 + i * 2 + 1]);

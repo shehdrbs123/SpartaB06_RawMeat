@@ -30,15 +30,15 @@ namespace BasicTeamProject.Scene
             enter();
             foreach (var monster in _dataManager.Monsters)
             {
-                if (monster.CurrentHp <= 0) continue;
-                Console.WriteLine($"Lv.{monster.Level} {monster.NameID} HP: {monster.MaxHp}");
+                if (monster.CurrentHP <= 0) continue;
+                Console.WriteLine($"Lv.{monster.Level} {monster.NameID} HP: {monster.MaxHP}");
             }
             enter();
 
             Console.WriteLine("[플레이어 정보]");
             enter();
             Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}" +
-                $"({_dataManager.Player.job})\nHP: {_dataManager.Player.CurrentHp}");
+                $"({_dataManager.Player.job})\nHP: {_dataManager.Player.CurrentHP}");
 
             enter();
             Console.WriteLine("0. 나가기");

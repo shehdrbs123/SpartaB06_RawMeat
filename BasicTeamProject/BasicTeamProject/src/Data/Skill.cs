@@ -57,9 +57,9 @@ namespace BasicTeamProject.Data
         {
             if (CoolTime > 0)
                 return -1;//쿨타임이 안끝난경우
-            if (Target.CurrentMp < Mp)
+            if (Target.CurrentMP < Mp)
                 return -2;//마나가 부족한경우
-            Target.CurrentMp -= Mp;
+            Target.CurrentMP -= Mp;
 
             if (Using)
             {
@@ -82,27 +82,27 @@ namespace BasicTeamProject.Data
                 Added = (int)Value;
                 switch (Type)
                 {
-                    case TypeOfAbility.MaxHp:
+                    case TypeOfAbility.MaxHP:
                         if (isPer)
-                            Added = (int)((float)Target.MaxHp * Value);
-                        Target.MaxHp += Added;
-                        Target.CurrentHp += Added;
+                            Added = (int)((float)Target.MaxHP * Value);
+                        Target.MaxHP += Added;
+                        Target.CurrentHP += Added;
                         break;
-                    case TypeOfAbility.MaxMp:
+                    case TypeOfAbility.MaxMP:
                         if (isPer)
-                            Added = (int)((float)Target.MaxMp * Value);
-                        Target.MaxMp += Added;
-                        Target.CurrentMp += Added;
+                            Added = (int)((float)Target.MaxMP * Value);
+                        Target.MaxMP += Added;
+                        Target.CurrentMP += Added;
                         break;
-                    case TypeOfAbility.CurrentHp:
+                    case TypeOfAbility.CurrentHP:
                         if (isPer)
-                            Added = (int)((float)Target.CurrentHp * Value);
-                        Target.CurrentHp += Added;
+                            Added = (int)((float)Target.CurrentHP * Value);
+                        Target.CurrentHP += Added;
                         break;
-                    case TypeOfAbility.CurrentMp:
+                    case TypeOfAbility.CurrentMP:
                         if (isPer)
-                            Added = (int)((float)Target.CurrentMp * Value);
-                        Target.CurrentMp += Added;
+                            Added = (int)((float)Target.CurrentMP * Value);
+                        Target.CurrentMP += Added;
                         break;
                     case TypeOfAbility.Att:
                         if (isPer)
@@ -132,26 +132,26 @@ namespace BasicTeamProject.Data
             {
                 switch (Type)
                 {
-                    case TypeOfAbility.MaxHp:
+                    case TypeOfAbility.MaxHP:
                         if (isPer)
-                            return (int)((float)Target.MaxHp * Value);
+                            return (int)((float)Target.MaxHP * Value);
                         else
-                            return Target.MaxHp + (int)Value;
-                    case TypeOfAbility.MaxMp:
+                            return Target.MaxHP + (int)Value;
+                    case TypeOfAbility.MaxMP:
                         if (isPer)
-                            return (int)((float)Target.MaxMp * Value);
+                            return (int)((float)Target.MaxMP * Value);
                         else
-                            return Target.MaxMp + (int)Value;
-                    case TypeOfAbility.CurrentHp:
+                            return Target.MaxMP + (int)Value;
+                    case TypeOfAbility.CurrentHP:
                         if (isPer)
-                            return (int)((float)Target.CurrentHp * Value);
+                            return (int)((float)Target.CurrentHP * Value);
                         else
-                            return Target.CurrentHp + (int)Value;
-                    case TypeOfAbility.CurrentMp:
+                            return Target.CurrentHP + (int)Value;
+                    case TypeOfAbility.CurrentMP:
                         if (isPer)
-                            return (int)((float)Target.CurrentMp * Value);
+                            return (int)((float)Target.CurrentMP * Value);
                         else
-                            return Target.CurrentMp + (int)Value;
+                            return Target.CurrentMP + (int)Value;
                     case TypeOfAbility.Att:
                         if (isPer)
                             return (int)((float)Target.Att * Value);
@@ -195,13 +195,13 @@ namespace BasicTeamProject.Data
 
                 switch (Type)
                 {
-                    case TypeOfAbility.MaxHp:
-                        obj.MaxHp -= Added;
-                        obj.CurrentHp = (int)((float)obj.CurrentHp / Value);
+                    case TypeOfAbility.MaxHP:
+                        obj.MaxHP -= Added;
+                        obj.CurrentHP = (int)((float)obj.CurrentHP / Value);
                         break;
-                    case TypeOfAbility.MaxMp:
-                        obj.MaxMp -= Added;
-                        obj.CurrentHp = (int)((float)obj.CurrentMp / Value);
+                    case TypeOfAbility.MaxMP:
+                        obj.MaxMP -= Added;
+                        obj.CurrentHP = (int)((float)obj.CurrentMP / Value);
                         break;
                     case TypeOfAbility.Att:
                         obj.Att -= Added;

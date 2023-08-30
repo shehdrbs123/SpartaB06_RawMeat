@@ -27,10 +27,10 @@ namespace BasicTeamProject.Data
             this.Duration = item.Duration;
             this.Type = item.Type;
             this.EquipType = item.EquipType;
-            this.MaxHp = item.MaxHp;
-            this.MaxMp = item.MaxMp;
-            this.CurrentHp = item.CurrentHp;
-            this.CurrentMp = item.CurrentMp;
+            this.MaxHP = item.MaxHP;
+            this.MaxMP = item.MaxMP;
+            this.CurrentHP = item.CurrentHP;
+            this.CurrentMP = item.CurrentMP;
             this.Att = item.Att;
             this.Def = item.Def;
             this.Critical = item.Critical;
@@ -48,10 +48,10 @@ namespace BasicTeamProject.Data
             this.Duration = item.Duration;
             this.Type = item.Type;
             this.EquipType = item.EquipType;
-            this.MaxHp = item.MaxHp;
-            this.MaxMp = item.MaxMp;
-            this.CurrentHp = item.CurrentHp;
-            this.CurrentMp = item.CurrentMp;
+            this.MaxHP = item.MaxHP;
+            this.MaxMP = item.MaxMP;
+            this.CurrentHP = item.CurrentHP;
+            this.CurrentMP = item.CurrentMP;
             this.Att = item.Att;
             this.Def = item.Def;
             this.Critical = item.Critical;
@@ -69,10 +69,10 @@ namespace BasicTeamProject.Data
         public int Duration { get; set; }
         public ItemType Type { get; set; }
         public EquipType EquipType { get; set; }
-        public int MaxHp { get; set; }
-        public int MaxMp { get; set; }
-        public int CurrentHp { get; set; }
-        public int CurrentMp { get; set; }
+        public int MaxHP { get; set; }
+        public int MaxMP { get; set; }
+        public int CurrentHP { get; set; }
+        public int CurrentMP { get; set; }
         public float Att { get; set; }
         public float Def { get; set; }
         public float Critical { get; set; }
@@ -95,10 +95,10 @@ namespace BasicTeamProject.Data
 
             list[0] += NameID;
             
-            if (MaxHp != 0)
-                list.Add("| 최대체력 : " + MaxHp);
-            if (MaxMp != 0)
-                list.Add("| 최대마나 : " + MaxMp );
+            if (MaxHP != 0)
+                list.Add("| 최대체력 : " + MaxHP);
+            if (MaxMP != 0)
+                list.Add("| 최대마나 : " + MaxMP );
             if (Att != 0)
                 list.Add("| 공격력 : " + Att);
             if (Def != 0)
@@ -107,10 +107,10 @@ namespace BasicTeamProject.Data
                 list.Add("| 크리티컬 : " + Critical);
             if (Dodge != 0)
                 list.Add("| 회피 : " + Dodge);
-            if (CurrentHp != 0 && MaxHp == 0)
-                list.Add("| 체력 " + CurrentHp + "증가");
-            if (CurrentMp != 0 && MaxMp == 0)
-                list.Add("| 마나 " + CurrentMp + "증가");
+            if (CurrentHP != 0 && MaxHP == 0)
+                list.Add("| 체력 " + CurrentHP + "증가");
+            if (CurrentMP != 0 && MaxMP == 0)
+                list.Add("| 마나 " + CurrentMP + "증가");
             if (Exp != 0)
                 list.Add("| 경험치 " + Exp + "증가");
 
@@ -132,9 +132,9 @@ namespace BasicTeamProject.Data
             if (type == ShowType.Sell)
             {
                 if (Count > 1)
-                    list.Add("| 개당가격 : " + Gold * 100 / 70);
+                    list.Add("| 개당가격 : " + Gold * 70 / 100);
                 else
-                    list.Add("| 가격 : " + Gold * 100 / 70);
+                    list.Add("| 가격 : " + Gold * 70 / 100);
             }
 
             for (int i = 0; i < list.Count; ++i)

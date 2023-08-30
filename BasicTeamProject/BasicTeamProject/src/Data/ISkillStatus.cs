@@ -8,10 +8,10 @@ namespace BasicTeamProject.Data
 {
     public interface ISkillStatus
     {
-        public int CurrentHp { get; set; }
-        public int CurrentMp { get; set; }
-        public int MaxHp { get; set; }
-        public int MaxMp { get; set; }
+        public int CurrentHP { get; set; }
+        public int CurrentMP { get; set; }
+        public int MaxHP { get; set; }
+        public int MaxMP { get; set; }
         public float Att { get; set; }
         public float Def { get; set; }
         public float Critical { get; set; }

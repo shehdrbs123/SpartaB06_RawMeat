@@ -23,24 +23,28 @@ namespace BasicTeamProject.Scene
 
             if (int.TryParse(Console.ReadLine(), out key))
             {
-                if (1 <= key && key < count)
+                if (1 <= key && key <= count)
                 {
                     int itemCount = 1;
-                    Console.Write("개수를 입력해주세요");
-                    Console.Write(">>");
-                    if (int.TryParse(Console.ReadLine(), out itemCount))
+
+                    if (_dataManager.Inventory.GetItemCount(ItemType.Equip, key) != 1)
                     {
-                        if (1 <= itemCount)
+                        Console.Write("개수를 입력해주세요");
+                        Console.Write(">>");
+                        int.TryParse(Console.ReadLine(), out itemCount);
+                    }
+
+                    if (1 <= itemCount)
+                    {
+                        int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Equip);
+                        if (gold > 0)
                         {
-                            int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Equip);
-                            if(gold > 0)
-                            {
-                                Console.WriteLine($"{itemCount}개 판매완료!");
-                                Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
-                                Console.ReadLine();
-                            }
+                            Console.WriteLine($"{itemCount}개 판매완료!");
+                            Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
+                            Console.ReadLine();
                         }
                     }
+
                 }
             }
             
@@ -77,22 +81,24 @@ namespace BasicTeamProject.Scene
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
             {
-                if (1 <= key && key < count)
+                if (1 <= key && key <= count)
                 {
                     int itemCount = 1;
-                    Console.Write("개수를 입력해주세요");
-                    Console.Write(">>");
-                    if (int.TryParse(Console.ReadLine(), out itemCount))
+                    if (_dataManager.Inventory.GetItemCount(ItemType.Consumable, key) != 1)
                     {
-                        if (1 <= itemCount)
+                        Console.Write("개수를 입력해주세요");
+                        Console.Write(">>");
+                        int.TryParse(Console.ReadLine(), out itemCount);
+                    }
+
+                    if (1 <= itemCount)
+                    {
+                        int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Consumable);
+                        if (gold > 0)
                         {
-                            int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Consumable);
-                            if (gold > 0)
-                            {
-                                Console.WriteLine($"{itemCount}개 판매완료!");
-                                Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
-                                Console.ReadLine();
-                            }
+                            Console.WriteLine($"{itemCount}개 판매완료!");
+                            Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
+                            Console.ReadLine();
                         }
                     }
                 }
@@ -131,24 +137,26 @@ namespace BasicTeamProject.Scene
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
             {
-                if (1 <= key && key < count)
+                if (1 <= key && key <= count)
                 {
                     int itemCount = 1;
-                    Console.Write("개수를 입력해주세요");
-                    Console.Write(">>");
-                    if (int.TryParse(Console.ReadLine(), out itemCount))
+                    if (_dataManager.Inventory.GetItemCount(ItemType.End, key) != 1)
                     {
-                        if (1 <= itemCount)
+                        Console.Write("개수를 입력해주세요");
+                        Console.Write(">>");
+                        int.TryParse(Console.ReadLine(), out itemCount);
+                    }
+                    if (1 <= itemCount)
+                    {
+                        int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount);
+                        if (gold > 0)
                         {
-                            int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount);
-                            if (gold > 0)
-                            {
-                                Console.WriteLine($"{itemCount}개 판매완료!");
-                                Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
-                                Console.ReadLine();
-                            }
+                            Console.WriteLine($"{itemCount}개 판매완료!");
+                            Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
+                            Console.ReadLine();
                         }
                     }
+
                 }
             }
             _dataManager.InputMemory.InputComplete = true;
