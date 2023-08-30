@@ -45,6 +45,10 @@ public class Player : ISkillStatus
         Def = Data.Def;
         Critical = Data.Critical;
         Dodge = Data.Dodge;
+        foreach(Skill skill in Data.Skills)
+        {
+            Skills.Add(new Skill(skill));
+        }
     }
 
     public void ShowAllInfo()
