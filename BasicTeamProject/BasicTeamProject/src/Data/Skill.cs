@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BasicTeamProject.Data
+﻿namespace BasicTeamProject.Data
 {
     public class Skill
     {
@@ -38,11 +32,11 @@ namespace BasicTeamProject.Data
         private int Added;
         public void ShowInfo()
         {
-            Console.WriteLine($"{NameID} | 소모량 -{Mp}");
+            Console.WriteLine($"{NameID}");
+            Console.WriteLine($"MP소모량 : -{Mp}");
             if(Using)
                 Console.WriteLine($"사용중 : 지속시간 {Duration} 턴 지속");
-            Console.WriteLine($"MP소모량 : {Mp}");
-            Console.WriteLine($"스킬소모량 : {Mp}");
+
             Console.WriteLine($"쿨타임 : {CoolTime} / {ResetCoolTime}");
             if (isPer)
                     Console.WriteLine($"스킬 계수 : My{Type.ToString()} * {Value * 100} %");
@@ -50,7 +44,6 @@ namespace BasicTeamProject.Data
                     Console.WriteLine($"스킬 데미지: My{Type.ToString()} + {Value}");
                 else
                     Console.WriteLine($"버프 증가량 : +{Value}{Type.ToString()}");
-            
         }
 
         //증가Value를 리턴할거임
