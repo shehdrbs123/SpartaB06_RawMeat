@@ -31,9 +31,11 @@ namespace BasicTeamProject.Scene
             enter();
             foreach (var monster in _dataManager.Monsters)
             {
-                if (monster.CurrentHP <= 0) continue;
-                Console.WriteLine($"Lv.{monster.Level} {monster.NameID} \tHP: {monster.CurrentHP} / {monster.MaxHP}");
+
+                if (monster.CurrentHP > 0)
+                    Console.WriteLine($"Lv.{monster.Level} {monster.NameID} HP: {monster.CurrentHP}");
             }
+
             enter();
 
             Console.WriteLine("[플레이어 정보]");
