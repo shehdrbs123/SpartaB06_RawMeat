@@ -12,7 +12,7 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("BattleSkillSelectScene");
+            _FunctionList.Add("BattleSelectScene");
         }
 
         protected override void WriteView()
@@ -46,7 +46,7 @@ namespace BasicTeamProject.Scene
             enter();
             Console.WriteLine("0. 취소");
             enter();
-            Console.WriteLine("원하시는 행동을 입력해 주세요.");
+            Console.WriteLine("사용하실 스킬을 입력해주세요.");
             Console.Write(">>");
         }
 
@@ -61,15 +61,11 @@ namespace BasicTeamProject.Scene
             }
 
             if (key != 0)
-            {
-                var skill = _dataManager.Player.Skills[key-1];
-                _dataManager.Player.UseSkill(key);
-                Thread.Sleep(300);
-                _dataManager.Player.TurnCheck();
-                Thread.Sleep(300);
-            }
+                _dataManager.Player.CurrentSkill = key;
+
             _dataManager.InputMemory.PreInput = (key == 0 ? 0 : 1);
             _dataManager.InputMemory.InputComplete = true;
+
         }
     }
 }

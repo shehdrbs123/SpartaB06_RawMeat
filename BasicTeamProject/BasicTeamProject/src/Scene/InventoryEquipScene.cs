@@ -41,14 +41,15 @@ namespace BasicTeamProject.Scene
 
             if (key != 0)
             {
-                var tempItem = _dataManager.Inventory.GetItem(key);
-                if (tempItem.EquipType != EquipType.End)
-                {
-                    if (_dataManager.Inventory.GetEquippedIndex(tempItem.EquipType, out index) && index != key)
-                        _dataManager.Player.ToggleEquip(_dataManager.Inventory.GetItem(index));
+                var changeItem = _dataManager.Inventory.GetItem(key);
 
-                    _dataManager.Player.ToggleEquip(tempItem);
+                if (_dataManager.Inventory.GetEquippedIndex(changeItem.EquipType, out index) && index != key)
+                {
+                    Item currentItem = _dataManager.Inventory.GetItem(index);
+                    _dataManager.Player.ToggleEquip(currentItem);
                 }
+                _dataManager.Player.ToggleEquip(changeItem);
+
             }
             _dataManager.InputMemory.PreInput = (key == 0 ? 0 : 1);
             _dataManager.InputMemory.InputComplete = true;

@@ -31,6 +31,7 @@ public class Player : ISkillStatus
     public float ExtraDef { get; set; } = 0;
     public float ExtraCritical { get; set; } = 0;
     public float ExtraDodge { get; set; } = 0;
+    public int CurrentSkill { get; set; } = -1;
     public List<Skill> Skills { get; set; } = new List<Skill>();
     public int Gold { get; set; } = 1500;
 
@@ -127,6 +128,19 @@ public class Player : ISkillStatus
         return 0;
 
     }
+    public int GetDamage()
+    {
+        int damage;
+        if (CurrentSkill > 0)
+        {
+            damage = UseSkill(CurrentSkill);
+            CurrentSkill = -1;
+        }
+        else
+            damage = (int)(Att+ExtraAtt);
+        return damage;
+    }
+
     public void EndDungeon()
     {
         foreach (Skill skill in Skills)
