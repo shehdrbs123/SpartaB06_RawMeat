@@ -11,10 +11,9 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("BattleScene");
-            _FunctionList.Add("RealBattleScene");
             _FunctionList.Add("RealBattleScene");
         }
+        
 
         protected override void WriteView()
         {
@@ -36,7 +35,6 @@ namespace BasicTeamProject.Scene
             enter();
             Console.WriteLine("0. 취소");
             enter();
-
         }
     }
 }

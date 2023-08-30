@@ -10,7 +10,6 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("MainScene");
             _FunctionList.Add("InventoryEquipScene");
         }
 
@@ -30,13 +29,12 @@ namespace BasicTeamProject.Scene
         {
             base.afterOperate();
             int key;
-            _dataManager.InputMemory.SetRange(0, 1);
-            while (!_dataManager.InputMemory.TryGetKey(out key))
+            while (!_dataManager.InputMemory.TryGetKey(0,_FunctionList.Count,out key))
             {
                 Console.WriteLine("잘못 입력하셨습니다");
                 Console.Write(">>");
             }
-            _dataManager.InputMemory.PreInput = key + 1;
+            _dataManager.InputMemory.PreInput = key;
             _dataManager.InputMemory.InputComplete = true;
         }
     }

@@ -11,7 +11,6 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("MainScene");
             _FunctionList.Add("BattleSelectScene");
         }
 
@@ -22,6 +21,7 @@ namespace BasicTeamProject.Scene
             {
                 _dataManager.CreateDungeon(1);
             }
+            _dataManager.InputMemory.SetRange(0,_FunctionList.Count);
         }
 
         protected override void WriteView()

@@ -46,11 +46,18 @@ public class Player
         Console.WriteLine($"이름 : {NameID}");
         Console.WriteLine($"Lv. {Level,2}");
         Console.WriteLine($"Chad ( {Enum.GetNames<Job>()[(int)job]} )");
+        Console.WriteLine($"체 력 : {CurrentHP}/{MaxHp}");
+        Console.WriteLine($"마 력 : {CurrentMP}/{MaxMp}");
+        Console.WriteLine($"Exp : {CurrentExp}");
+        Console.WriteLine();
         Console.WriteLine($"공격력 : {Att}");
         Console.WriteLine($"방어력 : {Def}");
-        Console.WriteLine($"체 력 : {CurrentHP}/{MaxHp}");
+        Console.WriteLine($"치명타 : {Critical}");
+        Console.WriteLine($"회피율 : {Dodge}");
+        Console.WriteLine();
+        Console.WriteLine("[소지금]");
         Console.WriteLine($"Gold : {Gold}");
-        Console.WriteLine($"Exp : {CurrentExp}");
+
     }
 }
 

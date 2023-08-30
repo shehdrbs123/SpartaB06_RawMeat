@@ -25,7 +25,7 @@ public class InputMemory
         bool isOk = false;
         if (int.TryParse(Console.ReadLine(), out key))
         {
-            if (_start <= key && key <= _end)
+            if (_start <= key && key < _end)
             {
                 PreInput = key;
                 isOk = true;
