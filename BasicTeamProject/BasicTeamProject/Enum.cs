@@ -28,11 +28,11 @@ namespace BasicTeamProject
     public enum EquipType
     {
         Weapon,
-        장갑,
-        투구,
-        신발,
-        바지,
-        갑옷,
+        Arm,
+        Head,
+        Foot,
+        Legs,
+        Body,
         Consumable,
         End
     }

@@ -94,7 +94,22 @@ namespace BasicTeamProject.Data
                 list[0] += "[E]";
 
             list[0] += NameID;
-            
+
+            if (Type == ItemType.Equip)
+                list[0] += "(" + Type.ToString() + ")";
+            if (Type == ItemType.Consumable)
+                list[0] += "(소모품)";
+
+            int countOfKorean = 0;
+            for (int j = 0; j < list[0].Length; j++)
+            {
+                byte oF = (byte)((list[0][j] & 0xFF00) >> 7);
+                if (oF != 0)
+                    ++countOfKorean;
+            }
+            list[0] = list[0].PadRight(25 - countOfKorean);
+            Console.Write(list[0]);
+
             if (MaxHP != 0)
                 list.Add("| 최대체력 : " + MaxHP);
             if (MaxMP != 0)
@@ -137,9 +152,9 @@ namespace BasicTeamProject.Data
                     list.Add("| 가격 : " + Gold * 70 / 100);
             }
 
-            for (int i = 0; i < list.Count; ++i)
+            for (int i = 1; i < list.Count; ++i)
             {
-                int countOfKorean = 0;
+                countOfKorean = 0;
                 for (int j = 0; j < list[i].Length; j++)
                 {
                     byte oF = (byte)((list[i][j] & 0xFF00) >> 7);
