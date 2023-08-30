@@ -19,15 +19,40 @@ public class Inventory
     public int GetItemCount(ItemType type, int index)
     {
         string select = "";
-        foreach (var items in _inven[type])
+        if (type == ItemType.End)
         {
-            if (index - items.Value.Count > 0)
-                index -= items.Value.Count;
-            else
+            ItemType i = 0;
+            foreach (var Dic in _inven)
             {
-                select = items.Key;
-                index -= 1;
-                break;
+                foreach (var items in Dic.Value)
+                {
+                    if (index - items.Value.Count > 0)
+                        index -= items.Value.Count;
+                    else
+                    {
+                        type = i;
+                        select = items.Key;
+                        index -= 1;
+                        break;
+                    }
+                }
+                if (select != "")
+                    break;
+                ++i;
+            }
+        }
+        else
+        {
+            foreach (var items in _inven[type])
+            {
+                if (index - items.Value.Count > 0)
+                    index -= items.Value.Count;
+                else
+                {
+                    select = items.Key;
+                    index -= 1;
+                    break;
+                }
             }
         }
         return _inven[type][select][index].Count;
@@ -226,7 +251,7 @@ public class Inventory
         if (select == "")
             return 0;
         Item item = _inven[i][select][index];
-        int gold = item.Gold;
+        int gold = item.Gold * 70 / 100;
         if (item.Count > count)
         {
             item.Count -= count;

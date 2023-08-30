@@ -16,8 +16,8 @@ public class Player : ISkillStatus
     public string NameID { get; set; }
     public Job job { get; set; }
     public int Level { get; set; } = 1;
-    public int CurrentHp { get; set; } = 0;
-    public int CurrentMp { get; set; } = 0;
+    public int CurrentHP { get; set; } = 0;
+    public int CurrentMP { get; set; } = 0;
     public int CurrentExp { get; set; } = 0;
     public int MaxHP { get; set; }
     public int MaxMP { get; set; }
@@ -25,35 +25,22 @@ public class Player : ISkillStatus
     public float Def { get; set; }
     public float Critical { get; set; }
     public float Dodge { get; set; }
-<<<<<<< Updated upstream
     public int ExtraMaxHP { get; set; } = 0;
     public int ExtraMaxMP { get; set; } = 0;
     public float ExtraAtt { get; set; } = 0;
     public float ExtraDef { get; set; } = 0;
     public float ExtraCritical { get; set; } = 0;
     public float ExtraDodge { get; set; } = 0;
-=======
-
-
->>>>>>> Stashed changes
     public List<Skill> Skills { get; set; } = new List<Skill>();
     public int Gold { get; set; } = 1500;
 
     public void Setting(PlayerPasingData Data)
     {
         job = Data.job;
-<<<<<<< Updated upstream
         CurrentHP = Data.MaxHP;
         MaxHP = Data.MaxHP;
         CurrentMP = Data.MaxMP;
         MaxMP = Data.MaxMP;
-=======
-
-        CurrentHp = Data.MaxHp;
-        MaxHp = Data.MaxHp;
-        CurrentMp = Data.MaxMp;
-        MaxMp = Data.MaxMp;
->>>>>>> Stashed changes
         Att = Data.Att;
         Def = Data.Def;
         Critical = Data.Critical;
@@ -66,15 +53,9 @@ public class Player : ISkillStatus
         Console.WriteLine($"이름 : {NameID}");
         Console.WriteLine($"Lv. {Level,2}");
         Console.WriteLine($"Chad ( {Enum.GetNames<Job>()[(int)job]} )");
-<<<<<<< Updated upstream
         Console.WriteLine($"체 력 : {CurrentHP} / {MaxHP}" + ((ExtraMaxHP != 0) ? $" ({ExtraMaxHP:+0;-#;0})" : ""));
         Console.WriteLine($"마 력 : {CurrentMP} / {MaxMP}" + ((ExtraMaxMP != 0) ? $" ({ExtraMaxMP:+0;-#;0})" : ""));
-=======
-        Console.WriteLine($"공격력 : {Att}");
-        Console.WriteLine($"방어력 : {Def}");
-        Console.WriteLine($"체 력 : {CurrentHp}/{MaxHp}");
-        Console.WriteLine($"Gold : {Gold}");
->>>>>>> Stashed changes
+
         Console.WriteLine($"Exp : {CurrentExp}");
         Console.WriteLine();
         Console.WriteLine($"공격력 : {Att}" + ((ExtraAtt != 0) ? $" ({ExtraAtt:+0;-#;0})" : ""));
@@ -95,8 +76,8 @@ public class Player : ISkillStatus
             ExtraCritical -= item.Critical;
             ExtraDef -= item.Def;
             ExtraDodge -= item.Dodge;
-            ExtraMaxHP -= item.MaxHp;
-            ExtraMaxMP -= item.MaxMp;
+            ExtraMaxHP -= item.MaxHP;
+            ExtraMaxMP -= item.MaxMP;
         }
         else
         {
@@ -105,8 +86,8 @@ public class Player : ISkillStatus
             ExtraCritical += item.Critical;
             ExtraDef += item.Def;
             ExtraDodge += item.Dodge;
-            ExtraMaxHP += item.MaxHp;
-            ExtraMaxMP += item.MaxMp;
+            ExtraMaxHP += item.MaxHP;
+            ExtraMaxMP += item.MaxMP;
         }
     }
 

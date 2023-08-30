@@ -22,9 +22,10 @@ namespace BasicTeamProject.Data
             foreach(Item item in _items)
             {
                 if (item is not null)
-                    item.ShowInfo(i++, Item.ShowType.Goods);
+                    item.ShowInfo(i, Item.ShowType.Goods);
                 else
                     Console.WriteLine("판매 완료");
+                ++i;
             }
         }
         public int GetListCount()

@@ -72,10 +72,16 @@ namespace BasicTeamProject.Scene
                 }
                 else if(key == 9)
                 {
-                    if(_dataManager.Player.Gold >= 500)
+                    if (_dataManager.Player.Gold >= 500)
+                    {
                         _dataManager.Shop.RenewItems();
+                        Console.WriteLine("상점 리셋 완료!");
+                        Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold -= 500} G");
+                    }
                     else
                         Console.WriteLine("돈이부족하다!");
+
+                    Console.ReadLine();
                 }
             }
 

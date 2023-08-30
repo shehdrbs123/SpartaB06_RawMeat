@@ -22,17 +22,12 @@ namespace BasicTeamProject.Scene
             preInputNum = _dataManager.InputMemory.PreInput;
             monster = _dataManager.Monsters[preInputNum - 1];
 
-            monster.CurrentHp -= (int)_dataManager.Player.Att;
-            if (monster.CurrentHp > 0) 
+            monster.CurrentHP -= (int)_dataManager.Player.Att;
+            if (monster.CurrentHP > 0) 
             {
-<<<<<<< Updated upstream
                 _dataManager.Player.CurrentHP -= (int)monster.Att;
             }
             _dataManager.InputMemory.SetRange(0,1);
-=======
-                _dataManager.Player.CurrentHp -= (int)monster.Att;
-            } 
->>>>>>> Stashed changes
         }
 
         protected override void WriteView()
@@ -47,11 +42,11 @@ namespace BasicTeamProject.Scene
 
             enter();
             Console.WriteLine($"Lv.{monster.Level} {monster.NameID}");
-            Console.WriteLine($"HP {monster.CurrentHp}");
+            Console.WriteLine($"HP {monster.CurrentHP}");
             Thread.Sleep(300);
 
             enter();
-            if (monster.CurrentHp > 0)
+            if (monster.CurrentHP > 0)
             {
                 Console.WriteLine($"{monster.NameID}의 공격");
                 Thread.Sleep(300);
@@ -61,7 +56,7 @@ namespace BasicTeamProject.Scene
 
             enter();
             Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}");
-            Console.WriteLine($"HP {_dataManager.Player.CurrentHp}");
+            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}");
             Thread.Sleep(300);
 
             enter();

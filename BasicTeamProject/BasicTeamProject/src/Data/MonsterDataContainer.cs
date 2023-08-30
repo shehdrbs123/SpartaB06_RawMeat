@@ -21,10 +21,10 @@ namespace BasicTeamProject.Data
             Monster mon = new Monster();
             mon.NameID = data[0];
             mon.Level = int.Parse(data[1]);
-            mon.MaxHp = int.Parse(data[2]);
-            mon.CurrentHp = mon.MaxHp;
-            mon.MaxMp = int.Parse(data[3]);
-            mon.CurrentMp = mon.MaxMp;
+            mon.MaxHP = int.Parse(data[2]);
+            mon.CurrentHP = mon.MaxHP;
+            mon.MaxMP = int.Parse(data[3]);
+            mon.CurrentMP = mon.MaxMP;
             mon.Att = int.Parse(data[4]);
             mon.Def = int.Parse(data[5]);
             mon.Critical = float.Parse(data[6]);
