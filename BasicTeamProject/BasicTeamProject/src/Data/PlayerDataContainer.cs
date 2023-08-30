@@ -22,8 +22,8 @@ namespace BasicTeamProject.Data
         {
             PlayerPasingData ppd = new PlayerPasingData();
             ppd.job = (Player.Job)Enum.Parse(typeof(Player.Job), data[0]);
-            ppd.MaxHp = int.Parse(data[1]);
-            ppd.MaxMp = int.Parse(data[2]);
+            ppd.MaxHP = int.Parse(data[1]);
+            ppd.MaxMP = int.Parse(data[2]);
             ppd.Att = int.Parse(data[3]);
             ppd.Def = int.Parse(data[4]);
             ppd.Critical = int.Parse(data[5]);

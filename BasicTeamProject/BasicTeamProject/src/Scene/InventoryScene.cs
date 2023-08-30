@@ -17,7 +17,10 @@ namespace BasicTeamProject.Scene
         {
             Console.WriteLine("인벤토리");
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
-            enter();
+            enter(); enter();
+            Console.WriteLine("[플레이어 상태]");
+            _dataManager.Player.ShowAllInfo();
+            enter(); enter();
             Console.WriteLine("[아이템 목록]");
             _dataManager.Inventory.ShowNoIndexAll();
             enter();

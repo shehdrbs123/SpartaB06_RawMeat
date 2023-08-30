@@ -1,4 +1,5 @@
-﻿using static BasicTeamProject.Data.Player;
+﻿using System;
+using static BasicTeamProject.Data.Player;
 
 namespace BasicTeamProject.Data;
 
@@ -6,11 +7,11 @@ public class Player
 {
     public enum Job
     {
-        전사=0,도적,마법사
+        전사 = 0, 도적, 마법사
     }
     public Player()
     {
-        
+
     }
     public string NameID { get; set; }
     public Job job { get; set; }
@@ -18,22 +19,28 @@ public class Player
     public int CurrentHP { get; set; } = 0;
     public int CurrentMP { get; set; } = 0;
     public int CurrentExp { get; set; } = 0;
-    public int MaxHp { get; set; }
-    public int MaxMp { get; set; }
+    public int MaxHP { get; set; }
+    public int MaxMP { get; set; }
     public float Att { get; set; }
     public float Def { get; set; }
     public float Critical { get; set; }
     public float Dodge { get; set; }
+    public int ExtraMaxHP { get; set; } = 0;
+    public int ExtraMaxMP { get; set; } = 0;
+    public float ExtraAtt { get; set; } = 0;
+    public float ExtraDef { get; set; } = 0;
+    public float ExtraCritical { get; set; } = 0;
+    public float ExtraDodge { get; set; } = 0;
     public List<Skill> Skills { get; set; } = new List<Skill>();
     public int Gold { get; set; } = 1500;
 
     public void Setting(PlayerPasingData Data)
     {
         job = Data.job;
-        CurrentHP = Data.MaxHp;
-        MaxHp = Data.MaxHp;
-        CurrentMP = Data.MaxMp;
-        MaxMp = Data.MaxMp;
+        CurrentHP = Data.MaxHP;
+        MaxHP = Data.MaxHP;
+        CurrentMP = Data.MaxMP;
+        MaxMP = Data.MaxMP;
         Att = Data.Att;
         Def = Data.Def;
         Critical = Data.Critical;
@@ -46,26 +53,49 @@ public class Player
         Console.WriteLine($"이름 : {NameID}");
         Console.WriteLine($"Lv. {Level,2}");
         Console.WriteLine($"Chad ( {Enum.GetNames<Job>()[(int)job]} )");
-        Console.WriteLine($"체 력 : {CurrentHP}/{MaxHp}");
-        Console.WriteLine($"마 력 : {CurrentMP}/{MaxMp}");
+        Console.WriteLine($"체 력 : {CurrentHP} / {MaxHP}" + ((ExtraMaxHP != 0) ? $" ({ExtraMaxHP:+0;-#;0})" : ""));
+        Console.WriteLine($"마 력 : {CurrentMP} / {MaxMP}" + ((ExtraMaxMP != 0) ? $" ({ExtraMaxMP:+0;-#;0})" : ""));
         Console.WriteLine($"Exp : {CurrentExp}");
         Console.WriteLine();
-        Console.WriteLine($"공격력 : {Att}");
-        Console.WriteLine($"방어력 : {Def}");
-        Console.WriteLine($"치명타 : {Critical}");
-        Console.WriteLine($"회피율 : {Dodge}");
+        Console.WriteLine($"공격력 : {Att}" + ((ExtraAtt != 0) ? $" ({ExtraAtt:+0;-#;0})" : ""));
+        Console.WriteLine($"방어력 : {Def}" + ((ExtraDef != 0) ? $" ({ExtraDef:+0;-#;0})" : ""));
+        Console.WriteLine($"치명타 : {Critical}" + ((ExtraCritical != 0) ? $" ({ExtraCritical:+0;-#;0})" : ""));
+        Console.WriteLine($"회피율 : {Dodge}" + ((ExtraDodge != 0) ? $" ({ExtraDodge:+0;-#;0})" : ""));
         Console.WriteLine();
         Console.WriteLine("[소지금]");
         Console.WriteLine($"Gold : {Gold}");
+    }
 
+    public void ToggleEquip(Item item)
+    {
+        if (item.IsEquipped)
+        {
+            item.IsEquipped = false;
+            ExtraAtt -= item.Att;
+            ExtraCritical -= item.Critical;
+            ExtraDef -= item.Def;
+            ExtraDodge -= item.Dodge;
+            ExtraMaxHP -= item.MaxHp;
+            ExtraMaxMP -= item.MaxMp;
+        }
+        else
+        {
+            item.IsEquipped = true;
+            ExtraAtt += item.Att;
+            ExtraCritical += item.Critical;
+            ExtraDef += item.Def;
+            ExtraDodge += item.Dodge;
+            ExtraMaxHP += item.MaxHp;
+            ExtraMaxMP += item.MaxMp;
+        }
     }
 }
 
 public struct PlayerPasingData
 {
     public Job job;
-    public int MaxHp;
-    public int MaxMp;
+    public int MaxHP;
+    public int MaxMP;
     public float Att;
     public float Def;
     public float Critical;
