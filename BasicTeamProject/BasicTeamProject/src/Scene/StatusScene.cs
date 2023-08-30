@@ -13,6 +13,7 @@ public class StatusScene : Scene
     protected override void PreOperate()
     {
         base.PreOperate();
+        _dataManager.InputMemory.SetRange(1,1);
     }
 
     protected override void WriteView()

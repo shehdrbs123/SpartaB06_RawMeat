@@ -14,6 +14,7 @@ public class MainScene : Scene
     protected override void PreOperate()
     {
         base.PreOperate();
+        _dataManager.InputMemory.SetRange(1,3);
     }
 
     protected override void WriteView()

@@ -17,12 +17,12 @@ public abstract class Scene
 
     protected virtual void PreOperate()
     {
-
+        _dataManager.InputMemory.SetRange(1,_FunctionList.Count);
     }
 
     protected virtual void afterOperate()
     {
-        DataManager.Instance.FunctionList = _FunctionList;
+        _dataManager.FunctionList = _FunctionList;
     }
 
     protected abstract void SetFunctionList();
@@ -30,7 +30,7 @@ public abstract class Scene
     {
         enter();
         Console.WriteLine("원하시는 행동을 입력해 주세요");
-        Console.WriteLine(">>");
+        Console.Write(">>");
     }
 
     protected void enter()
