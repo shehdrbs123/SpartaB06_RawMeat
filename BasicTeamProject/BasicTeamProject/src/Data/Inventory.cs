@@ -235,6 +235,8 @@ public class Inventory
         else
         {
             count = item.Count;
+            if(item.IsEquipped)
+                DataManager.Instance.Player.ToggleEquip(item);
             _inven[i][select].RemoveAt(index);
         }
 
