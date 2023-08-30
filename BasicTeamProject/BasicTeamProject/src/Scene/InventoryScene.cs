@@ -11,6 +11,7 @@ namespace BasicTeamProject.Scene
         protected override void SetFunctionList()
         {
             _FunctionList.Add("InventoryEquipScene");
+            _FunctionList.Add("InventoryConsumeScene");
         }
 
         protected override void WriteView()
@@ -26,6 +27,7 @@ namespace BasicTeamProject.Scene
             enter();
             Console.WriteLine("0. 나가기");
             Console.WriteLine("1. 장착 관리");
+            Console.WriteLine("2. 소비 관리");
             EndView();
         }
         protected override void afterOperate()

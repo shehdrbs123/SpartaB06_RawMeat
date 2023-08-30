@@ -46,12 +46,16 @@ public class HospitalScene : Scene
             Console.WriteLine("잘못 입력하셨습니다");
             Console.Write(">>");
         }
-        if (_dataManager.InputMemory.PreInput == 1 && player.Gold < price)
+        
+        _dataManager.InputMemory.InputComplete = true;
+        if (key == 1)
         {
-            _dataManager.InputMemory.InputComplete = true;
-            _dataManager.InputMemory.PreInput = 2;
-            Console.WriteLine("돈이 부족합니다");
-            Thread.Sleep(2000);
+            if (player.Gold < price)
+            {
+                _dataManager.InputMemory.PreInput = 2;
+                Console.WriteLine("돈이 부족합니다");
+                Thread.Sleep(2000);                
+            }
         }
     }
 }

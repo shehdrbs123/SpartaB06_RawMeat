@@ -9,8 +9,10 @@ public class InventoryConsumeScene : Scene
     {
         Console.WriteLine("인벤토리 - 소비 관리");
         Console.WriteLine("보유 중인 소비아이템을 사용할 수 있습니다.");
-        enter();
-        
+        enter(); enter();
+        Console.WriteLine("[플레이어 상태]");
+        _dataManager.Player.ShowAllInfo();
+        enter(); enter();
         Console.WriteLine("[소비 아이템]");
         itemCount = _dataManager.Inventory.ShowItem(ItemType.Consumable);
         enter();
@@ -43,6 +45,11 @@ public class InventoryConsumeScene : Scene
         HealScene.TypeOfAbility = ability;
 
         _dataManager.Inventory.DeleteItem(key, ref count, ItemType.Consumable);
+
+        int beforeAddValue = 0;
+        int addedValue = 0;
+        _dataManager.Player.AddStatus(ability,abilityValue,out addedValue,out beforeAddValue);
+        Console.WriteLine("아이템을 사용하였습니다");
 
         _dataManager.InputMemory.InputComplete = true;
         _dataManager.InputMemory.PreInput = 1;
