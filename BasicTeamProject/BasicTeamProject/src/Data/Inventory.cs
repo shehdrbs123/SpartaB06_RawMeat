@@ -36,7 +36,7 @@ public class Inventory
         while (true)
         {
             List<Item> a;
-            if (_inven[item.Type].TryGetValue(item.NameID, out a) && a.Count - 1 > 0)
+            if (_inven[item.Type].TryGetValue(item.NameID, out a))
             {
                 //넣는갯수에 따라 빈공간에 아이템을 넣을것.
                 int Count = item.Count;

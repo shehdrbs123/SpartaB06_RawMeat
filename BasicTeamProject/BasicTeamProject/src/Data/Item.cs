@@ -40,6 +40,7 @@ namespace BasicTeamProject.Data
             this.Level = item.Level;
             this.Duration = item.Duration;
             this.Type = item.Type;
+            this.EquipType = item.EquipType;
             this.MaxHp = item.MaxHp;
             this.MaxMp = item.MaxMp;
             this.CurrentHp = item.CurrentHp;
@@ -77,6 +78,14 @@ namespace BasicTeamProject.Data
             if (IsEquipped)
                 Console.Write("[E]");
             Console.WriteLine($"{NameID} | {Count}");
+        }
+
+        public void ShowShopInfo()
+        {
+            if(Count != 1)
+                Console.WriteLine($"{NameID} | 갯수 : {Count} | 개당가격 : {Gold}");
+            else
+                Console.WriteLine($"{NameID} | 가격 : {Gold}");
         }
     }
 }

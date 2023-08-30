@@ -26,6 +26,9 @@
       <None Update="Data\RewardData.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Data\ShopData.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="Data\SkillData.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

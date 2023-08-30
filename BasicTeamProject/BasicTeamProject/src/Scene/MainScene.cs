@@ -6,6 +6,7 @@ public class MainScene : Scene
     {
         _FunctionList.Add("StatusScene");
         _FunctionList.Add("InventoryScene");
+        _FunctionList.Add("BattleScene");
         _FunctionList.Add("ShopScene");
     }
 
@@ -22,9 +23,8 @@ public class MainScene : Scene
         Console.WriteLine();
         Console.WriteLine("1. 상태 보기");
         Console.WriteLine("2. 인벤토리");
-        Console.WriteLine("3. 상점 가기");
-        
-        // 공격씬 
-        
+        Console.WriteLine("3. 전투 시작");
+        Console.WriteLine("4. 상점 가기");
+        Console.WriteLine();        
     }
 }   
