@@ -45,7 +45,7 @@ public class Player : ISkillStatus
         Def = Data.Def;
         Critical = Data.Critical;
         Dodge = Data.Dodge;
-        foreach(Skill skill in Data.Skills)
+        foreach (Skill skill in Data.Skills)
         {
             Skills.Add(new Skill(skill));
         }
@@ -97,9 +97,9 @@ public class Player : ISkillStatus
 
     public void TurnCheck()
     {
-        foreach(Skill skill in Skills)
+        foreach (Skill skill in Skills)
         {
-            if(skill.TurnCheck(this))
+            if (skill.TurnCheck(this))
             {
                 //이때 버프가 끝난것 따로 뭔가..넣나..
                 Console.WriteLine($"{skill.NameID} 지속시간이 끝났다!");
@@ -108,7 +108,7 @@ public class Player : ISkillStatus
     }
     public int UseSkill(int Index)
     {
-       int check =  Skills[Index - 1].UseSkill(this);
+        int check = Skills[Index - 1].UseSkill(this);
         if (check == -999)
         {
             Console.WriteLine("뭔가문제");
@@ -126,6 +126,14 @@ public class Player : ISkillStatus
 
         return 0;
 
+    }
+
+    public void EndDungeon()
+    {
+        foreach (Skill skill in Skills)
+        {
+            skill.ResetSkill(this);
+        }
     }
 }
 

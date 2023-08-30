@@ -12,6 +12,7 @@ namespace BasicTeamProject.Scene
         protected override void SetFunctionList()
         {
             _FunctionList.Add("BattleSelectScene");
+            _FunctionList.Add("BattleSkillSelectScene");
         }
 
         protected override void PreOperate()
@@ -31,18 +32,21 @@ namespace BasicTeamProject.Scene
             foreach (var monster in _dataManager.Monsters)
             {
                 if (monster.CurrentHP <= 0) continue;
-                Console.WriteLine($"Lv.{monster.Level} {monster.NameID} HP: {monster.MaxHP}");
+                Console.WriteLine($"Lv.{monster.Level} {monster.NameID} \tHP: {monster.CurrentHP} / {monster.MaxHP}");
             }
             enter();
 
             Console.WriteLine("[플레이어 정보]");
             enter();
-            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}" +
-                $"({_dataManager.Player.job})\nHP: {_dataManager.Player.CurrentHP}");
+            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
+            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
+            Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
+            enter();
 
             enter();
             Console.WriteLine("0. 나가기");
             Console.WriteLine("1. 공격");
+            Console.WriteLine("2. 스킬");
             enter();
         }
     }
