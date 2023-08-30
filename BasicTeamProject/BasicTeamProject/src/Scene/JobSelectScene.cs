@@ -30,6 +30,7 @@ namespace BasicTeamProject.Scene
             base.afterOperate();
             Console.WriteLine("직업을 입력해 주세요");
             Console.WriteLine("1.전사, 2.도적, 3.마법사");
+            Console.Write(">>");
             int job;
             while (!_dataManager.InputMemory.TryGetKey(1,4,out job))
             {

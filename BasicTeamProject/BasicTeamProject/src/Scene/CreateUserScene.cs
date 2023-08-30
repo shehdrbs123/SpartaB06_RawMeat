@@ -14,7 +14,7 @@ public class CreateUserScene : Scene
     protected override void afterOperate()
     {
         base.afterOperate();
-        Console.Write("이름을 입력해 주세요 (1. 불러오기)");
+        Console.WriteLine("이름을 입력해 주세요 (1. 불러오기)");
         Console.Write(">>");
         string name = Console.ReadLine();
         _dataManager.Player.NameID = name;

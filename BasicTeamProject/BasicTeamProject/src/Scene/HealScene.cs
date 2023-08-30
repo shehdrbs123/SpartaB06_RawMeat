@@ -45,59 +45,10 @@ public class HealScene : Scene
     {
         _FunctionList.Add("HospitalScene");
     }
-
-    private void Heal(out int healedValue,out int beforeHealValue)
+    
+    private void Heal(out int AddedValue,out int beforeAddValue)
     {
         Player player = _dataManager.Player;
-        healedValue = 0;
-        beforeHealValue = 0;
-        switch (TypeOfAbility)
-        {
-            case TypeOfAbility.CurrentHP :
-                beforeHealValue = player.CurrentHP;
-                player.CurrentHP = Math.Clamp(player.CurrentHP + AbilityValue, 0, player.MaxHP);
-                healedValue = player.CurrentHP;
-                break;
-            case TypeOfAbility.CurrentMP :
-                beforeHealValue = player.CurrentMP;
-                player.CurrentMP = Math.Clamp(player.CurrentMP + AbilityValue, 0, player.MaxMP);
-                healedValue = player.CurrentMP;
-                break;
-            case TypeOfAbility.MaxHP :
-                beforeHealValue = player.MaxHP;
-                player.MaxHP += AbilityValue;
-                healedValue = player.MaxHP;
-                break;
-            case TypeOfAbility.MaxMP :
-                beforeHealValue = player.MaxMP;
-                player.MaxMP += AbilityValue;
-                healedValue = player.MaxMP;
-                break;
-            case TypeOfAbility.Att:
-                beforeHealValue = (int)player.Att;
-                player.Att += AbilityValue;
-                healedValue = (int)player.Att;
-                break;
-            case TypeOfAbility.Critical:
-                beforeHealValue = (int)player.Critical;
-                player.Critical += AbilityValue;
-                healedValue = (int)player.Critical;
-                break;
-            case TypeOfAbility.Def:
-                beforeHealValue = (int)player.Def;
-                player.Def += AbilityValue;
-                healedValue = (int)player.Def;
-                break;
-            case TypeOfAbility.Dodge :
-                beforeHealValue = (int)player.Dodge;
-                player.Dodge += AbilityValue;
-                healedValue = (int)player.Dodge;
-                break;
-            case TypeOfAbility.Exp :
-                beforeHealValue = player.CurrentHP;
-                player.CurrentExp += AbilityValue;
-                healedValue = player.CurrentExp;
-                break;
-        }
+        player.AddStatus(TypeOfAbility,AbilityValue, out AddedValue, out beforeAddValue);
     }
 }

@@ -149,6 +149,61 @@ public class Player : ISkillStatus
         }
     }
 
+    public void AddStatus(TypeOfAbility ability, int abilityValue, out int addedValue, out int beforeAddValue)
+    {
+        addedValue = 0;
+        beforeAddValue = 0;
+        switch (ability)
+        {
+            case TypeOfAbility.CurrentHP :
+                beforeAddValue = CurrentHP;
+                CurrentHP = Math.Clamp(CurrentHP + abilityValue, 1, MaxHP);
+                addedValue = CurrentHP;
+                break;
+            case TypeOfAbility.CurrentMP :
+                beforeAddValue = CurrentMP;
+                CurrentMP = Math.Clamp(CurrentMP + abilityValue, 1, MaxMP);
+                addedValue = CurrentMP;
+                break;
+            case TypeOfAbility.MaxHP :
+                beforeAddValue = MaxHP;
+                MaxHP += abilityValue;
+                addedValue = MaxHP;
+                break;
+            case TypeOfAbility.MaxMP :
+                beforeAddValue = MaxMP;
+                MaxMP += abilityValue;
+                addedValue = MaxMP;
+                break;
+            case TypeOfAbility.Att:
+                beforeAddValue = (int)Att;
+                Att += abilityValue;
+                addedValue = (int)Att;
+                break;
+            case TypeOfAbility.Critical:
+                beforeAddValue = (int)Critical;
+                Critical += abilityValue;
+                addedValue = (int)Critical;
+                break;
+            case TypeOfAbility.Def:
+                beforeAddValue = (int)Def;
+                Def += abilityValue;
+                addedValue = (int)Def;
+                break;
+            case TypeOfAbility.Dodge :
+                beforeAddValue = (int)Dodge;
+                Dodge += abilityValue;
+                addedValue = (int)Dodge;
+                addedValue = (int)Dodge;
+                break;
+            case TypeOfAbility.Exp :
+                beforeAddValue = CurrentExp;
+                CurrentExp += abilityValue;
+                addedValue = CurrentExp;
+                break;
+        }
+    }
+
     public string GetSaveData()
     {
         string str = NameID + "|" + job.ToString() + "|" +
