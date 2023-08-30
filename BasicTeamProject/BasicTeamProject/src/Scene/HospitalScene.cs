@@ -7,7 +7,7 @@ public class HospitalScene : Scene
     private const int price = 500;
     protected override void WriteView()
     { 
-        Console.WriteLine("치료소에 어서 오십시오");
+        Console.WriteLine("치료소에 어서 오십시오.");
         Console.WriteLine("무엇을 하시겠습니까?");
         enter();
         
@@ -17,7 +17,7 @@ public class HospitalScene : Scene
         
         Console.WriteLine($"1. 치료받기 : {price} G");
         enter();
-        Console.WriteLine("0.나가기");
+        Console.WriteLine("0. 나가기");
         
     }
 
@@ -43,7 +43,7 @@ public class HospitalScene : Scene
         EndView();
         while (!_dataManager.InputMemory.TryGetKey(out key))
         {
-            Console.WriteLine("잘못 입력하셨습니다");
+            Console.WriteLine("잘못 입력하셨습니다.");
             Console.Write(">>");
         }
         
@@ -53,7 +53,7 @@ public class HospitalScene : Scene
             if (player.Gold < price)
             {
                 _dataManager.InputMemory.PreInput = 2;
-                Console.WriteLine("돈이 부족합니다");
+                Console.WriteLine("돈이 부족합니다.");
                 Thread.Sleep(2000);                
             }
         }

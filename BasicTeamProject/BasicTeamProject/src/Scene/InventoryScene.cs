@@ -36,7 +36,7 @@ namespace BasicTeamProject.Scene
             int key;
             while (!_dataManager.InputMemory.TryGetKey(0,_FunctionList.Count,out key))
             {
-                Console.WriteLine("잘못 입력하셨습니다");
+                Console.WriteLine("잘못 입력하셨습니다.");
                 Console.Write(">>");
             }
             _dataManager.InputMemory.PreInput = key;

@@ -56,7 +56,7 @@ namespace BasicTeamProject.Scene
             int key;
             while (!_dataManager.InputMemory.TryGetKey(_dataManager.Monsters.Count + 1, out key))
             {
-                Console.WriteLine("잘못 입력하셨습니다");
+                Console.WriteLine("잘못 입력하셨습니다.");
                 Console.Write(">>");
             }
 
