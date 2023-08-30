@@ -1,36 +1,26 @@
-﻿using BasicTeamProject.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BasicTeamProject.Scene
 {
-    public class BattleScene : Scene
+    internal class BattleSkillSelectScene : Scene
     {
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("BattleSelectScene");
             _FunctionList.Add("BattleSkillSelectScene");
-        }
-
-        protected override void PreOperate()
-        {
-            base.PreOperate();
-            if (_dataManager.Monsters.Count == 0)
-            {
-                _dataManager.CreateDungeon(1);
-            }
-            _dataManager.InputMemory.SetRange(0,_FunctionList.Count);
         }
 
         protected override void WriteView()
         {
-            Console.WriteLine("전투 시작");
+            Console.WriteLine("Battle!!");
             enter();
-            foreach (var monster in _dataManager.Monsters)
+            for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
+                var monster = _dataManager.Monsters[i];
                 if (monster.CurrentHP <= 0) continue;
                 Console.WriteLine($"Lv.{monster.Level} {monster.NameID} \tHP: {monster.CurrentHP} / {monster.MaxHP}");
             }
@@ -43,10 +33,15 @@ namespace BasicTeamProject.Scene
             Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
             enter();
 
-            enter();
-            Console.WriteLine("0. 나가기");
-            Console.WriteLine("1. 공격");
-            Console.WriteLine("2. 스킬");
+            for(int i = 0; i < _dataManager.Player.Skills.Count; i++)
+            {
+                var skill = _dataManager.Player.Skills[i];
+                Console.WriteLine($"{i+1}");
+                skill.ShowInfo();
+                enter();
+            }
+            
+            Console.WriteLine("0. 취소");
             enter();
         }
     }
