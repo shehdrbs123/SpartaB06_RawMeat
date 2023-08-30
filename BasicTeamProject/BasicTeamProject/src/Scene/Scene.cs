@@ -13,12 +13,12 @@ public abstract class Scene
         _FunctionList.Add("MainScene");
         SetFunctionList();
     }
-    protected abstract void WriteView();
-
     protected virtual void PreOperate()
     {
         _dataManager.InputMemory.SetRange(1,_FunctionList.Count);
     }
+    
+    protected abstract void WriteView();
 
     protected virtual void afterOperate()
     {
@@ -38,8 +38,13 @@ public abstract class Scene
         Console.WriteLine();
     }
 
+    private void SetRangeDefault()
+    {
+        _dataManager.InputMemory.SetRange(1,_FunctionList.Count);
+    }
     public void Execute()
     {
+        SetRangeDefault();
         PreOperate();
         WriteView();
         afterOperate();

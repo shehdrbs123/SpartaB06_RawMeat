@@ -7,13 +7,13 @@ public class StatusScene : Scene
 {
     protected override void SetFunctionList()
     {
-        _FunctionList.Add("MainScene");
+        
     }
 
     protected override void PreOperate()
     {
         base.PreOperate();
-        _dataManager.InputMemory.SetRange(1,1);
+        _dataManager.InputMemory.SetRange(0,1);
     }
 
     protected override void WriteView()
@@ -25,7 +25,7 @@ public class StatusScene : Scene
         _dataManager.Player.ShowAllInfo();
         enter();
         
-        Console.WriteLine("1. 나가기");
+        Console.WriteLine("0. 나가기");
         enter();
 
     }

@@ -26,7 +26,8 @@ namespace BasicTeamProject.Scene
             if (monster.CurrentHp > 0) 
             {
                 _dataManager.Player.CurrentHP -= (int)monster.Att;
-            } 
+            }
+            _dataManager.InputMemory.SetRange(0,1);
         }
 
         protected override void WriteView()

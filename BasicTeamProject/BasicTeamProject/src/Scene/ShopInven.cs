@@ -23,7 +23,7 @@ namespace BasicTeamProject.Scene
 
             if (int.TryParse(Console.ReadLine(), out key))
             {
-                if (1 <= key && key <= count)
+                if (1 <= key && key < count)
                 {
                     int itemCount = 1;
                     Console.Write("개수를 입력해주세요");
@@ -73,7 +73,7 @@ namespace BasicTeamProject.Scene
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
             {
-                if (1 <= key && key <= count)
+                if (1 <= key && key < count)
                 {
                     int itemCount = 1;
                     Console.Write("개수를 입력해주세요");
@@ -122,7 +122,7 @@ namespace BasicTeamProject.Scene
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
             {
-                if (1 <= key && key <= count)
+                if (1 <= key && key < count)
                 {
                     int itemCount = 1;
                     Console.Write("개수를 입력해주세요");

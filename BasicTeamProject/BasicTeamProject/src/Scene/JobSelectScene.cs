@@ -31,7 +31,7 @@ namespace BasicTeamProject.Scene
             Console.WriteLine("직업을 입력해 주세요");
             Console.WriteLine("1.전사, 2.도적, 3.마법사");
             int job;
-            while (!_dataManager.InputMemory.TryGetKey(1,3,out job))
+            while (!_dataManager.InputMemory.TryGetKey(1,4,out job))
             {
                 Console.WriteLine("잘못 입력하셨습니다");
                 Console.Write(">>");
