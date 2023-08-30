@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasicTeamProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace BasicTeamProject.Scene
     public class RealBattleScene : Scene
     {
         private int preInputNum;
-        private Data.Monster monster;
+        private Monster monster;
 
         protected override void SetFunctionList()
         {
@@ -19,7 +20,7 @@ namespace BasicTeamProject.Scene
         protected override void PreOperate()
         {
             base.PreOperate();
-            preInputNum = _dataManager.InputMemory.PreInput;
+            preInputNum = BattleSelectScene.selectedMonster;
             monster = _dataManager.Monsters[preInputNum - 1];
 
             monster.CurrentHP -= (int)_dataManager.Player.Att;
@@ -62,7 +63,17 @@ namespace BasicTeamProject.Scene
             enter();
             Console.WriteLine("0. 다음");
             enter();
+        }
 
+        protected override void afterOperate()
+        {
+            base.afterOperate();
+            if (monster.CurrentHP <= 0)
+            {
+                var temp = monster;
+                _dataManager.Monsters.Remove(monster);
+                _dataManager.Monsters.Add(temp);
+            }
         }
     }
 }
