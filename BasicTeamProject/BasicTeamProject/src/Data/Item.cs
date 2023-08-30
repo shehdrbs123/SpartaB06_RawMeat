@@ -166,5 +166,54 @@ namespace BasicTeamProject.Data
             }
             Console.WriteLine();
         }
+        
+        public void GetItemAbility(out TypeOfAbility ability, out int value)
+        {
+            if (MaxHP != 0)
+            {
+                ability = TypeOfAbility.MaxHP;
+                value = MaxHP;
+            }
+            else if (MaxMP != 0)
+            {
+                ability = TypeOfAbility.MaxMP;
+                value = MaxMP;
+            }
+            else if (Att != 0)
+            {
+                ability = TypeOfAbility.Att;
+                value = (int)Att;
+            }
+            else if (Def != 0)
+            {
+                ability = TypeOfAbility.Def;
+                value = (int)Def;
+            }
+            else if (Critical != 0)
+            {
+                ability = TypeOfAbility.Critical;
+                value = (int)Critical;
+            }
+            else if (Dodge != 0)
+            {
+                ability = TypeOfAbility.Dodge;
+                value = (int)Dodge;
+            }
+            else if (CurrentHP != 0 && MaxHP == 0)
+            {
+                ability = TypeOfAbility.CurrentHP;
+                value = (int)CurrentHP;
+            }
+            else if (CurrentMP != 0 && MaxMP == 0)
+            {
+                ability = TypeOfAbility.CurrentMP;
+                value = CurrentMP;
+            }
+            else
+            {
+                ability = TypeOfAbility.Exp;
+                value = Exp;
+            }
+        }
     }
 }

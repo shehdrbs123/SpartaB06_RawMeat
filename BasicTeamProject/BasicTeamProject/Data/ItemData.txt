@@ -4,7 +4,7 @@
 갑옷|1|1|-1|Equip|Body|700|1|MaxHP|50
 투구|1|1|-1|Equip|Head|800|1|Def|5
 겁내쌘무기|5|1|-1|Equip|Weapon|3000|1|Att|100
-똥|0|100|0|Consumable|End|100|0|CurrentHP|-20
+똥|0|100|0|Consumable|End|100|1|CurrentHP|-20
 마나포션|0|100|0|Consumable|End|300|1|CurrentMP|50
 체력포션|0|100|0|Consumable|End|300|1|CurrentHP|50
 END

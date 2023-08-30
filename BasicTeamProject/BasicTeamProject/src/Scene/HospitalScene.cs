@@ -1,7 +1,10 @@
-﻿namespace BasicTeamProject.Scene;
+﻿using BasicTeamProject.Data;
+
+namespace BasicTeamProject.Scene;
 
 public class HospitalScene : Scene
 {
+    private const int price = 500;
     protected override void WriteView()
     { 
         Console.WriteLine("치료소에 어서 오십시오");
@@ -12,8 +15,7 @@ public class HospitalScene : Scene
         Console.WriteLine($"{_dataManager.Player.Gold} G");
         enter();
         
-        Console.WriteLine("1.치료받기 : 500 G");
-        Console.WriteLine("2.회복아이템");
+        Console.WriteLine($"1. 치료받기 : {price} G");
         enter();
         Console.WriteLine("0.나가기");
         
@@ -26,29 +28,30 @@ public class HospitalScene : Scene
         
     }
 
-    protected override void afterOperate()
-    {
-        base.afterOperate();
-        if (_dataManager.InputMemory.PreInput == 1)
-        {
-            if (_dataManager.Player.Gold < 500)
-            {
-                _dataManager.InputMemory.InputComplete = true;
-                _dataManager.InputMemory.PreInput = 3;
-                Console.WriteLine("돈이 부족합니다");
-                Thread.Sleep(1000);
-            }
-            else
-            {
-                _dataManager.Player.Gold -= 500;
-            }
-        }
-    }
-
     protected override void SetFunctionList()
     {
         _FunctionList.Add("HealScene");
-        _FunctionList.Add("HealItemSelectScene");
         _FunctionList.Add("HospitalScene");
+    }
+
+    protected override void afterOperate()
+    {
+        base.afterOperate();
+        Player player = _dataManager.Player;
+        int key = 0;
+
+        EndView();
+        while (!_dataManager.InputMemory.TryGetKey(out key))
+        {
+            Console.WriteLine("잘못 입력하셨습니다");
+            Console.Write(">>");
+        }
+        if (_dataManager.InputMemory.PreInput == 1 && player.Gold < price)
+        {
+            _dataManager.InputMemory.InputComplete = true;
+            _dataManager.InputMemory.PreInput = 2;
+            Console.WriteLine("돈이 부족합니다");
+            Thread.Sleep(2000);
+        }
     }
 }

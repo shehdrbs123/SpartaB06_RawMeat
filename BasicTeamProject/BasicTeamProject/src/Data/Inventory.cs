@@ -349,6 +349,7 @@ public class Inventory
     }
     public bool GetEquippedIndex(EquipType type, out int index)
     {
+        
         index = 0;
         foreach (var Dic in _inven)
         {
