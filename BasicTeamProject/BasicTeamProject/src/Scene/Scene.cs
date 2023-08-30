@@ -26,9 +26,11 @@ public abstract class Scene
     }
 
     protected abstract void SetFunctionList();
-    private void EndView()
+    protected void EndView()
     {
+        enter();
         Console.WriteLine("원하시는 행동을 입력해 주세요");
+        Console.WriteLine(">>");
     }
 
     protected void enter()

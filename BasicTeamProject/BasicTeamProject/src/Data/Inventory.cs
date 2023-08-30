@@ -152,6 +152,35 @@ public class Inventory
         return Count;
     }
 
+    public void ShowNoIndexAll()
+    {
+        foreach (var Dic in _inven)
+        {
+            foreach (var items in Dic.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    item.ShowInfo();
+                }
+            }
+        }
+    }
+
+    public int GetAllItemCount()
+    {
+        int count = 0;
+        foreach (var Dic in _inven)
+        {
+            foreach (var items in Dic.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 
     public int DeleteItem(int index, int count = 1, ItemType type = ItemType.End)
     {
@@ -212,6 +241,69 @@ public class Inventory
         return count * gold;
     }
 
-    
+    public Item? GetItem(int index, ItemType type = ItemType.End)
+    {
+        ItemType i = 0;
+        string select = "";
+        if (type == ItemType.End)
+        {
+            foreach (var Dic in _inven)
+            {
+                foreach (var items in Dic.Value)
+                {
+                    if (index - items.Value.Count > 0)
+                        index -= items.Value.Count;
+                    else
+                    {
+                        select = items.Key;
+                        index -= 1;
+                        break;
+                    }
+                }
+
+                if (select != "")
+                    break;
+                ++i;
+            }
+        }
+        else
+        {
+            i = type;
+            foreach (var items in _inven[type])
+            {
+                if (index - items.Value.Count > 0)
+                    index -= items.Value.Count;
+                else
+                {
+                    select = items.Key;
+                    index -= 1;
+                    break;
+                }
+            }
+        }
+        if (select == "")
+            return null;
+
+        return _inven[i][select][index];
+    }
+
+    public bool GetEquippedIndex(EquipType type, out int index)
+    {
+        index = 0;
+        foreach (var Dic in _inven)
+        {
+            foreach (var items in Dic.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    index++;
+                    if (item.EquipType == type && item.IsEquipped)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
     Dictionary<ItemType, Dictionary<string, List<Item>>> _inven;
 }
