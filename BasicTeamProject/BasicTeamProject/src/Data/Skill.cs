@@ -221,5 +221,40 @@ namespace BasicTeamProject.Data
             }
             return false;
         }
+
+        public void ResetSkill(ISkillStatus obj)
+        {
+            if(Using)
+            {
+                switch (Type)
+                {
+
+                    case TypeOfAbility.MaxHP:
+                        obj.MaxHP -= Added;
+                        obj.CurrentHP = (int)((float)obj.CurrentHP / Value);
+                        break;
+                    case TypeOfAbility.MaxMP:
+                        obj.MaxMP -= Added;
+                        obj.CurrentHP = (int)((float)obj.CurrentMP / Value);
+                        break;
+                    case TypeOfAbility.Att:
+                        obj.Att -= Added;
+                        break;
+                    case TypeOfAbility.Def:
+                        obj.Def -= Added;
+                        break;
+                    case TypeOfAbility.Critical:
+                        obj.Critical -= Added;
+                        break;
+                    case TypeOfAbility.Dodge:
+                        obj.Dodge -= Added;
+                        break;
+                }
+                Using = false;
+                Duration = 0;
+            }
+            CoolTime = 0;
+
+        }
     }
 }
