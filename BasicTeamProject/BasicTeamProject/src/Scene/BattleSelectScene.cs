@@ -59,7 +59,7 @@ namespace BasicTeamProject.Scene
                 }
                 else if (key > remainingMonster)
                 {
-                    Console.WriteLine("잘못 입력하셨습니다");
+                    Console.WriteLine("잘못 입력하셨습니다.");
                     Thread.Sleep(300);
                     _dataManager.InputMemory.InputComplete = true;
                     _dataManager.InputMemory.PreInput = 2;

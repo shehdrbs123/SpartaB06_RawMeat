@@ -19,7 +19,7 @@ namespace BasicTeamProject.Scene
 
         protected override void WriteView()
         {
-            Console.WriteLine("스파르타 상점에 오신 여러분 환영합니다");
+            Console.WriteLine("스파르타 상점에 오신 여러분 환영합니다.");
             enter();
             Console.WriteLine("1. 나가기");
             Console.WriteLine("2. 장비창 보기");

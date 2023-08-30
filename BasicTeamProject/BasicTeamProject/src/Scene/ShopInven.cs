@@ -17,7 +17,7 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("팔거를 입력해주세요");
+            Console.Write("팔거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
 
@@ -29,7 +29,7 @@ namespace BasicTeamProject.Scene
 
                     if (_dataManager.Inventory.GetItemCount(ItemType.Equip, key) != 1)
                     {
-                        Console.Write("개수를 입력해주세요");
+                        Console.Write("개수를 입력해주세요.");
                         Console.Write(">>");
                         int.TryParse(Console.ReadLine(), out itemCount);
                     }
@@ -76,7 +76,7 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("팔거를 입력해주세요");
+            Console.Write("팔거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
@@ -86,7 +86,7 @@ namespace BasicTeamProject.Scene
                     int itemCount = 1;
                     if (_dataManager.Inventory.GetItemCount(ItemType.Consumable, key) != 1)
                     {
-                        Console.Write("개수를 입력해주세요");
+                        Console.Write("개수를 입력해주세요.");
                         Console.Write(">>");
                         int.TryParse(Console.ReadLine(), out itemCount);
                     }
@@ -132,7 +132,7 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("팔거를 입력해주세요");
+            Console.Write("팔거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
@@ -142,7 +142,7 @@ namespace BasicTeamProject.Scene
                     int itemCount = 1;
                     if (_dataManager.Inventory.GetItemCount(ItemType.End, key) != 1)
                     {
-                        Console.Write("개수를 입력해주세요");
+                        Console.Write("개수를 입력해주세요.");
                         Console.Write(">>");
                         int.TryParse(Console.ReadLine(), out itemCount);
                     }

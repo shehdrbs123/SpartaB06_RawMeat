@@ -27,7 +27,7 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("살거를 입력해주세요");
+            Console.Write("살거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
             if (int.TryParse(Console.ReadLine(), out key))
@@ -38,7 +38,7 @@ namespace BasicTeamProject.Scene
                     int gold = 0;
                     if (_dataManager.Shop.GetItemCount(key) > 1)
                     {
-                        Console.Write("개수를 입력해주세요");
+                        Console.Write("개수를 입력해주세요.");
                         Console.Write(">>");
                         int.TryParse(Console.ReadLine(), out itemCount);
                     }
@@ -60,7 +60,7 @@ namespace BasicTeamProject.Scene
                         }
                         else
                         {
-                            Console.WriteLine("돈이부족하다!");
+                            Console.WriteLine("돈이 부족하다!");
                         }
                     }
                     else
@@ -79,7 +79,7 @@ namespace BasicTeamProject.Scene
                         Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold -= 500} G");
                     }
                     else
-                        Console.WriteLine("돈이부족하다!");
+                        Console.WriteLine("돈이 부족하다!");
 
                     Console.ReadLine();
                 }

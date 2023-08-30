@@ -22,19 +22,19 @@ namespace BasicTeamProject.Scene
 
         protected override void WriteView()
         {
-            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다");
+            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
         }
 
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.WriteLine("직업을 입력해 주세요");
+            Console.WriteLine("직업을 입력해 주세요.");
             Console.WriteLine("1.전사, 2.도적, 3.마법사");
             Console.Write(">>");
             int job;
             while (!_dataManager.InputMemory.TryGetKey(1,4,out job))
             {
-                Console.WriteLine("잘못 입력하셨습니다");
+                Console.WriteLine("잘못 입력하셨습니다.");
                 Console.Write(">>");
             }
             

@@ -17,7 +17,7 @@ namespace BasicTeamProject.Scene
         protected override void WriteView()
         {
             _dataManager.DataLoad();
-            Console.WriteLine("불러오기가 완료되었습니다");
+            Console.WriteLine("불러오기가 완료되었습니다.");
             Console.ReadLine();
             _dataManager.InputMemory.InputComplete = true;
             _dataManager.InputMemory.PreInput = 1;

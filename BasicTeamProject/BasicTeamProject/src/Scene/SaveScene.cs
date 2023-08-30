@@ -16,7 +16,7 @@ namespace BasicTeamProject.Scene
         protected override void WriteView()
         {
             _dataManager.DataSave();
-            Console.WriteLine("저장이 완료되었습니다");
+            Console.WriteLine("저장이 완료되었습니다.");
             Console.ReadLine();
             _dataManager.InputMemory.InputComplete = true;
             _dataManager.InputMemory.PreInput = 1;

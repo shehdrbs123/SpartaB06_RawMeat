@@ -29,7 +29,7 @@ public abstract class Scene
     protected void EndView()
     {
         enter();
-        Console.WriteLine("원하시는 행동을 입력해 주세요");
+        Console.WriteLine("원하시는 행동을 입력해 주세요.");
         Console.Write(">>");
     }
 
