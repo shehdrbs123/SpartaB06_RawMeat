@@ -19,6 +19,7 @@ namespace BasicTeamProject.Data
             this.Value = skill.Value;
             this.Type = skill.Type;
             this.ResetDuration = skill.ResetDuration;
+            this.isWide = skill.isWide;
         }
 
         public string NameID { get; set; }
@@ -35,7 +36,7 @@ namespace BasicTeamProject.Data
         public bool isPer { get; set; }
         public bool isBuff { get; set; }
         private int Added;
-
+        public bool isWide { get; set; }
         private string GetTypeString()
         {
             switch (Type)
@@ -134,9 +135,20 @@ namespace BasicTeamProject.Data
             Console.WriteLine();
         }
 
-        //증가Value를 리턴할거임
-        public int UseSkill(ISkillStatus Target)
+        public bool GetSkillAble(ISkillStatus Target)
         {
+            if (CoolTime > 0)
+                return false;//쿨타임이 안끝난경우
+            if (Target.CurrentMP < MP)
+                return false;//마나가 부족한경우
+            if (Target.CurrentHP <= HP)
+                return false;//체력이 부족한경우
+            return true;
+        }
+                          
+        public int UseSkill(ISkillStatus Target, out bool Wide)
+        {
+            Wide = isWide;
             if (CoolTime > 0)
                 return -1;//쿨타임이 안끝난경우
             if (Target.CurrentMP < MP)
@@ -170,43 +182,55 @@ namespace BasicTeamProject.Data
                     case TypeOfAbility.MaxHP:
                         if (isPer)
                             Added = (int)((float)Target.MaxHP * Value);
+                        Console.WriteLine($"{Duration}턴 동안 MaxHP 증가 {Target.MaxHP}  -> {Target.MaxHP + Added}");
                         Target.MaxHP += Added;
                         Target.CurrentHP += Added;
                         break;
                     case TypeOfAbility.MaxMP:
                         if (isPer)
                             Added = (int)((float)Target.MaxMP * Value);
+                        Console.WriteLine($"{Duration}턴 동안 MaxMP 증가 {Target.MaxMP}  -> {Target.MaxMP + Added}");
                         Target.MaxMP += Added;
                         Target.CurrentMP += Added;
                         break;
                     case TypeOfAbility.CurrentHP:
                         if (isPer)
-                            Added = (int)((float)Target.CurrentHP * Value);
+                            Added = Math.Min(Target.MaxHP - Target.CurrentHP, (int)((float)Target.CurrentHP * Value));
+                        Added = Math.Min(Target.MaxHP - Target.CurrentHP, Added);
+
+                        Console.WriteLine($"HP{Target.CurrentHP} -> HP{Target.CurrentHP + Added}");
                         Target.CurrentHP += Added;
                         break;
                     case TypeOfAbility.CurrentMP:
                         if (isPer)
-                            Added = (int)((float)Target.CurrentMP * Value);
+                            Added = Math.Min(Target.MaxMP - Target.CurrentMP, (int)((float)Target.CurrentMP * Value));
+                        Added = Math.Min(Target.MaxMP - Target.CurrentMP, Added);
+
+                        Console.WriteLine($"MP{Target.CurrentMP} -> MP{Target.CurrentMP + Added}");
                         Target.CurrentMP += Added;
                         break;
                     case TypeOfAbility.Att:
                         if (isPer)
                             Added = (int)((float)Target.Att * Value);
+                        Console.WriteLine($"{Duration}턴 동안 Att 증가 {Target.Att}  -> {Target.Att + Added}");
                         Target.Att += Added;
                         break;
                     case TypeOfAbility.Def:
                         if (isPer)
                             Added = (int)((float)Target.Def * Value);
+                        Console.WriteLine($"{Duration}턴 동안 Def 증가 {Target.Def}  -> {Target.Def + Added}");
                         Target.Def += Added;
                         break;
                     case TypeOfAbility.Critical:
                         if (isPer)
                             Added = (int)((float)Target.Critical * Value);
+                        Console.WriteLine($"{Duration}턴 동안 Critical 증가 {Target.Critical}  -> {Target.Critical + Added}");
                         Target.Critical += Added;
                         break;
                     case TypeOfAbility.Dodge:
                         if (isPer)
                             Added = (int)((float)Target.Dodge * Value);
+                        Console.WriteLine($"{Duration}턴 동안 Dodge 증가 {Target.Dodge}  -> {Target.Dodge + Added}");
                         Target.Dodge += Added;
                         break;
                 }
@@ -276,28 +300,35 @@ namespace BasicTeamProject.Data
                 --Duration;
             else//지속시간이 다닳면
             {
+                Console.WriteLine($"{NameID}의 지속시간이 끝났다!");
                 Using = false;
 
                 switch (Type)
                 {
                     case TypeOfAbility.MaxHP:
+                        Console.WriteLine($"MaxHP {obj.MaxHP}  -> {obj.MaxHP - Added}");
                         obj.MaxHP -= Added;
-                        obj.CurrentHP = (int)((float)obj.CurrentHP / Value);
+                        obj.CurrentHP = Math.Min(obj.MaxHP, obj.CurrentHP);
                         break;
                     case TypeOfAbility.MaxMP:
+                        Console.WriteLine($"MaxHP {obj.MaxMP}  -> {obj.MaxMP - Added}");
                         obj.MaxMP -= Added;
-                        obj.CurrentHP = (int)((float)obj.CurrentMP / Value);
+                        obj.CurrentMP = Math.Min(obj.MaxMP, obj.CurrentMP);
                         break;
                     case TypeOfAbility.Att:
+                        Console.WriteLine($"Att {obj.Att}  -> {obj.Att - Added}");
                         obj.Att -= Added;
                         break;
                     case TypeOfAbility.Def:
+                        Console.WriteLine($"Att {obj.Def}  -> {obj.Def - Added}");
                         obj.Def -= Added;
                         break;
                     case TypeOfAbility.Critical:
+                        Console.WriteLine($"Att {obj.Critical}  -> {obj.Critical - Added}");
                         obj.Critical -= Added;
                         break;
                     case TypeOfAbility.Dodge:
+                        Console.WriteLine($"Att {obj.Dodge}  -> {obj.Dodge - Added}");
                         obj.Dodge -= Added;
                         break;
                 }

@@ -15,6 +15,7 @@ namespace BasicTeamProject.Scene
         {
             _FunctionList.Add("BattleSelectScene");
             _FunctionList.Add("BattleSkillSelectScene");
+            _FunctionList.Add("BattleConsumeScene");
         }
 
         protected override void PreOperate()
@@ -36,7 +37,7 @@ namespace BasicTeamProject.Scene
             for (int i = 0; i < _dataManager.Monsters.Count(); i++)
             {
                 Monster monster = _dataManager.Monsters[i];
-                if (monster.CurrentHP > 0)
+                if (!monster.isDead)
                     monster.ShowInfo(i+1);
             }
 
@@ -51,6 +52,7 @@ namespace BasicTeamProject.Scene
             Console.WriteLine("0. 나가기");
             Console.WriteLine("1. 공격");
             Console.WriteLine("2. 스킬");
+            Console.WriteLine("3. 소모품 사용");
             enter();
         }
     }

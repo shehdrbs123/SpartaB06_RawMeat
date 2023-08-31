@@ -38,6 +38,7 @@ public class Player : ISkillStatus
     public int CurrentSkill { get; set; } = -1;
     public List<Skill> Skills { get; set; } = new List<Skill>();
     public int Gold { get; set; } = 1500;
+    public bool Attack = false;
 
     public void Setting(PlayerPasingData Data)
     {
@@ -79,7 +80,21 @@ public class Player : ISkillStatus
     public bool GetSkillTargetAble()
     {
         if (CurrentSkill > 0)
+        {
             return (!Skills[CurrentSkill - 1].isBuff && CurrentMP >= Skills[CurrentSkill - 1].MP && Skills[CurrentSkill - 1].CoolTime == 0);
+        }
+
+        return false;
+    }
+    public bool GetSkillTargetAble(out bool wide)
+    {
+        wide = false;
+        if (CurrentSkill > 0)
+        {
+            wide = Skills[CurrentSkill - 1].isWide;
+            return (!Skills[CurrentSkill - 1].isBuff && CurrentMP >= Skills[CurrentSkill - 1].MP && Skills[CurrentSkill - 1].CoolTime == 0);
+        }
+
         return false;
     }
 
@@ -139,16 +154,12 @@ public class Player : ISkillStatus
     {
         foreach (Skill skill in Skills)
         {
-            if (skill.TurnCheck(this))
-            {
-                //이때 버프가 끝난것 따로 뭔가..넣나..
-                Console.WriteLine($"{skill.NameID} 지속시간이 끝났다!");
-            }
+           skill.TurnCheck(this);
         }
     }
-    public int UseSkill(int Index)
+    public int UseSkill(int Index, out bool wide)
     {
-        int check = Skills[Index - 1].UseSkill(this);
+        int check = Skills[Index - 1].UseSkill(this, out wide);
         if (check == -999)
         {
             Console.WriteLine("뭔가문제");
@@ -157,49 +168,43 @@ public class Player : ISkillStatus
         return check;
 
     }
-    public bool PlayerAct(out int damage)
+    public bool PlayerAct(out int damage, out bool wide)
     {
+        wide = false;
         if (CurrentSkill > 0)
         {
-            damage = UseSkill(CurrentSkill);
+            if(Skills[CurrentSkill - 1].GetSkillAble(this))
+                Console.WriteLine($"{Skills[CurrentSkill - 1].NameID}!!!!!");
+
+            damage = UseSkill(CurrentSkill, out wide);
             if (damage > 0)
             {
-                Console.WriteLine($"{Skills[CurrentSkill - 1].NameID}!!!!!");
                 CurrentSkill = -1;
                 return true;
             }
-            else if (damage == -1)
+            else 
             {
-                Console.WriteLine($"쿨타임이다! {Skills[CurrentSkill - 1].CoolTime}턴 남음");
-                CurrentSkill = -1;
-                return false;
-            }
-            else if (damage == -2)
-            {
-                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill - 1].MP}필요");
-                CurrentSkill = -1;
-                return false;
-            }
-            else if (damage == -4)
-            {
-                Console.WriteLine($"체력이 부족하다! {Skills[CurrentSkill - 1].HP}필요");
-                CurrentSkill = -1;
-                return false;
-            }
-            else if (damage == -3)
-            {
-                Console.WriteLine($"{Skills[CurrentSkill - 1].NameID}!!!!!");
+                if (damage == -1)
+                    Console.WriteLine($"쿨타임이다! {Skills[CurrentSkill - 1].CoolTime}턴 남음");
+                else if (damage == -2)
+                    Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill - 1].MP}필요");
+                else if (damage == -4)
+                    Console.WriteLine($"체력이 부족하다! {Skills[CurrentSkill - 1].HP}필요");
+
                 CurrentSkill = -1;
                 return false;
             }
         }
-        else
+        else if (Attack)
         {
+            Attack = false;
             Console.WriteLine("이얍!");
             Thread.Sleep(600);
             damage = (int)(Att);
+            return true;
         }
-        return true;
+        damage = 0;
+        return false;
     }
 
     public void EndDungeon()
@@ -218,11 +223,13 @@ public class Player : ISkillStatus
         {
             case TypeOfAbility.CurrentHP :
                 beforeAddValue = CurrentHP;
+                Console.WriteLine($"HP {MathF.Min(MaxHP - CurrentHP, abilityValue)} 회복");
                 CurrentHP = Math.Clamp(CurrentHP + abilityValue, 1, MaxHP);
                 addedValue = CurrentHP;
                 break;
             case TypeOfAbility.CurrentMP :
                 beforeAddValue = CurrentMP;
+                Console.WriteLine($"MP {MathF.Min(MaxMP - CurrentMP, abilityValue)} 회복");
                 CurrentMP = Math.Clamp(CurrentMP + abilityValue, 1, MaxMP);
                 addedValue = CurrentMP;
                 break;

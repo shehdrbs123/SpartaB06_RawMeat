@@ -27,7 +27,7 @@ namespace BasicTeamProject.Scene
             for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
                 var monster = _dataManager.Monsters[i];
-                if (monster.CurrentHP > 0)
+                if (!monster.isDead)
                 {
                     monster.ShowInfo(i+1);
                 }
@@ -54,6 +54,7 @@ namespace BasicTeamProject.Scene
                     selectedMonster = key;
                     _dataManager.InputMemory.InputComplete = true;
                     _dataManager.InputMemory.PreInput = 3;
+                    _dataManager.Player.Attack = true;
                 }
                 else if (key > remainingMonster)
                 {
