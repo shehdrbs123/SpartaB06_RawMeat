@@ -1,11 +1,11 @@
-스킬이름|스킬소모MP|스킬쿨타임|스킬or버프타입|버프인지|지속턴(즉발형 = -1)|퍼센트인지|데미지 or 버프증가량 %(백분위) 
-강한공격|5|3|Att|False|-1|True|140
-공허돌진|5|2|Att|False|-1|True|130
-강한대포|10|5|Att|False|-1|True|200
-방어모드|10|6|Def|True|3|True|200
-브레스|30|5|Att|False|-1|True|1000
-꼬리치기|10|3|Att|False|-1|True|200
-이중공격|15|3|Att|False|-1|True|200
-매직실드|10|4|Def|True|3|True|150
-에너지볼트|20|3|Att|False|-1|True|200
+스킬이름|스킬소모HP|스킬소모MP|스킬쿨타임|스킬or버프타입|버프인지|지속턴(즉발형 = -1)|퍼센트인지|데미지 or 버프증가량 %(백분위) 
+강한공격|0|5|3|Att|False|-1|True|140
+공허돌진|0|5|2|Att|False|-1|True|130
+강한대포|0|10|5|Att|False|-1|True|200
+방어모드|0|10|6|Def|True|3|True|200
+브레스|0|30|5|Att|False|-1|True|1000
+꼬리치기|0|10|3|Att|False|-1|True|200
+이중공격|0|15|3|Att|False|-1|True|200
+매직실드|0|10|4|Def|True|3|True|150
+에너지볼트|0|20|3|Att|False|-1|True|200
 END
