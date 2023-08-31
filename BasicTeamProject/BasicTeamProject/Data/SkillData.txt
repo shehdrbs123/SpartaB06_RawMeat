@@ -7,8 +7,13 @@
 꼬리치기|0|10|3|Att|False|-1|False|True|200
 이중공격|0|15|3|Att|False|-1|False|True|200
 매직실드|0|10|4|Def|True|3|False|True|150
-에너지볼트|0|20|3|Att|False|-1|False|True|200
+에너지볼트|0|20|3|Att|False|-1|False|True|150
 힐|0|15|3|CurrentHP|True|-1|False|False|50
-메테오|0|30|0|Att|False|-1|True|True|200
+메테오|0|30|5|Att|False|-1|True|True|200
+파이어볼트|0|20|3|Att|False|-1|False|True|200
 버서크|40|10|5|Att|True|4|False|True|200
+로어|30|0|4|MaxHP|False|-1|True|True|30
+기습|0|10|3|Att|False|-1|False|True|300
+은신|0|10|3|Def|True|1|False|False|1000
+단검분사|0|10|5|Att|False|-1|True|True|100
 END
