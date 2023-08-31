@@ -12,6 +12,7 @@ namespace BasicTeamProject.Scene
         private int ItemTotalCount = 0;
         protected override void SetFunctionList()
         {
+            _FunctionList.Add("InventoryScene");
             _FunctionList.Add("InventoryEquipScene");
         }
 
@@ -52,7 +53,7 @@ namespace BasicTeamProject.Scene
                 _dataManager.Player.ToggleEquip(changeItem);
 
             }
-            _dataManager.InputMemory.PreInput = (key == 0 ? 0 : 1);
+            _dataManager.InputMemory.PreInput = (key == 0 ? 1 : 2);
             _dataManager.InputMemory.InputComplete = true;
         }
     }

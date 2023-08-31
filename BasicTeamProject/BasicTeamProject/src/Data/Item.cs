@@ -86,7 +86,7 @@ namespace BasicTeamProject.Data
             List<string> list = new List<string>();
 
             if(num != 0)
-                list.Add(num + ".");
+                list.Add(num + ". ");
             else
                 list.Add("");
 
@@ -135,7 +135,7 @@ namespace BasicTeamProject.Data
 
             if (Count > 1)
             {
-                list.Add("| 갯수 : " + Count);
+                list.Add("| 개수 : " + Count);
             }
             if (type == ShowType.Goods)
             {
