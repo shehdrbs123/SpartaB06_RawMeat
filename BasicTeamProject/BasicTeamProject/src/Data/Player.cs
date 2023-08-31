@@ -8,7 +8,7 @@ public class Player : ISkillStatus
 {
     public enum Job
     {
-        전사 = 0, 도적, 마법사
+        전사 = 0, 도적, 마법사, 대마법사, 버서커, 암살자
     }
     public Player()
     {
@@ -145,6 +145,7 @@ public class Player : ISkillStatus
         Def += 1;
         Critical += 3;
         Dodge += 1;
+        DataManager.Instance.ClassUp(this);
     }
 
     public void TurnCheck()

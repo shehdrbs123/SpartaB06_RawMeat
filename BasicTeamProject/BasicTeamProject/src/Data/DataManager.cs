@@ -40,6 +40,8 @@ namespace BasicTeamProject.Data
             s_Instance._playerDataContainer.Init("Data\\PlayerData.txt");
             s_Instance._shopDataContainer = new ShopDataContainer();
             s_Instance._shopDataContainer.Init("Data\\ShopData.txt");
+            s_Instance._classUpDataContainer = new ClassUpDataContainer();
+            s_Instance._classUpDataContainer.Init("Data\\ClassUpData.txt");
             s_Instance._sceneManager = new SceneManager();
             s_Instance._sceneManager.Init();
             s_Instance.InputMemory = new InputMemory();
@@ -132,7 +134,10 @@ namespace BasicTeamProject.Data
 
             return true;
         }
-
+        public void ClassUp(Player player)
+        {
+            _classUpDataContainer.ClassUp(player);
+        }
         MonsterDataContainer        _monsterDataContainer;
         LevelDataContainer          _levelDataContainer;
         RewardDataContainer         _rewardDataContainer;
@@ -142,7 +147,7 @@ namespace BasicTeamProject.Data
         SceneManager                _sceneManager;
         PlayerDataContainer         _playerDataContainer; 
         ShopDataContainer           _shopDataContainer;
-
+        ClassUpDataContainer        _classUpDataContainer;
 
         public List<Monster>        Monsters;
         public Player               Player;
