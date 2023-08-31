@@ -31,23 +31,21 @@ namespace BasicTeamProject.Scene
 
         protected override void WriteView()
         {
-            Console.WriteLine("전투 시작");
+            Console.WriteLine("Battle Start!!");
             enter();
-
+            Console.WriteLine("[몬스터]");
             for (int i = 0; i < _dataManager.Monsters.Count(); i++)
             {
                 Monster monster = _dataManager.Monsters[i];
-                 if (!monster.isDead)
-                    monster.ShowInfo(i);
+                if (!monster.isDead)
+                    monster.ShowInfo(i+1);
             }
 
             enter();
 
             Console.WriteLine("[플레이어 정보]");
             enter();
-            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
-            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
-            Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
+            _dataManager.Player.ShowBattleInfo();
             enter();
 
             enter();

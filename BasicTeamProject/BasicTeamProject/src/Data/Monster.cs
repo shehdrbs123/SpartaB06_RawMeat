@@ -90,10 +90,11 @@ namespace BasicTeamProject.Data
             int HPLeftPos;
 
             list.Add("┌─────┬───────────────────────────┐");
-            string NameHPLine = $"│Lv.{Level,2}│ {NameID}       공격력 : {Att, 3} │";
+            string NameHPLine = $"│     │ Lv.{Level,2} {NameID}              │";
             list.Add(NameHPLine);
-            list.Add($"│  {index}  │ {CurrentHP,4}/{MaxHP,4}                 │");
-            PaintRange = new Tuple<int, int, int>(2, 8, 24);
+            list.Add($"│  {index}  │ 공격력 :{Att, 3} / 방어력 :{Def, 3} │");
+            list.Add($"│     │       HP {CurrentHP,4} / {MaxHP,4}      │");
+            PaintRange = new Tuple<int, int, int>(3, 8, 24);
             list.Add("└─────┴───────────────────────────┘");
             //│   │ 효과 : 공격력  1000 → 1200 │
             //│   │ 효과 : 공격력   12  →  13  │

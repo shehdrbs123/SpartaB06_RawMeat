@@ -26,14 +26,13 @@ namespace BasicTeamProject.Scene
             {
                 var monster = _dataManager.Monsters[i];
                 if (monster.isDead) continue;
-                Console.WriteLine($"Lv.{monster.Level} {monster.NameID} \tHP: {monster.CurrentHP} / {monster.MaxHP}");
+                monster.ShowInfo(i + 1);
             }
             enter(); enter();
 
             Console.WriteLine("[플레이어 정보]");
             enter();
-            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
-            Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
+            _dataManager.Player.ShowBattleInfo();
             enter();
             Console.WriteLine($"[ 스킬 : {_dataManager.Player.Skills.Count} ]");
             enter();
