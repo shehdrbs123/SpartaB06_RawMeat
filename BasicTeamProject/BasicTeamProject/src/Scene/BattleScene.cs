@@ -18,7 +18,7 @@ namespace BasicTeamProject.Scene
         protected override void PreOperate()
         {
             base.PreOperate();
-            if (_dataManager.Monsters.Count == 0 || BattleSelectScene.remainingMonster == 1)
+            if (_dataManager.Monsters.Count == 0 || BattleSelectScene.remainingMonster == 0)
             {
                 _dataManager.CreateDungeon(1);
             }
