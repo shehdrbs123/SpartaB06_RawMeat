@@ -29,7 +29,7 @@ namespace BasicTeamProject.Scene
             base.PreOperate();
             preInputNum = BattleSelectScene.selectedMonster;
             monster = _dataManager.Monsters[preInputNum - 1];
-            getDamage = _dataManager.Player.GetDamage();
+            //getDamage = _dataManager.Player.GetDamage();
 
             if (random.Next(0, 101) > monster.Dodge)
             {
