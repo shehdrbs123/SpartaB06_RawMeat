@@ -41,5 +41,42 @@ namespace BasicTeamProject.Data
         public float Dodge { get; set; }
         public List<Skill> Skills { get; set; } = new List<Skill>();
 
+
+        public bool MonsterAct(out int damege)
+        {
+            for (int i = 0; i < Skills.Count; ++i)
+            {
+                damege = Skills[i].UseSkill(this);
+                if (damege > 0)
+                {
+                    //이때 스킬사용함
+                    Console.WriteLine($"{NameID}의 {Skills[i].NameID}발동!");
+                    Thread.Sleep(600);
+                    return true;
+                }
+                else if (damege == -3)
+                {
+                    Console.WriteLine($"{NameID}의 {Skills[i].NameID}발동!");
+                    Thread.Sleep(600);
+                    return false;
+                }
+            }
+            Console.WriteLine($"퍽!!");
+            Thread.Sleep(600);
+            damege = (int)Att;
+            return true;
+        }
+
+        public void TurnCheck()
+        {
+            foreach (Skill skill in Skills)
+            {
+                if (skill.TurnCheck(this))
+                {
+                    //이때 버프가 끝난것 따로 뭔가..넣나..
+                    Console.WriteLine($"{NameID}의 {skill.NameID} 지속시간이 끝났다!");
+                }
+            }
+        }
     }
 }

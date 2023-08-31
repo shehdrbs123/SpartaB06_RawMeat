@@ -141,16 +141,44 @@ public class Player : ISkillStatus
         return 0;
 
     }
-    public int GetDamage()
+    public bool PlayerAct(out int damage)
     {
-        int damage = (int)(Att);
         if (CurrentSkill > 0)
         {
-            if (damage > 0)
-                damage = UseSkill(CurrentSkill);
+            damage = UseSkill(CurrentSkill);
             CurrentSkill = -1;
+            if (damage > 0)
+            {
+                Console.WriteLine($"{Skills[CurrentSkill].NameID}!!!!!");
+                Thread.Sleep(600);
+                return true;
+            }
+            else if (damage == -1)
+            {
+                Console.WriteLine($"쿨타임이다! {Skills[CurrentSkill].CoolTime}턴 남음");
+                Thread.Sleep(600);
+                return false;
+            }
+            else if (damage == -2)
+            {
+                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill].Mp}필요");
+                Thread.Sleep(600);
+                return false;
+            }
+            else if (damage == -3)
+            {
+                Console.WriteLine($"{Skills[CurrentSkill].NameID}!!!!!");
+                Thread.Sleep(600);
+                return false;
+            }
         }
-        return damage;
+        else
+        {
+            Console.WriteLine("이얍!");
+            Thread.Sleep(600);
+            damage = (int)(Att);
+        }
+        return true;
     }
 
     public void EndDungeon()
