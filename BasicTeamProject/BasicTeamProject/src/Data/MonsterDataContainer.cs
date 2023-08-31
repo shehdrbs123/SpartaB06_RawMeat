@@ -29,12 +29,11 @@ namespace BasicTeamProject.Data
             mon.Def = int.Parse(data[5]);
             mon.Critical = float.Parse(data[6]);
             mon.Dodge = float.Parse(data[7]);
-            mon.Exp = int.Parse(data[8]);
 
-            int maxIndex = int.Parse(data[9]);
+            int maxIndex = int.Parse(data[8]);
             for (int i = 0; i < maxIndex; ++i)
             {
-                Skill skill = DataManager.Instance.CreateSkill(data[10 + i]);
+                Skill skill = DataManager.Instance.CreateSkill(data[9+ i]);
                 mon.Skills.Add(skill);
             }
 

@@ -21,6 +21,7 @@ namespace BasicTeamProject.Scene
 
         protected override void SetFunctionList()
         {
+            _FunctionList.Add("MainScene");
             _FunctionList.Add("BattleScene");
         }
 
@@ -29,7 +30,7 @@ namespace BasicTeamProject.Scene
             base.PreOperate();
             preInputNum = BattleSelectScene.selectedMonster;
             monster = _dataManager.Monsters[preInputNum - 1];
-            getDamage = _dataManager.Player.GetDamage();
+            //getDamage = _dataManager.Player.GetDamage();
 
             if (random.Next(0, 101) > monster.Dodge)
             {
@@ -122,8 +123,6 @@ namespace BasicTeamProject.Scene
             Thread.Sleep(600);
 
             enter();
-            Console.WriteLine("0. 다음");
-            enter();
         }
 
         protected override void afterOperate()
@@ -137,15 +136,31 @@ namespace BasicTeamProject.Scene
                 BattleSelectScene.remainingMonster--;
             }
 
+            if (BattleSelectScene.remainingMonster == 0)
+            {
+                Console.WriteLine("축하합니다 던전을 클리어했습니다");
+                Console.WriteLine("계속 진행하시겠습니까?");
+                enter();
+                Console.WriteLine("0. 나가기");
+                Console.WriteLine("1. 계속 진행");
+            }
             int key;
             int.TryParse(Console.ReadLine(), out key);
-            while (key != 0)
+            while (0 > key && key > 1)
             {
                 Console.WriteLine("잘못 입력하셨습니다.");
                 Thread.Sleep(300);
             }
-            _dataManager.InputMemory.InputComplete = true;
-            _dataManager.InputMemory.PreInput = 1;
+            if(key == 0)
+            {
+                _dataManager.InputMemory.InputComplete = true;
+                _dataManager.InputMemory.PreInput = 1;
+            }
+            else
+            {
+                _dataManager.InputMemory.InputComplete = true;
+                _dataManager.InputMemory.PreInput = 2;
+            }
         }
     }
 }

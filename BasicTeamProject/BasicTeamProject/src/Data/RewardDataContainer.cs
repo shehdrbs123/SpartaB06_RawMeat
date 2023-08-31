@@ -20,21 +20,22 @@ namespace BasicTeamProject.Data
             Reward reward = new Reward();
             reward.MinGold = int.Parse(data[1]);
             reward.MaxGold = int.Parse(data[2]);
-            int maxIndex = int.Parse(data[3]);
+            reward.Exp = int.Parse(data[3]);
+            int maxIndex = int.Parse(data[4]);
             for (int i = 0; i < maxIndex; ++i)
             {
-                Item item = DataManager.Instance.CreateItem(data[4 + i * 2]);
+                Item item = DataManager.Instance.CreateItem(data[5 + i * 2]);
                 reward.Items.Add(item);
-                reward.DropPer.Add(float.Parse(data[4 + i * 2 + 1]));
+                reward.DropPer.Add(float.Parse(data[5 + i * 2 + 1]));
             }
 
 
             _rewards.Add(data[0], reward);
         }
 
-        public List<Item> GetReward(string name, out int gold)
+        public List<Item> GetRewards(string name, out int gold, out int exp)
         {
-            return _rewards[name].GetReward(out gold);
+            return _rewards[name].GetRewards(out gold, out exp);
         }
     }
 }

@@ -22,15 +22,14 @@ namespace BasicTeamProject.Scene
         {
             Console.WriteLine("전투");
             enter();
-            remainingMonster = 0;
+            int j = 1;
             for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
                 var monster = _dataManager.Monsters[i];
                 if (monster.CurrentHP > 0)
                 {
-                    Console.WriteLine($"{remainingMonster + 1}.Lv.{monster.Level} " +
+                    Console.WriteLine($"{j++}.Lv.{monster.Level} " +
                         $"{monster.NameID} HP: {monster.CurrentHP}");
-                    remainingMonster++;
                 }
             }
             enter();
