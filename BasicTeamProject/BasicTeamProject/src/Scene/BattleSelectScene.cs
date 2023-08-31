@@ -56,6 +56,7 @@ namespace BasicTeamProject.Scene
                     selectedMonster = key;
                     _dataManager.InputMemory.InputComplete = true;
                     _dataManager.InputMemory.PreInput = 3;
+                    _dataManager.Player.Attack = true;
                 }
                 else if (key > remainingMonster)
                 {
