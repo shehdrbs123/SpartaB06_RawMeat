@@ -12,6 +12,7 @@ namespace BasicTeamProject.Scene
     {
         protected override void SetFunctionList()
         {
+            _FunctionList.Add("BattleScene");
             _FunctionList.Add("BattleSelectScene");
         }
 
@@ -63,7 +64,7 @@ namespace BasicTeamProject.Scene
             if (key != 0)
                 _dataManager.Player.CurrentSkill = key;
 
-            _dataManager.InputMemory.PreInput = (key == 0 ? 0 : 1);
+            _dataManager.InputMemory.PreInput = (key == 0 ? 1 : 2);
             _dataManager.InputMemory.InputComplete = true;
 
         }
