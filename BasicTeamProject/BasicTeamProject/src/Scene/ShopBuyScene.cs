@@ -82,6 +82,10 @@ namespace BasicTeamProject.Scene
                         Console.WriteLine($"{item.NameID} {item.Count}개 구매완료!");
                         Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold -= gold * item.Count} G");
                     }
+                    else if(itemCount == 0)
+                    {
+                        Console.WriteLine("0개는 구매할 수 없다!");
+                    }
                     else
                     {
                         Console.WriteLine("돈이 부족하다!");
