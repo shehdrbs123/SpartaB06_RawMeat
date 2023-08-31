@@ -25,7 +25,7 @@ namespace BasicTeamProject.Scene
             for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
                 var monster = _dataManager.Monsters[i];
-                if (monster.CurrentHP <= 0) continue;
+                if (monster.isDead) continue;
                 Console.WriteLine($"Lv.{monster.Level} {monster.NameID} \tHP: {monster.CurrentHP} / {monster.MaxHP}");
             }
             enter(); enter();
@@ -62,7 +62,8 @@ namespace BasicTeamProject.Scene
             if (key != 0)
                 _dataManager.Player.CurrentSkill = key;
 
-            if (_dataManager.Player.GetSkillTargetAble())
+            bool wide;
+            if (_dataManager.Player.GetSkillTargetAble(out wide) && !wide)
             {
                 _dataManager.InputMemory.PreInput = 2;
             }

@@ -37,7 +37,7 @@ namespace BasicTeamProject.Scene
             for (int i = 0; i < _dataManager.Monsters.Count(); i++)
             {
                 Monster monster = _dataManager.Monsters[i];
-                if (monster.CurrentHP > 0)
+                 if (!monster.isDead)
                     monster.ShowInfo(i);
             }
 
