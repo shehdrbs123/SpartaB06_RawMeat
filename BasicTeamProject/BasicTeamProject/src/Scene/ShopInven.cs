@@ -17,39 +17,42 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("팔거를 입력해주세요.");
+            Console.WriteLine("팔거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
 
-            if (int.TryParse(Console.ReadLine(), out key))
+            while (!_dataManager.InputMemory.TryGetKey(count + 1, out key))
             {
-                if (1 <= key && key <= count)
-                {
-                    int itemCount = 1;
-
-                    if (_dataManager.Inventory.GetItemCount(ItemType.Equip, key) != 1)
-                    {
-                        Console.Write("개수를 입력해주세요.");
-                        Console.Write(">>");
-                        int.TryParse(Console.ReadLine(), out itemCount);
-                    }
-
-                    if (1 <= itemCount)
-                    {
-                        int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Equip);
-                        if (gold > 0)
-                        {
-                            Console.WriteLine($"{itemCount}개 판매완료!");
-                            Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
-                            Console.ReadLine();
-                        }
-                    }
-
-                }
+                Console.WriteLine("잘못 입력하셨습니다.");
+                Console.Write(">>");
             }
-            
-                _dataManager.InputMemory.InputComplete = true;
-                _dataManager.InputMemory.PreInput = 2;
+
+            if (1 <= key)
+            {
+                int itemCount = 1;
+
+                if (_dataManager.Inventory.GetItemCount(ItemType.Equip, key) != 1)
+                {
+                    Console.WriteLine("개수를 입력해주세요.");
+                    Console.Write(">>");
+                    int.TryParse(Console.ReadLine(), out itemCount);
+                }
+
+                if (1 <= itemCount)
+                {
+                    int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Equip);
+                    if (gold > 0)
+                    {
+                        Console.WriteLine($"{itemCount}개 판매완료!");
+                        Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
+                        Console.ReadLine();
+                    }
+                }
+
+            }
+
+            _dataManager.InputMemory.InputComplete = true;
+            _dataManager.InputMemory.PreInput = 2;
 
             if (key == 0)
                 _dataManager.InputMemory.PreInput = 1;
@@ -76,33 +79,37 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("팔거를 입력해주세요.");
+            Console.WriteLine("팔거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
-            if (int.TryParse(Console.ReadLine(), out key))
+            while (!_dataManager.InputMemory.TryGetKey(count + 1, out key))
             {
-                if (1 <= key && key <= count)
-                {
-                    int itemCount = 1;
-                    if (_dataManager.Inventory.GetItemCount(ItemType.Consumable, key) != 1)
-                    {
-                        Console.Write("개수를 입력해주세요.");
-                        Console.Write(">>");
-                        int.TryParse(Console.ReadLine(), out itemCount);
-                    }
+                Console.WriteLine("잘못 입력하셨습니다.");
+                Console.Write(">>");
+            }
 
-                    if (1 <= itemCount)
+            if (1 <= key)
+            {
+                int itemCount = 1;
+                if (_dataManager.Inventory.GetItemCount(ItemType.Consumable, key) != 1)
+                {
+                    Console.WriteLine("개수를 입력해주세요.");
+                    Console.Write(">>");
+                    int.TryParse(Console.ReadLine(), out itemCount);
+                }
+
+                if (1 <= itemCount)
+                {
+                    int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Consumable);
+                    if (gold > 0)
                     {
-                        int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount, ItemType.Consumable);
-                        if (gold > 0)
-                        {
-                            Console.WriteLine($"{itemCount}개 판매완료!");
-                            Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
-                            Console.ReadLine();
-                        }
+                        Console.WriteLine($"{itemCount}개 판매완료!");
+                        Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
+                        Console.ReadLine();
                     }
                 }
             }
+
             _dataManager.InputMemory.InputComplete = true;
             _dataManager.InputMemory.PreInput = 2;
 
@@ -132,33 +139,37 @@ namespace BasicTeamProject.Scene
         protected override void afterOperate()
         {
             base.afterOperate();
-            Console.Write("팔거를 입력해주세요.");
+            Console.WriteLine("팔거를 입력해주세요.");
             Console.Write(">>");
             int key = 0;
-            if (int.TryParse(Console.ReadLine(), out key))
+            while (!_dataManager.InputMemory.TryGetKey(count + 1, out key))
             {
-                if (1 <= key && key <= count)
-                {
-                    int itemCount = 1;
-                    if (_dataManager.Inventory.GetItemCount(ItemType.End, key) != 1)
-                    {
-                        Console.Write("개수를 입력해주세요.");
-                        Console.Write(">>");
-                        int.TryParse(Console.ReadLine(), out itemCount);
-                    }
-                    if (1 <= itemCount)
-                    {
-                        int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount);
-                        if (gold > 0)
-                        {
-                            Console.WriteLine($"{itemCount}개 판매완료!");
-                            Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
-                            Console.ReadLine();
-                        }
-                    }
-
-                }
+                Console.WriteLine("잘못 입력하셨습니다.");
+                Console.Write(">>");
             }
+
+            if (1 <= key)
+            {
+                int itemCount = 1;
+                if (_dataManager.Inventory.GetItemCount(ItemType.End, key) != 1)
+                {
+                    Console.WriteLine("개수를 입력해주세요.");
+                    Console.Write(">>");
+                    int.TryParse(Console.ReadLine(), out itemCount);
+                }
+                if (1 <= itemCount)
+                {
+                    int gold = _dataManager.Inventory.DeleteItem(key, ref itemCount);
+                    if (gold > 0)
+                    {
+                        Console.WriteLine($"{itemCount}개 판매완료!");
+                        Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold += gold} G");
+                        Console.ReadLine();
+                    }
+                }
+
+            }
+
             _dataManager.InputMemory.InputComplete = true;
             _dataManager.InputMemory.PreInput = 2;
 
