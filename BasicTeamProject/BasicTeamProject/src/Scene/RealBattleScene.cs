@@ -101,17 +101,38 @@ namespace BasicTeamProject.Scene
 
             }
 
-            enter();
-            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
-            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
-            Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
-            Thread.Sleep(500);
-            enter();
+           
+            if (_dataManager.Player.CurrentHP > 0)
+            {
+                enter();
+                Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
+                Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
+                Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
+                Thread.Sleep(500);
+                enter();
+            }
         }
 
         protected override void afterOperate()
         {
             base.afterOperate();
+            if (_dataManager.Player.CurrentHP <= 0)
+            {
+                enter();
+                Console.WriteLine("죽었다..");
+                enter();
+                _dataManager.Player.CurrentHP = _dataManager.Player.MaxHP / 2;
+                Console.WriteLine($"{_dataManager.Player.Gold} G -> {_dataManager.Player.Gold /= 2} G");
+                _dataManager.Player.Gold /= 2;
+                Console.WriteLine($"{_dataManager.Player.Gold} EXP -> 0 EXP");
+                _dataManager.Player.CurrentExp = 0;
+                enter();
+                Console.WriteLine("마을로 간다..");
+                _dataManager.InputMemory.PreInput = 0;
+                _dataManager.InputMemory.InputComplete = true;
+                Console.ReadLine();
+                return;
+            }
             if (selectedMonster.CurrentHP <= 0)
             {
                 var temp = selectedMonster;

@@ -35,6 +35,7 @@ public class Player : ISkillStatus
     public int CurrentSkill { get; set; } = -1;
     public List<Skill> Skills { get; set; } = new List<Skill>();
     public int Gold { get; set; } = 1500;
+    public bool Attack = false;
 
     public void Setting(PlayerPasingData Data)
     {
@@ -190,13 +191,16 @@ public class Player : ISkillStatus
                 return false;
             }
         }
-        else
+        else if (Attack)
         {
+            Attack = false;
             Console.WriteLine("이얍!");
             Thread.Sleep(600);
             damage = (int)(Att);
+            return true;
         }
-        return true;
+        damage = 0;
+        return false;
     }
 
     public void EndDungeon()
@@ -215,11 +219,13 @@ public class Player : ISkillStatus
         {
             case TypeOfAbility.CurrentHP :
                 beforeAddValue = CurrentHP;
+                Console.WriteLine($"HP {MathF.Min(MaxHP - CurrentHP, abilityValue)} 회복");
                 CurrentHP = Math.Clamp(CurrentHP + abilityValue, 1, MaxHP);
                 addedValue = CurrentHP;
                 break;
             case TypeOfAbility.CurrentMP :
                 beforeAddValue = CurrentMP;
+                Console.WriteLine($"MP {MathF.Min(MaxMP - CurrentMP, abilityValue)} 회복");
                 CurrentMP = Math.Clamp(CurrentMP + abilityValue, 1, MaxMP);
                 addedValue = CurrentMP;
                 break;
