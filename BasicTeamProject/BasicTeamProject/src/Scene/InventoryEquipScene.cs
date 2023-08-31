@@ -9,6 +9,7 @@ namespace BasicTeamProject.Scene
 {
     internal class InventoryEquipScene : Scene
     {
+        private int ItemTotalCount = 0;
         protected override void SetFunctionList()
         {
             _FunctionList.Add("InventoryEquipScene");
@@ -23,7 +24,7 @@ namespace BasicTeamProject.Scene
             _dataManager.Player.ShowAllInfo();
             enter(); enter();
             Console.WriteLine("[아이템 목록]");
-            _dataManager.Inventory.ShowAll();
+            ItemTotalCount = _dataManager.Inventory.ShowItem(ItemType.Equip);
             enter();
             Console.WriteLine("0. 나가기");
             EndView();
@@ -33,7 +34,7 @@ namespace BasicTeamProject.Scene
         {
             base.afterOperate();
             int key, index;
-            while (!_dataManager.InputMemory.TryGetKey(_dataManager.Inventory.GetAllItemCount() + 1, out key))
+            while (!_dataManager.InputMemory.TryGetKey(ItemTotalCount + 1, out key))
             {
                 Console.WriteLine("잘못 입력하셨습니다.");
                 Console.Write(">>");
@@ -45,7 +46,7 @@ namespace BasicTeamProject.Scene
 
                 if (_dataManager.Inventory.GetEquippedIndex(changeItem.EquipType, out index) && index != key)
                 {
-                    Item currentItem = _dataManager.Inventory.GetItem(index);
+                    Item currentItem = _dataManager.Inventory.GetItem(index, ItemType.Equip);
                     _dataManager.Player.ToggleEquip(currentItem);
                 }
                 _dataManager.Player.ToggleEquip(changeItem);

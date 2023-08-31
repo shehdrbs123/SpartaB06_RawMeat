@@ -349,23 +349,17 @@ public class Inventory
     }
     public bool GetEquippedIndex(EquipType type, out int index)
     {
-        
         index = 0;
-        if (type != EquipType.End)
+        foreach (var items in _inven[ItemType.Equip])
         {
-            foreach (var Dic in _inven)
+            foreach (var item in items.Value)
             {
-                foreach (var items in Dic.Value)
-                {
-                    foreach (var item in items.Value)
-                    {
-                        index++;
-                        if (item.EquipType == type && item.IsEquipped)
-                            return true;
-                    }
-                }
+                index++;
+                if (item.EquipType == type && item.IsEquipped)
+                    return true;
             }
         }
+
         return false;
     }
 

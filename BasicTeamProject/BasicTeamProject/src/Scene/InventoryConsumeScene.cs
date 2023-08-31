@@ -32,7 +32,7 @@ public class InventoryConsumeScene : Scene
         
         while (!_dataManager.InputMemory.TryGetKey(0, itemCount + 1, out key))
         {
-            Console.WriteLine("잘못 입력하셨습니다");
+            Console.WriteLine("잘못 입력하셨습니다.");
             Console.Write(">>");
         }
 
@@ -49,7 +49,7 @@ public class InventoryConsumeScene : Scene
         int beforeAddValue = 0;
         int addedValue = 0;
         _dataManager.Player.AddStatus(ability,abilityValue,out addedValue,out beforeAddValue);
-        Console.WriteLine("아이템을 사용하였습니다");
+        Console.WriteLine("아이템을 사용하였습니다.");
 
         _dataManager.InputMemory.InputComplete = true;
         _dataManager.InputMemory.PreInput = 1;
