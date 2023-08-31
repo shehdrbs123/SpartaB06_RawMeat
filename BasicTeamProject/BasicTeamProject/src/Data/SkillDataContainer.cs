@@ -28,12 +28,13 @@ namespace BasicTeamProject.Data
             skill.isBuff = Boolean.Parse(data[5]);
             skill.Duration = 0;
             skill.ResetDuration = int.Parse(data[6]);
-            skill.isPer = Boolean.Parse(data[7]);
+            skill.isWide = Boolean.Parse(data[7]);
+            skill.isPer = Boolean.Parse(data[8]);
 
             if (skill.isPer == true)
-                skill.Value = float.Parse(data[8]) / 100f;
+                skill.Value = float.Parse(data[9]) / 100f;
             else
-                skill.Value = float.Parse(data[8]);
+                skill.Value = float.Parse(data[9]);
 
             _skills.Add(data[0], skill);
         }

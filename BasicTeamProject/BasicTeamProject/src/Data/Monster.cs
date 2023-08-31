@@ -40,25 +40,27 @@ namespace BasicTeamProject.Data
         public float Critical { get; set; }
         public float Dodge { get; set; }
         public List<Skill> Skills { get; set; } = new List<Skill>();
+        public bool isDead { get; set; } = false;
 
 
-        public bool MonsterAct(out int damege)
+        public bool MonsterAct(out int damege, out bool wide)
         {
+            wide = false;
             for (int i = 0; i < Skills.Count; ++i)
             {
-                damege = Skills[i].UseSkill(this);
-                if (damege > 0)
-                {
-                    //이때 스킬사용함
-                    Console.WriteLine($"{NameID}의 {Skills[i].NameID}발동!");
-                    Thread.Sleep(600);
-                    return true;
-                }
-                else if (damege == -3)
+                if (Skills[i].GetSkillAble(this))
                 {
                     Console.WriteLine($"{NameID}의 {Skills[i].NameID}발동!");
                     Thread.Sleep(600);
-                    return false;
+                    damege = Skills[i].UseSkill(this, out wide);
+                    if (damege > 0)
+                    {
+                        return true;
+                    }
+                    else if (damege == -3)
+                    {
+                        return false;
+                    }
                 }
             }
             Console.WriteLine($"퍽!!");

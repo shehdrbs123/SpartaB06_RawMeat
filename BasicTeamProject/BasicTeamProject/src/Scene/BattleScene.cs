@@ -36,7 +36,7 @@ namespace BasicTeamProject.Scene
             foreach (var monster in _dataManager.Monsters)
             {
 
-                if (monster.CurrentHP > 0)
+                if (!monster.isDead)
                     Console.WriteLine($"Lv.{monster.Level} {monster.NameID} HP: {monster.CurrentHP}");
             }
 
