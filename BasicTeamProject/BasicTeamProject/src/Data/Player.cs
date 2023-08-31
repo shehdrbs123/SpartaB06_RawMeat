@@ -76,7 +76,7 @@ public class Player : ISkillStatus
     public bool GetSkillTargetAble()
     {
         if (CurrentSkill > 0)
-            return (!Skills[CurrentSkill - 1].isBuff && CurrentMP >= Skills[CurrentSkill - 1].Mp && Skills[CurrentSkill - 1].CoolTime == 0);
+            return (!Skills[CurrentSkill - 1].isBuff && CurrentMP >= Skills[CurrentSkill - 1].MP && Skills[CurrentSkill - 1].CoolTime == 0);
         return false;
     }
 
@@ -173,7 +173,13 @@ public class Player : ISkillStatus
             }
             else if (damage == -2)
             {
-                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill - 1].Mp}필요");
+                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill - 1].MP}필요");
+                CurrentSkill = -1;
+                return false;
+            }
+            else if (damage == -4)
+            {
+                Console.WriteLine($"체력이 부족하다! {Skills[CurrentSkill - 1].HP}필요");
                 CurrentSkill = -1;
                 return false;
             }

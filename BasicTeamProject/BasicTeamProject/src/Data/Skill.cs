@@ -8,6 +8,7 @@
         public Skill(Skill skill)
         {
             this.NameID = skill.NameID;
+            this.HP = skill.HP;
             this.MP = skill.MP;
             this.ResetCoolTime = skill.ResetCoolTime;
             this.isPer = skill.isPer;
@@ -91,7 +92,10 @@
                 return -1;//쿨타임이 안끝난경우
             if (Target.CurrentMP < MP)
                 return -2;//마나가 부족한경우
+            if (Target.CurrentHP <= HP)
+                return -4;//체력이 부족한경우
             Target.CurrentMP -= MP;
+            Target.CurrentHP -= HP;
 
             if (Using)
             {
