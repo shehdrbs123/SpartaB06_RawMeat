@@ -21,7 +21,7 @@ namespace BasicTeamProject.Data
         public override void Process(string[] data)
         {
             Player.Job job = (Player.Job)Enum.Parse(typeof(Player.Job), data[0]);
-            _jobData.Add(job, (Player.Job)Enum.Parse(typeof(Player.Job), data[0]));
+            _jobData.Add(job, (Player.Job)Enum.Parse(typeof(Player.Job), data[1]));
             _levelData.Add(job, int.Parse(data[2]));
             int skills = int.Parse(data[3]);
             _skillData.Add(job, new List<Skill>());
