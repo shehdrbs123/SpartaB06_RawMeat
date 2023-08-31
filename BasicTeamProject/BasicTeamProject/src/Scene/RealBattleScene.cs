@@ -10,6 +10,7 @@ namespace BasicTeamProject.Scene
     public class RealBattleScene : Scene
     {
         private int preInputNum;
+        private int getDamage;
         private bool mobDodge = false;
         private bool mobCrit = false;
         private bool playerDodge = false;
@@ -28,18 +29,19 @@ namespace BasicTeamProject.Scene
             base.PreOperate();
             preInputNum = BattleSelectScene.selectedMonster;
             monster = _dataManager.Monsters[preInputNum - 1];
+            getDamage = _dataManager.Player.GetDamage();
 
             if (random.Next(0, 101) > monster.Dodge)
             {
                 mobDodge = false;
                 if (random.Next(0, 101) < _dataManager.Player.Critical + _dataManager.Player.ExtraCritical)
                 {
-                    monster.CurrentHP -= (int)((_dataManager.Player.GetDamage() * 1.5f) - monster.Def);
+                    monster.CurrentHP -= Math.Clamp((int)((getDamage * 1.5f) - monster.Def), 0, int.MaxValue);
                     playerCrit = true;
                 }
                 else
                 {
-                    monster.CurrentHP -= (int)(_dataManager.Player.GetDamage() - monster.Def);
+                    monster.CurrentHP -= Math.Clamp((int)(getDamage - monster.Def), 0, int.MaxValue);
                     playerCrit = false;
                 }
             }
@@ -54,12 +56,12 @@ namespace BasicTeamProject.Scene
                 playerDodge = false;
                 if (random.Next(0, 101) < monster.Critical)
                 {
-                    _dataManager.Player.CurrentHP -= (int)((monster.Att * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef));
+                    _dataManager.Player.CurrentHP -= Math.Clamp((int)((monster.Att * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue);
                     mobCrit = true;
                 }
                 else
                 {
-                    _dataManager.Player.CurrentHP -= (int)(monster.Att - (_dataManager.Player.Def + _dataManager.Player.ExtraDef));
+                    _dataManager.Player.CurrentHP -= Math.Clamp((int)(monster.Att - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue);
                     mobCrit = false;
                 }
             }
@@ -84,12 +86,12 @@ namespace BasicTeamProject.Scene
                 {
                     Console.WriteLine("치명타 적중!");
                     Console.WriteLine($"Lv.{monster.Level} {monster.NameID}을(를) 맞췄습니다. " +
-                        $"[대미지 : {(int)((_dataManager.Player.GetDamage() * 1.5f) - monster.Def)}]");
+                        $"[대미지 : {Math.Clamp((int)((getDamage * 1.5f) - monster.Def), 0, int.MaxValue)}]");
                 }
                 else
                 {
                     Console.WriteLine($"Lv.{monster.Level} {monster.NameID}을(를) 맞췄습니다. " +
-                        $"[대미지 : {(int)(_dataManager.Player.GetDamage() - monster.Def)}]");
+                        $"[대미지 : {Math.Clamp((int)(getDamage - monster.Def), 0, int.MaxValue)}]");
                 }
             }
             Thread.Sleep(600);
@@ -107,9 +109,9 @@ namespace BasicTeamProject.Scene
                 if (mobCrit)
                 {
                     Console.WriteLine("치명적인 공격을 받았습니다!");
-                    Console.WriteLine($"[받은 대미지 : {(int)((monster.Att * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef))}]");
+                    Console.WriteLine($"[받은 대미지 : {Math.Clamp((int)((monster.Att * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue)}]");
                 }
-                else Console.WriteLine($"[받은 대미지 : {(int)(monster.Att - (_dataManager.Player.Def + _dataManager.Player.ExtraDef))}]");
+                else Console.WriteLine($"[받은 대미지 : {Math.Clamp((int)(monster.Att - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue)}]");
                 Thread.Sleep(600);
             }
 
