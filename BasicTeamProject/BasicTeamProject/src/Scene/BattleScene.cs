@@ -33,11 +33,12 @@ namespace BasicTeamProject.Scene
         {
             Console.WriteLine("전투 시작");
             enter();
-            foreach (var monster in _dataManager.Monsters)
-            {
 
-                if (!monster.isDead)
-                    Console.WriteLine($"Lv.{monster.Level} {monster.NameID} HP: {monster.CurrentHP}");
+            for (int i = 0; i < _dataManager.Monsters.Count(); i++)
+            {
+                Monster monster = _dataManager.Monsters[i];
+                 if (!monster.isDead)
+                    monster.ShowInfo(i);
             }
 
             enter();

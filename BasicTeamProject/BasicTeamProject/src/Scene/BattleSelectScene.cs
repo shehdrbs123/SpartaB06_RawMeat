@@ -28,8 +28,7 @@ namespace BasicTeamProject.Scene
                 var monster = _dataManager.Monsters[i];
                 if (!monster.isDead)
                 {
-                    Console.WriteLine($"{j++}.Lv.{monster.Level} " +
-                        $"{monster.NameID} HP: {monster.CurrentHP}");
+                    monster.ShowInfo(i+1);
                 }
             }
             enter();

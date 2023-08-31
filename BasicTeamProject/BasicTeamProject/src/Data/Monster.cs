@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTeamProject.src;
 
 namespace BasicTeamProject.Data
 {
@@ -79,6 +80,55 @@ namespace BasicTeamProject.Data
                     Console.WriteLine($"{NameID}의 {skill.NameID} 지속시간이 끝났다!");
                 }
             }
+        }
+        
+        public void ShowInfo(int index)
+        {
+            List<String> list = new List<String>();
+            Tuple<int, int, int> PaintRange;
+            int rate = (int)((double)CurrentHP / MaxHP * 24);
+            int HPLeftPos;
+
+            list.Add("┌─────┬───────────────────────────┐");
+            string NameHPLine = $"│Lv.{Level,2}│ {NameID}       공격력 : {Att, 3} │";
+            list.Add(NameHPLine);
+            list.Add($"│  {index}  │ {CurrentHP,4}/{MaxHP,4}                 │");
+            PaintRange = new Tuple<int, int, int>(2, 8, 24);
+            list.Add("└─────┴───────────────────────────┘");
+            //│   │ 효과 : 공격력  1000 → 1200 │
+            //│   │ 효과 : 공격력   12  →  13  │
+
+
+            int countOfKorean = 0;
+            for(int i = 0; i < list.Count; i++)
+            {
+                for (int j = 0; j < list[i].Length; j++)
+                {
+                    byte oF = (byte)((list[i][j] & 0xFF00) >> 7);
+                    if (oF != 0)
+                        ++countOfKorean;
+                }
+                list[i] = list[i].PadRight(100 - countOfKorean);
+                for (int j = 0; j < list[i].Length; ++j)
+                {
+                    if (i == PaintRange.Item1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        if (PaintRange.Item2 <= j && j <= PaintRange.Item2 + PaintRange.Item3)
+                        {
+                            if (j - PaintRange.Item2 <= rate)
+                            {
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                            }
+                        }
+                    }
+                    Console.Write(list[i][j]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
     }
 }
