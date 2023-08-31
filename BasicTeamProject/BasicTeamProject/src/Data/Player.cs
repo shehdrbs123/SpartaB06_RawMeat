@@ -143,14 +143,13 @@ public class Player : ISkillStatus
     }
     public int GetDamage()
     {
-        int damage = 0;
+        int damage = (int)(Att);
         if (CurrentSkill > 0)
         {
-            damage = UseSkill(CurrentSkill);
+            if (damage > 0)
+                damage = UseSkill(CurrentSkill);
             CurrentSkill = -1;
         }
-        else
-            damage = (int)(Att);
         return damage;
     }
 
