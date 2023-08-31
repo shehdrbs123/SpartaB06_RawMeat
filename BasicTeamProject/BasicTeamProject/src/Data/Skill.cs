@@ -62,13 +62,27 @@
             string coolTimeGauge = "";
             Player player = DataManager.Instance.Player;
             int playerTypeValue = GetPlayerTypeValue(player);
+            string strPlayerTypeValue = playerTypeValue.ToString();
+            string strPlayerTypeValueAfter = (playerTypeValue+(int)Value).ToString();
 
-            list.Add("┌───┬────────────────────────┐");
-            list.Add($"│   │ {NameID}   {coolTimeGauge} │");
-            list.Add($"│ {index} │ 소모 : HP {HP, 3} / MP {MP, 3} │");
-            list.Add($"│   │ 효과 : {GetTypeString()} {playerTypeValue} → {playerTypeValue + (int)Value} │");
-            list.Add("└───┴────────────────────────┘");
-            
+            list.Add("┌─────┬───────────────────────────┐");
+            list.Add($"│     │ {NameID}   -------------- │");
+            list.Add($"│  {index}  │ 소모 : HP {HP, 3}   /  MP {MP, 3} │");
+            string effectLine = "│     │ 효과 : {0} ";
+            effectLine = effectLine.PadRight(effectLine.Length+4-(2+(int)(strPlayerTypeValue.Length*0.5f)));
+            effectLine += "{1}";
+            effectLine = effectLine.PadRight(effectLine.Length + 2 -(int)(strPlayerTypeValue.Length*0.5));
+            effectLine += " → ";
+            effectLine = effectLine.PadRight(effectLine.Length+4-(2+(int)(strPlayerTypeValueAfter.Length*0.5f)));
+            effectLine += "{2}";
+            effectLine = effectLine.PadRight(effectLine.Length + 2 -(int)(strPlayerTypeValueAfter.Length*0.5));
+            effectLine += " │";
+            list.Add(string.Format(effectLine,GetTypeString(),strPlayerTypeValue,strPlayerTypeValueAfter));
+            list.Add("└─────┴───────────────────────────┘");
+            //│   │ 효과 : 공격력  1000 → 1200 │
+            //│   │ 효과 : 공격력   12  →  13  │
+
+
             int countOfKorean = 0;
             for(int i = 0; i < list.Count; i++)
             {
@@ -78,7 +92,7 @@
                     if (oF != 0)
                         ++countOfKorean;
                 }
-                list[i] = list[i].PadRight(100 - countOfKorean);
+                //list[i] = list[i].PadRight(100 - countOfKorean);
                 Console.WriteLine(list[i]);
             }
             Console.WriteLine();

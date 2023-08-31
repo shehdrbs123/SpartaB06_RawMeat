@@ -161,7 +161,7 @@ public class Player : ISkillStatus
             }
             else if (damage == -2)
             {
-                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill].Mp}필요");
+                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill].MP}필요");
                 Thread.Sleep(600);
                 return false;
             }
