@@ -8,7 +8,7 @@
         public Skill(Skill skill)
         {
             this.NameID = skill.NameID;
-            this.Mp = skill.Mp;
+            this.MP = skill.MP;
             this.ResetCoolTime = skill.ResetCoolTime;
             this.isPer = skill.isPer;
             this.isBuff = skill.isBuff;
@@ -18,7 +18,8 @@
         }
 
         public string NameID { get; set; }
-        public int Mp { get; set; }
+        public int HP { get; set; } = 0;
+        public int MP { get; set; }
         public int CoolTime { get; set; } = 0;
         public int ResetCoolTime { get; set; }
         public TypeOfAbility Type { get; set; } = TypeOfAbility.End;
@@ -30,20 +31,57 @@
         public bool isPer { get; set; }
         public bool isBuff { get; set; }
         private int Added;
-        public void ShowInfo()
-        {
-            Console.WriteLine($"{NameID}");
-            Console.WriteLine($"MP소모량 : -{Mp}");
-            if(Using)
-                Console.WriteLine($"사용중 : 지속시간 {Duration} 턴 지속");
 
-            Console.WriteLine($"쿨타임 : {CoolTime} / {ResetCoolTime}");
-            if (isPer)
-                    Console.WriteLine($"스킬 계수 : My{Type.ToString()} * {Value * 100} %");
-                else if (!isBuff)
-                    Console.WriteLine($"스킬 데미지: My{Type.ToString()} + {Value}");
-                else
-                    Console.WriteLine($"버프 증가량 : +{Value}{Type.ToString()}");
+        private string GetTypeString()
+        {
+            switch (Type)
+            {
+                case TypeOfAbility.Att:
+                    return "공격력";
+                case TypeOfAbility.Def:
+                    return "방어력";
+            }
+            return "";
+        }
+
+        private int GetPlayerTypeValue(Player player)
+        {
+            switch (Type)
+            {
+                case TypeOfAbility.Att:
+                    return (int)player.Att;
+                case TypeOfAbility.Def:
+                    return (int)player.Def;
+            }
+            return 0;
+        }
+
+        public void ShowInfo(int index)
+        {
+            List<String> list = new List<String>();
+            string coolTimeGauge = "";
+            Player player = DataManager.Instance.Player;
+            int playerTypeValue = GetPlayerTypeValue(player);
+
+            list.Add("┌───┬────────────────────────┐");
+            list.Add($"│   │ {NameID}   {coolTimeGauge} │");
+            list.Add($"│ {index} │ 소모 : HP {HP, 3} / MP {MP, 3} │");
+            list.Add($"│   │ 효과 : {GetTypeString()} {playerTypeValue} → {playerTypeValue + (int)Value} │");
+            list.Add("└───┴────────────────────────┘");
+            
+            int countOfKorean = 0;
+            for(int i = 0; i < list.Count; i++)
+            {
+                for (int j = 0; j < list[i].Length; j++)
+                {
+                    byte oF = (byte)((list[i][j] & 0xFF00) >> 7);
+                    if (oF != 0)
+                        ++countOfKorean;
+                }
+                list[i] = list[i].PadRight(100 - countOfKorean);
+                Console.WriteLine(list[i]);
+            }
+            Console.WriteLine();
         }
 
         //증가Value를 리턴할거임
@@ -51,9 +89,9 @@
         {
             if (CoolTime > 0)
                 return -1;//쿨타임이 안끝난경우
-            if (Target.CurrentMP < Mp)
+            if (Target.CurrentMP < MP)
                 return -2;//마나가 부족한경우
-            Target.CurrentMP -= Mp;
+            Target.CurrentMP -= MP;
 
             if (Using)
             {

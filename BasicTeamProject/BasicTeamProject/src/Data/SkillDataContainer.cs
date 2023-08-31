@@ -20,7 +20,7 @@ namespace BasicTeamProject.Data
         {
             Skill skill = new Skill();
             skill.NameID = data[0];
-            skill.Mp = int.Parse(data[1]);
+            skill.MP = int.Parse(data[1]);
             skill.CoolTime = 0;
             skill.ResetCoolTime = int.Parse(data[2]);
             skill.Type = (TypeOfAbility)Enum.Parse(typeof(TypeOfAbility), data[3]);

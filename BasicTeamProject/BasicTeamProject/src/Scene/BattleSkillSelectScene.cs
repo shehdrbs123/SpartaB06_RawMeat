@@ -40,9 +40,7 @@ namespace BasicTeamProject.Scene
             for(int i = 0; i < _dataManager.Player.Skills.Count; i++)
             {
                 var skill = _dataManager.Player.Skills[i];
-                Console.WriteLine($"{i+1}");
-                skill.ShowInfo();
-                enter();
+                skill.ShowInfo(i+1);
             }
             enter();
             Console.WriteLine("0. 취소");
