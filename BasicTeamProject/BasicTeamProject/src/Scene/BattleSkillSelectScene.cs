@@ -14,6 +14,7 @@ namespace BasicTeamProject.Scene
         {
             _FunctionList.Add("BattleScene");
             _FunctionList.Add("BattleSelectScene");
+            _FunctionList.Add("RealBattleScene");
         }
 
         protected override void WriteView()
@@ -31,7 +32,6 @@ namespace BasicTeamProject.Scene
 
             Console.WriteLine("[플레이어 정보]");
             enter();
-            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
             Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
             Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
             enter();
@@ -53,7 +53,7 @@ namespace BasicTeamProject.Scene
         {
             base.afterOperate();
             int key;
-            while (!_dataManager.InputMemory.TryGetKey(_dataManager.Monsters.Count + 1, out key))
+            while (!_dataManager.InputMemory.TryGetKey(_dataManager.Player.Skills.Count + 1, out key))
             {
                 Console.WriteLine("잘못 입력하셨습니다.");
                 Console.Write(">>");
@@ -62,9 +62,16 @@ namespace BasicTeamProject.Scene
             if (key != 0)
                 _dataManager.Player.CurrentSkill = key;
 
-            _dataManager.InputMemory.PreInput = (key == 0 ? 1 : 2);
+            if (_dataManager.Player.GetSkillTargetAble())
+            {
+                _dataManager.InputMemory.PreInput = 2;
+            }
+            else
+            {
+                _dataManager.InputMemory.PreInput = (key == 0 ? 1 : 3);
+                BattleSelectScene.selectedMonster = 1;
+            }
             _dataManager.InputMemory.InputComplete = true;
-
         }
     }
 }
