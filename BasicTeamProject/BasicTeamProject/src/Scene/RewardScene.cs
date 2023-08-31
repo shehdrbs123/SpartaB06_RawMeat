@@ -17,7 +17,7 @@ namespace BasicTeamProject.Scene
         protected override void PreOperate()
         {
             base.PreOperate();
-            _dataManager.InputMemory.SetRange(0, 1);
+            _dataManager.InputMemory.SetRange(0, 2);
         }
 
         protected override void WriteView()
@@ -26,6 +26,7 @@ namespace BasicTeamProject.Scene
 
             int gold;
             int exp;
+            _dataManager.Player.EndDungeon();
 
             foreach (var monster in _dataManager.Monsters)
             {
