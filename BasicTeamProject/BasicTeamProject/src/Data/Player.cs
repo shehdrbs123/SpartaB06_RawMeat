@@ -1,6 +1,9 @@
-﻿using System;
+﻿using BasicTeamProject.src;
+using System;
 using System.Net.Http.Headers;
+using System.Reflection;
 using static BasicTeamProject.Data.Player;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BasicTeamProject.Data;
 
@@ -308,6 +311,73 @@ public class Player : ISkillStatus
         {
             Skills.Add(new Skill(DataManager.Instance.CreateSkill(data[20+i])));
         }
+    }
+
+    public void ShowBattleInfo()
+    {
+        List<string> list = new List<string>();
+        Tuple<int, int, int> HPPaintRange = new Tuple<int, int, int>(5, 4, 24);
+        Tuple<int, int, int> MPPaintRange = new Tuple<int, int, int>(6, 4, 24);
+        int HPRate = (int)((double)CurrentHP / MaxHP * 24);
+        int MPRate = (int)((double)(CurrentMP / MaxMP * 24));
+
+        list.Add("┌──────────────────────────────┐");
+        string name = $"Lv.{Level}  {NameID}  ({job})";
+        string nameLine = name.PadLeft((int)(15 + (name.Length - StringCounter.GetStringLength(NameID + job)) / 2));
+        nameLine = nameLine.PadRight(30 - StringCounter.GetStringLength(NameID + job));
+        list.Add("│" + nameLine + "│");
+        list.Add("│───────────(능력치)───────────│");
+        list.Add("│                              │");
+        string stat = $" 공격력 {Att,4} / 방어력 {Def,4}";
+        string statLine = stat.PadLeft((int)(15 + (stat.Length - 6) / 2));
+        statLine = statLine.PadRight(24);
+        list.Add("│" + statLine + "│");
+        string HPstr = $"HP {CurrentHP,4} / {MaxHP,4}";
+        string HPLine = HPstr.PadLeft((int)(15 + HPstr.Length / 2));
+        HPLine = HPLine.PadRight(30);
+        list.Add("│" + HPLine + "│");
+        string MPstr = $"MP {CurrentMP,4} / {MaxMP,4}";
+        string MPLine = MPstr.PadLeft((int)(15 + MPstr.Length / 2));
+        MPLine = MPLine.PadRight(30);
+        list.Add("│" + MPLine + "│");
+        list.Add("│                              │");
+        list.Add("└──────────────────────────────┘");
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            for (int j = 0; j < list[i].Length; j++)
+            {
+                if(i == HPPaintRange.Item1)
+                {
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    if (HPPaintRange.Item2 <= j && j <= HPPaintRange.Item2 + HPPaintRange.Item3)
+                    {
+                        if(j - HPPaintRange.Item2 <= HPRate)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        }
+                    }
+                }
+                if (i == MPPaintRange.Item1)
+                {
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    if (MPPaintRange.Item2 <= j && j <= MPPaintRange.Item2 + MPPaintRange.Item3)
+                    {
+                        if (j - MPPaintRange.Item2 <= MPRate)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        }
+                    }
+                }
+                Console.Write(list[i][j]);
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
     }
 }
 

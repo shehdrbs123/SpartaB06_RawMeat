@@ -70,7 +70,7 @@ namespace BasicTeamProject.Data
             string strPlayerTypeValueAfter = (playerTypeValue+(int)Value).ToString();
 
             
-            list.Add("┌─────┬───────────────────────────┐");
+            list.Add("┌─────┬────────────────────────────┐");
             
             //이름 >> 
             int nameNHealthPos;
@@ -83,10 +83,10 @@ namespace BasicTeamProject.Data
             int rate = (int)((double)CoolTime / ResetCoolTime * 12);
             
             
-            nameNHealth += "              │";
+            nameNHealth += "               │";
             list.Add(nameNHealth);
             //
-            list.Add($"│  {index}  │ 소모 : HP {HP, 3}   /  MP {MP, 3} │");
+            list.Add($"│  {index}  │ 소모 : HP {HP, 3}   /  MP {MP, 3}  │");
             string effectLine = $"│     │ 효과 : {GetTypeString()} ";
             effectLine = effectLine.PadRight(effectLine.Length + 4 - (2 + (int)(strPlayerTypeValue.Length * 0.5f)));
             effectLine += $"{strPlayerTypeValue}";
@@ -98,7 +98,7 @@ namespace BasicTeamProject.Data
             effectLine = effectLine.PadRight(effectLine.Length + 2 - (int)Math.Ceiling(strPlayerTypeValueAfter.Length * 0.5));
             effectLine += " │";
             list.Add(string.Format(effectLine));
-            list.Add("└─────┴───────────────────────────┘");
+            list.Add("└─────┴────────────────────────────┘");
             //│   │ 효과 : 공격력  1000 → 1200 │
             //│   │ 효과 : 공격력   12  →  13  │
 
