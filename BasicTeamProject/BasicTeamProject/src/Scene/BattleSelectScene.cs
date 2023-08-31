@@ -9,7 +9,7 @@ namespace BasicTeamProject.Scene
 {
     public class BattleSelectScene : Scene
     {
-        private int remainingMonster;
+        public static int remainingMonster;
         public static int selectedMonster;
         protected override void SetFunctionList()
         {
@@ -18,7 +18,6 @@ namespace BasicTeamProject.Scene
             _FunctionList.Add("RealBattleScene");
         }
         
-
         protected override void WriteView()
         {
             Console.WriteLine("전투");
@@ -29,7 +28,8 @@ namespace BasicTeamProject.Scene
                 var monster = _dataManager.Monsters[i];
                 if (monster.CurrentHP > 0)
                 {
-                    Console.WriteLine($"{remainingMonster + 1}.Lv.{monster.Level} {monster.NameID} HP: {monster.CurrentHP}");
+                    Console.WriteLine($"{remainingMonster + 1}.Lv.{monster.Level} " +
+                        $"{monster.NameID} HP: {monster.CurrentHP}");
                     remainingMonster++;
                 }
             }
@@ -37,8 +37,9 @@ namespace BasicTeamProject.Scene
 
             Console.WriteLine("[플레이어 정보]");
             enter();
-            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID}" +
-                $"({_dataManager.Player.job})\n체력: {_dataManager.Player.CurrentHP}");
+            Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
+            Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
+            Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
 
             enter();
             Console.WriteLine("0. 취소");
