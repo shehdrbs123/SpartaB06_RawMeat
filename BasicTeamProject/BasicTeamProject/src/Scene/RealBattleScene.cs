@@ -11,156 +11,127 @@ namespace BasicTeamProject.Scene
     {
         private int preInputNum;
         private int getDamage;
-        private bool mobDodge = false;
-        private bool mobCrit = false;
-        private bool playerDodge = false;
-        private bool playerCrit = false;
+        private bool readyForAttack = false;
 
-        private Monster monster;
+        private Monster selectedMonster;
         Random random = new Random();
 
         protected override void SetFunctionList()
         {
-            _FunctionList.Add("MainScene");
             _FunctionList.Add("BattleScene");
+            _FunctionList.Add("RewardScene");
         }
 
         protected override void PreOperate()
         {
             base.PreOperate();
+            _dataManager.InputMemory.SetRange(0, 1);
             preInputNum = BattleSelectScene.selectedMonster;
-            monster = _dataManager.Monsters[preInputNum - 1];
-            //getDamage = _dataManager.Player.GetDamage();
-
-            if (random.Next(0, 101) > monster.Dodge)
-            {
-                mobDodge = false;
-                if (random.Next(0, 101) < _dataManager.Player.Critical + _dataManager.Player.ExtraCritical)
-                {
-                    monster.CurrentHP -= Math.Clamp((int)((getDamage * 1.5f) - monster.Def), 0, int.MaxValue);
-                    playerCrit = true;
-                }
-                else
-                {
-                    monster.CurrentHP -= Math.Clamp((int)(getDamage - monster.Def), 0, int.MaxValue);
-                    playerCrit = false;
-                }
-            }
-            else 
-            {
-                mobDodge = true;
-                Console.WriteLine("공격이 빗나갔습니다");
-            }
-
-            if (random.Next(0, 101) > _dataManager.Player.Dodge)
-            {
-                playerDodge = false;
-                if (random.Next(0, 101) < monster.Critical)
-                {
-                    _dataManager.Player.CurrentHP -= Math.Clamp((int)((monster.Att * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue);
-                    mobCrit = true;
-                }
-                else
-                {
-                    _dataManager.Player.CurrentHP -= Math.Clamp((int)(monster.Att - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue);
-                    mobCrit = false;
-                }
-            }
-            else
-            {
-                playerDodge = true;
-                Console.WriteLine("회피에 성공했습니다");
-            }
-
-            _dataManager.InputMemory.SetRange(0,1);
+            selectedMonster = _dataManager.Monsters[preInputNum - 1];
         }
 
         protected override void WriteView()
         {
             Console.WriteLine("전투 로그");
+
             enter();
-            if (!mobDodge)
+            readyForAttack = _dataManager.Player.PlayerAct(out getDamage);
+
+            if (readyForAttack)
             {
-                Console.WriteLine($"{_dataManager.Player.NameID}의 공격");
-                Thread.Sleep(600);
-                if (playerCrit)
+                if (random.Next(0, 101) > selectedMonster.Dodge)
                 {
-                    Console.WriteLine("치명타 적중!");
-                    Console.WriteLine($"Lv.{monster.Level} {monster.NameID}을(를) 맞췄습니다. " +
-                        $"[대미지 : {Math.Clamp((int)((getDamage * 1.5f) - monster.Def), 0, int.MaxValue)}]");
+                    if (random.Next(0, 101) < _dataManager.Player.Critical + _dataManager.Player.ExtraCritical)
+                    {
+                        Console.WriteLine("치명타 적중!");
+                        Console.WriteLine($"{selectedMonster.NameID}을(를) 맞췄습니다. " +
+                            $"[대미지 : {Math.Clamp((int)((getDamage * 1.5f) - selectedMonster.Def), 0, int.MaxValue)}]");
+                        selectedMonster.CurrentHP -= Math.Clamp((int)((getDamage * 1.5f) - selectedMonster.Def), 0, int.MaxValue);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{selectedMonster.NameID}을(를) 맞췄습니다. " +
+                            $"[대미지 : {Math.Clamp((int)(getDamage - selectedMonster.Def), 0, int.MaxValue)}]");
+                        selectedMonster.CurrentHP -= Math.Clamp((int)(getDamage - selectedMonster.Def), 0, int.MaxValue);
+                    }
                 }
                 else
                 {
-                    Console.WriteLine($"Lv.{monster.Level} {monster.NameID}을(를) 맞췄습니다. " +
-                        $"[대미지 : {Math.Clamp((int)(getDamage - monster.Def), 0, int.MaxValue)}]");
+                    Console.WriteLine("공격이 빗나갔습니다");
                 }
             }
-            Thread.Sleep(600);
-
+            _dataManager.Player.TurnCheck();
+            Thread.Sleep(500);
             enter();
-            Console.WriteLine($"Lv.{monster.Level} {monster.NameID}");
-            Console.WriteLine($"HP {monster.CurrentHP}");
-            Thread.Sleep(600);
 
-            enter();
-            if (monster.CurrentHP > 0 && !playerDodge)
+
+            foreach (var monster in _dataManager.Monsters)
             {
-                Console.WriteLine($"{monster.NameID}의 공격");
-                Thread.Sleep(600);
-                if (mobCrit)
+                if (monster.CurrentHP <= 0)
                 {
-                    Console.WriteLine("치명적인 공격을 받았습니다!");
-                    Console.WriteLine($"[받은 대미지 : {Math.Clamp((int)((monster.Att * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue)}]");
+                    continue;
                 }
-                else Console.WriteLine($"[받은 대미지 : {Math.Clamp((int)(monster.Att - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue)}]");
-                Thread.Sleep(600);
+
+                int damage;
+                bool monsterAttackCheck = monster.MonsterAct(out damage);
+
+                if (monsterAttackCheck)
+                {
+                    if (random.Next(0, 101) > _dataManager.Player.Dodge)
+                    {
+                        Console.WriteLine($"{monster.NameID}의 공격");
+
+                        if (random.Next(0, 101) < monster.Critical)
+                        {
+                            Console.WriteLine("치명적인 공격을 받았습니다!");
+                            Console.WriteLine($"[받은 대미지 : {Math.Clamp((int)((damage * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue)}]");
+                            _dataManager.Player.CurrentHP -= Math.Clamp((int)((damage * 1.5f) - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[받은 대미지 : {Math.Clamp((int)(damage - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue)}]");
+                            _dataManager.Player.CurrentHP -= Math.Clamp((int)(damage - (_dataManager.Player.Def + _dataManager.Player.ExtraDef)), 0, int.MaxValue);
+                        }
+                    }
+                    else
+                        Console.WriteLine("회피에 성공했습니다");
+                }
+                Thread.Sleep(500);
+                monster.TurnCheck();
+
             }
 
             enter();
             Console.WriteLine($"Lv.{_dataManager.Player.Level} {_dataManager.Player.NameID} ({_dataManager.Player.job})");
             Console.WriteLine($"HP {_dataManager.Player.CurrentHP}/{_dataManager.Player.MaxHP}");
             Console.WriteLine($"MP {_dataManager.Player.CurrentMP}/{_dataManager.Player.MaxMP}");
-            Thread.Sleep(600);
-
+            Thread.Sleep(500);
             enter();
         }
 
         protected override void afterOperate()
         {
             base.afterOperate();
-            if (monster.CurrentHP <= 0)
+            if (selectedMonster.CurrentHP <= 0)
             {
-                var temp = monster;
-                _dataManager.Monsters.Remove(monster);
+                var temp = selectedMonster;
+                _dataManager.Monsters.Remove(selectedMonster);
                 _dataManager.Monsters.Add(temp);
                 BattleSelectScene.remainingMonster--;
             }
 
             if (BattleSelectScene.remainingMonster == 0)
             {
-                Console.WriteLine("축하합니다 던전을 클리어했습니다");
-                Console.WriteLine("계속 진행하시겠습니까?");
-                enter();
-                Console.WriteLine("0. 나가기");
-                Console.WriteLine("1. 계속 진행");
-            }
-            int key;
-            int.TryParse(Console.ReadLine(), out key);
-            while (0 > key && key > 1)
-            {
-                Console.WriteLine("잘못 입력하셨습니다.");
-                Thread.Sleep(300);
-            }
-            if(key == 0)
-            {
-                _dataManager.InputMemory.InputComplete = true;
-                _dataManager.InputMemory.PreInput = 1;
+                _dataManager.InputMemory.PreInput = 2;
+
             }
             else
             {
-                _dataManager.InputMemory.InputComplete = true;
-                _dataManager.InputMemory.PreInput = 2;
+                _dataManager.InputMemory.PreInput = 1;
             }
+            _dataManager.InputMemory.InputComplete = true;
+
+            Console.ReadLine();
         }
     }
 }

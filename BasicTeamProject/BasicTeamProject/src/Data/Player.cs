@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using static BasicTeamProject.Data.Player;
 
 namespace BasicTeamProject.Data;
@@ -72,6 +73,13 @@ public class Player : ISkillStatus
         Console.WriteLine($"Gold : {Gold}");
     }
 
+    public bool GetSkillTargetAble()
+    {
+        if (CurrentSkill > 0)
+            return (!Skills[CurrentSkill - 1].isBuff && CurrentMP >= Skills[CurrentSkill - 1].Mp && Skills[CurrentSkill - 1].CoolTime == 0);
+        return false;
+    }
+
     public void ToggleEquip(Item item)
     {
         if (item.IsEquipped)
@@ -109,6 +117,21 @@ public class Player : ISkillStatus
         }
     }
 
+    public void LevelUP()
+    {
+        Console.WriteLine("레벨 업!");
+        CurrentExp -= DataManager.Instance.GetMaxExp();
+        Level++;
+        MaxHP += 30;
+        MaxMP += 10;
+        CurrentHP = MaxHP;
+        CurrentMP = MaxMP;
+        Att += 2;
+        Def += 1;
+        Critical += 3;
+        Dodge += 1;
+    }
+
     public void TurnCheck()
     {
         foreach (Skill skill in Skills)
@@ -128,17 +151,7 @@ public class Player : ISkillStatus
             Console.WriteLine("뭔가문제");
             return 0;
         }
-
-        if (check == -1)
-            Console.WriteLine("쿨타임");
-        else if (check == -2)
-            Console.WriteLine("마나부족");
-        else if (check == -3)
-            Console.WriteLine("버프사용");
-        else
-            return check;
-
-        return 0;
+        return check;
 
     }
     public bool PlayerAct(out int damage)
@@ -146,29 +159,28 @@ public class Player : ISkillStatus
         if (CurrentSkill > 0)
         {
             damage = UseSkill(CurrentSkill);
-            CurrentSkill = -1;
             if (damage > 0)
             {
-                Console.WriteLine($"{Skills[CurrentSkill].NameID}!!!!!");
-                Thread.Sleep(600);
+                Console.WriteLine($"{Skills[CurrentSkill - 1].NameID}!!!!!");
+                CurrentSkill = -1;
                 return true;
             }
             else if (damage == -1)
             {
-                Console.WriteLine($"쿨타임이다! {Skills[CurrentSkill].CoolTime}턴 남음");
-                Thread.Sleep(600);
+                Console.WriteLine($"쿨타임이다! {Skills[CurrentSkill - 1].CoolTime}턴 남음");
+                CurrentSkill = -1;
                 return false;
             }
             else if (damage == -2)
             {
-                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill].Mp}필요");
-                Thread.Sleep(600);
+                Console.WriteLine($"마나가 부족하다! {Skills[CurrentSkill - 1].Mp}필요");
+                CurrentSkill = -1;
                 return false;
             }
             else if (damage == -3)
             {
-                Console.WriteLine($"{Skills[CurrentSkill].NameID}!!!!!");
-                Thread.Sleep(600);
+                Console.WriteLine($"{Skills[CurrentSkill - 1].NameID}!!!!!");
+                CurrentSkill = -1;
                 return false;
             }
         }
