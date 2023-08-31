@@ -11,14 +11,15 @@ namespace BasicTeamProject.Data
         public int MinGold { get; set; }
         public int MaxGold { get; set; }
 
+        public int Exp { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public List<float> DropPer { get; set; } = new List<float>();
 
-        public List<Item> GetReward(out int gold)
+        public List<Item> GetRewards(out int gold, out int exp)
         {
             Random random = new Random();
             gold = random.Next(MinGold, MaxGold + 1);
-            
+            exp = Exp;
             List<Item> items = new List<Item>();
             for(int i = 0; i < Items.Count; ++i)
             {

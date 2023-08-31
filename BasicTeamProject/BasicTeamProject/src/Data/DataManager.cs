@@ -73,9 +73,9 @@ namespace BasicTeamProject.Data
         {
             return _itemDataContainer.CreateItem(name, count);
         }
-        public List<Item> GetReward(string name, out int gold)
+        public List<Item> GetRewards(string name, out int gold, out int exp)
         {
-            return _rewardDataContainer.GetReward(name, out gold);
+            return _rewardDataContainer.GetRewards(name, out gold, out exp);
         }
         public int GetMaxExp(int level)
         {

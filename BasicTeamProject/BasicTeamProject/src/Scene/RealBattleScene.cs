@@ -28,7 +28,6 @@ namespace BasicTeamProject.Scene
             base.PreOperate();
             preInputNum = BattleSelectScene.selectedMonster;
             monster = _dataManager.Monsters[preInputNum - 1];
-
             if (random.Next(0, 101) > monster.Dodge)
             {
                 mobDodge = false;
