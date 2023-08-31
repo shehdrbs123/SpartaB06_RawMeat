@@ -54,7 +54,7 @@ public class HospitalScene : Scene
             {
                 _dataManager.InputMemory.PreInput = 2;
                 Console.WriteLine("돈이 부족합니다.");
-                Thread.Sleep(2000);                
+                Thread.Sleep(1000);                
             }
         }
     }
