@@ -35,29 +35,33 @@ public class InventoryConsumeScene : Scene
             Console.WriteLine("잘못 입력하셨습니다.");
             Console.Write(">>");
         }
-
-        Item healItem = _dataManager.Inventory.GetItem(key, ItemType.Consumable);
-
-       
-        healItem.GetItemAbility(out ability, out abilityValue);
         
-        HealScene.AbilityValue = abilityValue;
-        HealScene.TypeOfAbility = ability;
-
-        _dataManager.Inventory.DeleteItem(key, ref count, ItemType.Consumable);
-
-        int beforeAddValue = 0;
-        int addedValue = 0;
-        _dataManager.Player.AddStatus(ability,abilityValue,out addedValue,out beforeAddValue);
-        Console.WriteLine("아이템을 사용하였습니다.");
-
         _dataManager.InputMemory.InputComplete = true;
-        _dataManager.InputMemory.PreInput = 1;
+        if (key > 0)
+        {
+            Item healItem = _dataManager.Inventory.GetItem(key, ItemType.Consumable);
 
+            healItem.GetItemAbility(out ability, out abilityValue);
+
+            HealScene.AbilityValue = abilityValue;
+            HealScene.TypeOfAbility = ability;
+
+            _dataManager.Inventory.DeleteItem(key, ref count, ItemType.Consumable);
+
+            int beforeAddValue = 0;
+            int addedValue = 0;
+            _dataManager.Player.AddStatus(ability, abilityValue, out addedValue, out beforeAddValue);
+            Console.WriteLine("아이템을 사용하였습니다.");
+            _dataManager.InputMemory.PreInput = 1;
+        }
+        else
+            _dataManager.InputMemory.PreInput = 2;
+        
     }
 
     protected override void SetFunctionList()
     {
+        _FunctionList.Add("InventoryConsumeScene");
         _FunctionList.Add("InventoryScene");
     }
 }
