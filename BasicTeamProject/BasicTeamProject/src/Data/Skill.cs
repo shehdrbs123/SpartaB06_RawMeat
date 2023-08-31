@@ -1,4 +1,5 @@
-﻿using BasicTeamProject.src;
+﻿using System.Drawing;
+using BasicTeamProject.src;
 
 namespace BasicTeamProject.Data
 {
@@ -65,16 +66,26 @@ namespace BasicTeamProject.Data
             string coolTimeGauge = "";
             Player player = DataManager.Instance.Player;
             int playerTypeValue = GetPlayerTypeValue(player);
-            string strPlayerTypeValue = 1000.ToString();
-            string strPlayerTypeValueAfter = (1000+(int)Value).ToString();
+            string strPlayerTypeValue = playerTypeValue.ToString();
+            string strPlayerTypeValueAfter = (playerTypeValue+(int)Value).ToString();
 
+            
             list.Add("┌─────┬───────────────────────────┐");
             
-            string NameNCoolTimeLine = $"│     │ {NameID}";
-            NameNCoolTimeLine = NameNCoolTimeLine.PadRight(20 - StringCounter.GetStringLength(NameID));
-            NameNCoolTimeLine += "------------- │";
-            list.Add(NameNCoolTimeLine);
-
+            //이름 >> 
+            int nameNHealthPos;
+            
+       
+            string nameNHealth = $"│     │ {NameID}";
+            nameNHealth = nameNHealth.PadRight(20 - StringCounter.GetStringLength(NameID));
+            nameNHealthPos = nameNHealth.Length;
+            Tuple<int, int, int> PaintRange = new Tuple<int, int, int>(1, nameNHealthPos, 12);
+            int rate = (int)((double)CoolTime / ResetCoolTime * 12);
+            
+            
+            nameNHealth += "              │";
+            list.Add(nameNHealth);
+            //
             list.Add($"│  {index}  │ 소모 : HP {HP, 3}   /  MP {MP, 3} │");
             string effectLine = $"│     │ 효과 : {GetTypeString()} ";
             effectLine = effectLine.PadRight(effectLine.Length + 4 - (2 + (int)(strPlayerTypeValue.Length * 0.5f)));
@@ -83,8 +94,9 @@ namespace BasicTeamProject.Data
             effectLine += " → ";
             effectLine = effectLine.PadRight(effectLine.Length + 4 - (2 + (int)(strPlayerTypeValueAfter.Length * 0.5f)));
             effectLine += $"{strPlayerTypeValueAfter}";
+            //Console.WriteLine($"{}");
             effectLine = effectLine.PadRight(effectLine.Length + 2 - (int)Math.Ceiling(strPlayerTypeValueAfter.Length * 0.5));
-            effectLine += "│";
+            effectLine += " │";
             list.Add(string.Format(effectLine));
             list.Add("└─────┴───────────────────────────┘");
             //│   │ 효과 : 공격력  1000 → 1200 │
@@ -101,7 +113,23 @@ namespace BasicTeamProject.Data
                         ++countOfKorean;
                 }
                 list[i] = list[i].PadRight(100 - countOfKorean);
-                Console.WriteLine(list[i]);
+                for (int j = 0; j < list[i].Length; ++j)
+                {
+                    if (i == PaintRange.Item1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        if (PaintRange.Item2 <= j && j <= PaintRange.Item2 + PaintRange.Item3)
+                        {
+                            if (j - PaintRange.Item2  > rate)
+                            {
+                                Console.BackgroundColor = ConsoleColor.White;                                
+                            }
+                        }
+                            
+                    }
+                    Console.Write(list[i][j]);
+                }
+                Console.WriteLine();
             }
             Console.WriteLine();
         }
