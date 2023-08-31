@@ -10,7 +10,7 @@ namespace BasicTeamProject.Scene
     public class BattleSelectScene : Scene
     {
         public static int remainingMonster;
-        public static int selectedMonster;
+        public static int selectedMonster = 1;
         protected override void SetFunctionList()
         {
             _FunctionList.Add("BattleScene");

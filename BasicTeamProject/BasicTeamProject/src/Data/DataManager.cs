@@ -100,6 +100,11 @@ namespace BasicTeamProject.Data
             _shopDataContainer.RenewItems(ListCount);
         }
 
+        public int GetMaxExp()
+        {
+            return _levelDataContainer.GetMaxExp(Player.Level);
+        }
+
         public void DataSave()
         {
             StreamWriter sw = new StreamWriter("Data\\SaveData.txt");
@@ -108,6 +113,7 @@ namespace BasicTeamProject.Data
             sw.WriteLine(Shop.GetSaveData());
             sw.Close();
         }
+
         public bool DataLoad()
         {
             StreamReader sr = new StreamReader("Data\\SaveData.txt");
