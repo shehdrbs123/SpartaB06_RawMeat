@@ -9,6 +9,8 @@ namespace BasicTeamProject.Scene
 {
     public class BattleScene : Scene
     {
+        private int currentStage = 1;
+
         protected override void SetFunctionList()
         {
             _FunctionList.Add("BattleSelectScene");
@@ -20,7 +22,8 @@ namespace BasicTeamProject.Scene
             base.PreOperate();
             if (_dataManager.Monsters.Count == 0 || BattleSelectScene.remainingMonster == 0)
             {
-                _dataManager.CreateDungeon(1);
+                _dataManager.CreateDungeon(currentStage++);
+                BattleSelectScene.remainingMonster = _dataManager.Monsters.Count;
             }
             _dataManager.InputMemory.SetRange(0,_FunctionList.Count);
         }
