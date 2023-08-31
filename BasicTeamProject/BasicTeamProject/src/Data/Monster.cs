@@ -23,7 +23,6 @@ namespace BasicTeamProject.Data
             this.Def = mon.Def;
             this.Critical = mon.Critical;
             this.Dodge = mon.Dodge;
-            this.Exp = mon.Exp;
             for (int i = 0; i < mon.Skills.Count; i++)
             {
                 Skill skill = new Skill(mon.Skills[i]);
@@ -40,7 +39,6 @@ namespace BasicTeamProject.Data
         public float Def { get; set; }
         public float Critical { get; set; }
         public float Dodge { get; set; }
-        public int Exp { get; set; }
         public List<Skill> Skills { get; set; } = new List<Skill>();
 
     }
