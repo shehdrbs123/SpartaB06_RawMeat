@@ -1,5 +1,5 @@
 ﻿using BasicTeamProject.Data;
-using BasicTeamProject.Scene;
+using System;
 namespace BasicTeamProject
 {
     public class GameCore
@@ -13,7 +13,7 @@ namespace BasicTeamProject
         {
             _manager = DataManager.Instance;
             _input = DataManager.Instance.InputMemory;
-            //Console.SetWindowSize(100,80);
+            Console.SetWindowSize(Console.LargestWindowWidth/4,Console.LargestWindowHeight);
         }
         public void Play(bool isTest)
         {
