@@ -327,7 +327,7 @@ public class Player : ISkillStatus
         Tuple<int, int, int> HPPaintRange = new Tuple<int, int, int>(5, 4, 24);
         Tuple<int, int, int> MPPaintRange = new Tuple<int, int, int>(6, 4, 24);
         int HPRate = (int)((double)CurrentHP / MaxHP * 24);
-        int MPRate = (int)((double)(CurrentMP / MaxMP * 24));
+        int MPRate = (int)((double)CurrentMP / MaxMP * 24);
 
         list.Add("┌──────────────────────────────┐");
         string name = $"Lv.{Level}  {NameID}  ({job})";
