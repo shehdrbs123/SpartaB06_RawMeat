@@ -36,12 +36,12 @@ namespace BasicTeamProject
             {
                 DataManager.Instance.Inventory.AddItem("낡은검", 1);
                 DataManager.Instance.Inventory.AddItem("낡은검", 1);
-                DataManager.Instance.Inventory.AddItem("장갑", 1);
-                DataManager.Instance.Inventory.AddItem("갑옷", 1);
-                DataManager.Instance.Inventory.AddItem("투구", 1);
-                DataManager.Instance.Inventory.AddItem("겁내쌘무기", 2);
+                DataManager.Instance.Inventory.AddItem("낡은장갑", 1);
+                DataManager.Instance.Inventory.AddItem("낡은갑옷", 1);
+                DataManager.Instance.Inventory.AddItem("낡은투구", 1);
+                DataManager.Instance.Inventory.AddItem("겁내쎈무기", 2);
                 DataManager.Instance.Inventory.AddItem("똥", 100);
-                DataManager.Instance.Inventory.AddItem("체력포션", 10);
+                DataManager.Instance.Inventory.AddItem("작은회복약", 10);
                 DataManager.Instance.Inventory.AddItem("마나포션", 10);
                 _manager.FunctionList.Add("CreateUserScene");
                 //Console.WriteLine("보고 싶은 씬을 골라주세요");
