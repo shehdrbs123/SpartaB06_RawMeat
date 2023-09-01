@@ -39,12 +39,49 @@ namespace BasicTeamProject.Data
         public bool isWide { get; set; }
         private string GetTypeString()
         {
-            switch (Type)
+            if (isBuff)
             {
-                case TypeOfAbility.Att:
-                    return "공격력";
-                case TypeOfAbility.Def:
-                    return "방어력";
+                switch (Type)
+                {
+                    case TypeOfAbility.Att:
+                        return "공격력";
+                    case TypeOfAbility.Def:
+                        return "방어력";
+                    case TypeOfAbility.MaxHP:
+                        return "최대체력";
+                    case TypeOfAbility.CurrentHP:
+                        return "현재체력";
+                    case TypeOfAbility.MaxMP:
+                        return "최대마나";
+                    case TypeOfAbility.CurrentMP:
+                        return "현재마나";
+                    case TypeOfAbility.Critical:
+                        return "치명타";
+                    case TypeOfAbility.Dodge:
+                        return "회피";
+                }
+            }
+            else
+            {
+                switch (Type)
+                {
+                    case TypeOfAbility.Att:
+                        return "(공격력)";
+                    case TypeOfAbility.Def:
+                        return "(방어력)";
+                    case TypeOfAbility.MaxHP:
+                        return "(최대체력)";
+                    case TypeOfAbility.CurrentHP:
+                        return "(현재체력)";
+                    case TypeOfAbility.MaxMP:
+                        return "(최대마나)";
+                    case TypeOfAbility.CurrentMP:
+                        return "(현재마나)";
+                    case TypeOfAbility.Critical:
+                        return "(치명타)";
+                    case TypeOfAbility.Dodge:
+                        return "(회피)";
+                }
             }
             return "";
         }
@@ -57,6 +94,18 @@ namespace BasicTeamProject.Data
                     return (int)player.Att;
                 case TypeOfAbility.Def:
                     return (int)player.Def;
+                case TypeOfAbility.MaxHP:
+                    return (int)player.MaxHP;
+                case TypeOfAbility.CurrentHP:
+                    return (int)player.CurrentHP;
+                case TypeOfAbility.MaxMP:
+                    return (int)player.MaxMP;
+                case TypeOfAbility.CurrentMP:
+                    return (int)player.CurrentMP;
+                case TypeOfAbility.Critical:
+                    return (int)player.Critical;
+                case TypeOfAbility.Dodge:
+                    return (int)player.Dodge;
             }
             return 0;
         }
@@ -68,7 +117,7 @@ namespace BasicTeamProject.Data
             Player player = DataManager.Instance.Player;
             int playerTypeValue = GetPlayerTypeValue(player);
             string strPlayerTypeValue = playerTypeValue.ToString();
-            string strPlayerTypeValueAfter = (playerTypeValue+(int)Value).ToString();
+            string strPlayerTypeValueAfter = ((int)((float)playerTypeValue * Value)).ToString();
 
             
             list.Add("┌─────┬────────────────────────────┐");
@@ -181,21 +230,21 @@ namespace BasicTeamProject.Data
                 {
                     case TypeOfAbility.MaxHP:
                         if (isPer)
-                            Added = (int)((float)Target.MaxHP * Value);
+                            Added = (int)(((float)Target.MaxHP * Value) - Target.MaxHP);
                         Console.WriteLine($"{Duration}턴 동안 MaxHP 증가 {Target.MaxHP}  -> {Target.MaxHP + Added}");
                         Target.MaxHP += Added;
                         Target.CurrentHP += Added;
                         break;
                     case TypeOfAbility.MaxMP:
                         if (isPer)
-                            Added = (int)((float)Target.MaxMP * Value);
+                            Added = (int)(((float)Target.MaxMP * Value) - Target.MaxMP);
                         Console.WriteLine($"{Duration}턴 동안 MaxMP 증가 {Target.MaxMP}  -> {Target.MaxMP + Added}");
                         Target.MaxMP += Added;
                         Target.CurrentMP += Added;
                         break;
                     case TypeOfAbility.CurrentHP:
                         if (isPer)
-                            Added = Math.Min(Target.MaxHP - Target.CurrentHP, (int)((float)Target.CurrentHP * Value));
+                            Added = Math.Min(Target.MaxHP - Target.CurrentHP, (int)(((float)Target.CurrentHP * Value) - Target.CurrentHP));
                         Added = Math.Min(Target.MaxHP - Target.CurrentHP, Added);
 
                         Console.WriteLine($"HP{Target.CurrentHP} -> HP{Target.CurrentHP + Added}");
@@ -203,7 +252,7 @@ namespace BasicTeamProject.Data
                         break;
                     case TypeOfAbility.CurrentMP:
                         if (isPer)
-                            Added = Math.Min(Target.MaxMP - Target.CurrentMP, (int)((float)Target.CurrentMP * Value));
+                            Added = Math.Min(Target.MaxMP - Target.CurrentMP, (int)(((float)Target.CurrentMP * Value) - Target.CurrentMP));
                         Added = Math.Min(Target.MaxMP - Target.CurrentMP, Added);
 
                         Console.WriteLine($"MP{Target.CurrentMP} -> MP{Target.CurrentMP + Added}");
@@ -211,25 +260,25 @@ namespace BasicTeamProject.Data
                         break;
                     case TypeOfAbility.Att:
                         if (isPer)
-                            Added = (int)((float)Target.Att * Value);
+                            Added = (int)(((float)Target.Att * Value) - Target.Att);
                         Console.WriteLine($"{Duration}턴 동안 Att 증가 {Target.Att}  -> {Target.Att + Added}");
                         Target.Att += Added;
                         break;
                     case TypeOfAbility.Def:
                         if (isPer)
-                            Added = (int)((float)Target.Def * Value);
+                            Added = (int)(((float)Target.Def * Value) - Target.Def);
                         Console.WriteLine($"{Duration}턴 동안 Def 증가 {Target.Def}  -> {Target.Def + Added}");
                         Target.Def += Added;
                         break;
                     case TypeOfAbility.Critical:
                         if (isPer)
-                            Added = (int)((float)Target.Critical * Value);
+                            Added = (int)(((float)Target.Critical * Value) - Target.Critical);
                         Console.WriteLine($"{Duration}턴 동안 Critical 증가 {Target.Critical}  -> {Target.Critical + Added}");
                         Target.Critical += Added;
                         break;
                     case TypeOfAbility.Dodge:
                         if (isPer)
-                            Added = (int)((float)Target.Dodge * Value);
+                            Added = (int)(((float)Target.Dodge * Value) - Target.Dodge);
                         Console.WriteLine($"{Duration}턴 동안 Dodge 증가 {Target.Dodge}  -> {Target.Dodge + Added}");
                         Target.Dodge += Added;
                         break;
