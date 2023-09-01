@@ -37,20 +37,25 @@ GameCore의 흐름에 따라 다음과 같은 클래스들을 사용하게 됩�
     - 게임 실행 중 기본데이터/유저데이터 등의 모든 데이터를 보유하고 있는 클래스
     - 현재 플레이어, 싸움중인 몬스터, 다음 실행해야할 행동, 인벤토리, 입력정보 등을 보유하고 있습니다
     - 상점리스트, 던전 층별 몬스터 종류, 몬스터의 능력치, 직업 등 <br> 게임 전반에 쓰이는 데이터 풀을 보유하고 있습니다.
-[코드 참조](../../BasicTeamProject/BasicTeamProject/src/Data/DataManager.cs#L0-30)
-
+[코드 참조](../../BasicTeamProject/BasicTeamProject/src/Data/DataManager.cs)
 #### DataContainer :
     - 외부 텍스트 데이터를 DataReader의 기능(상속)으로 읽어온 후 각 데이터 클래스에 맞게 가공합니다.
     - 오브젝트 풀을 이용하여 기본 데이터들을 저장하고 있습니다.
+
+[코드 참조(몬스터 데이터 컨테이너)](../../BasicTeamProject/BasicTeamProject/src/Data/MonsterDataContainer.cs)
 
 #### DataReader :
     - "|" 로 구분된 텍스트 데이터를 읽어 string[]으로 분할하여 반환해주는 클래스입니다.
     - 구체적인 데이터의 가공/설정은 DataContainer로 수행하고 있습니다.
 
+[코드 참조](../../BasicTeamProject/BasicTeamProject/src/Data/DataReader.cs)
+
 #### SceneManager : 
     - 현재 프로그램상의 모든 Scene 파생클래스를 불러와 ObjectPool을 이용 Scene을 보관하는 클래스
     - 클래스 이름을 통해 Scene 요청을 하면 Scene 데이터를 반환해준다.
     - 리플렉션 기능 중 상속된 클래스를 가져오는 기능을 활용,<br> Scene 파생클래스의 추가에도 별도 작업없이 SceneManager에 포함 가능
+
+[코드 참조](../../BasicTeamProject/BasicTeamProject/src/Scene/SceneManager.cs)
 
 
 #### Scene :
@@ -58,12 +63,16 @@ GameCore의 흐름에 따라 다음과 같은 클래스들을 사용하게 됩�
     - 데코레이트 패턴으로 구성되어있음
     - Execute를 이용 상속된 클래스의 내용을 실행하게 됨
 
+[코드 참조](../../BasicTeamProject/BasicTeamProject/src/Scene/Scene.cs)
+
 #### ConcreteScene :
     - 실제적인 Scene을 구현하는 부분
     - DataManager를 이용 현재 플레이어 데이터, 던전의 데이터 등을 참고하여 Scene의 모양을 잡음.
     - SceneManager의 리플렉션 기능에 의해 자동으로 SceneManager에 등록이 되며,
     - 매 입력 시 다음 Scene에 대한 정보를 남겨서 GameCore에 반환하면
     - GameCore에서는 다음 Scene에 대한 정보를 토대로 다음화면을 시현해줌
+
+[코드 참조(인벤토리 소비템 사용씬)](../../BasicTeamProject/BasicTeamProject/src/Scene/InventoryConsumeScene.cs)
 
 
 <br>
