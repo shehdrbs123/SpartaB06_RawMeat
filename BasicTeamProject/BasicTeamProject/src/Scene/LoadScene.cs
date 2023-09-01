@@ -20,7 +20,10 @@ namespace BasicTeamProject.Scene
             _dataManager.InputMemory.InputComplete = true;
             if (!_dataManager.DataLoad())
             {
+                Console.WriteLine("데이타가 없습니다");
+                Console.ReadLine();
                 _dataManager.InputMemory.PreInput = 2;
+                return;
             }
             Console.WriteLine("불러오기가 완료되었습니다.");
             Console.ReadLine();
