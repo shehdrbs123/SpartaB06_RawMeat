@@ -24,9 +24,9 @@ namespace BasicTeamProject.Data
             int maxIndex = int.Parse(data[4]);
             for (int i = 0; i < maxIndex; ++i)
             {
-                Item item = DataManager.Instance.CreateItem(data[5 + i * 2]);
+                Item item = DataManager.Instance.CreateItem(data[5 + i * 3], int.Parse(data[5 + i * 3 + 1]));
                 reward.Items.Add(item);
-                reward.DropPer.Add(float.Parse(data[5 + i * 2 + 1]));
+                reward.DropPer.Add(float.Parse(data[5 + i * 3 + 2]));
             }
 
 
