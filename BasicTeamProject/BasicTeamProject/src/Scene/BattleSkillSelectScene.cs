@@ -15,11 +15,12 @@ namespace BasicTeamProject.Scene
             Console.WriteLine("Battle!!");
             enter();
             Console.WriteLine("[몬스터]");
+            int j = 1;
             for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
                 var monster = _dataManager.Monsters[i];
                 if (monster.isDead) continue;
-                monster.ShowInfo(i + 1);
+                monster.ShowInfo(j++);
             }
             enter(); enter();
 

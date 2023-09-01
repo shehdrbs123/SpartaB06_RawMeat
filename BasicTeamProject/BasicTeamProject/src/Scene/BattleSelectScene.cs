@@ -16,14 +16,16 @@ namespace BasicTeamProject.Scene
         {
             Console.WriteLine("Battle!!");
             enter();
-            int j = 1;
+            Console.WriteLine($"현재 층: {BattleScene.currentStage - 1}층");
+            enter();
             Console.WriteLine("[몬스터]");
+            int j = 1;
             for (int i = 0; i < _dataManager.Monsters.Count; i++)
             {
                 var monster = _dataManager.Monsters[i];
                 if (!monster.isDead)
                 {
-                    monster.ShowInfo(i+1);
+                    monster.ShowInfo(j++);
                 }
             }
             enter();
