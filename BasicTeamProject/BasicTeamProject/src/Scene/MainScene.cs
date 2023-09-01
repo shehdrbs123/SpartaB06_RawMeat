@@ -11,6 +11,7 @@ public class MainScene : Scene
         _FunctionList.Add("BattleScene");
         _FunctionList.Add("ShopScene");
         _FunctionList.Add("HospitalScene");
+        _FunctionList.Add("ClassUpScene");
         _FunctionList.Add("SaveScene");
     }
 
@@ -30,7 +31,8 @@ public class MainScene : Scene
         Console.WriteLine("3. 전투 시작");
         Console.WriteLine("4. 상점 가기");
         Console.WriteLine("5. 병원 가기");
-        Console.WriteLine("6. 저장 하기");
+        Console.WriteLine($"6. 전직 하기 (레벨 {_dataManager.GetClassUpLevel(_dataManager.Player)} 이상) (현재레벨 : {_dataManager.Player.Level})");
+        Console.WriteLine("7. 저장 하기");
         Console.WriteLine();        
     }
 }   

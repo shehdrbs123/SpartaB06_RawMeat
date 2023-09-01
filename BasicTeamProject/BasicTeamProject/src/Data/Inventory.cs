@@ -242,6 +242,7 @@ public class Inventory
         }
         return count;
     }
+ 
     public int DeleteItem(int index, ref int count, ItemType type = ItemType.End)
     {
         //End면 전체보기에서 고른거고.. 타입을 정해주면 그 타입에서 고른거고..
@@ -346,6 +347,18 @@ public class Inventory
             return null;
 
         return _inven[i][select][index];
+    }
+    public int GetItemCount(string str, ItemType type)
+    {
+        int count = 0;
+        if (_inven[type].ContainsKey(str))
+        {
+           foreach(var a in _inven[type][str])
+            {
+                count += a.Count;
+            }
+        }
+        return count;
     }
     public bool GetEquippedIndex(EquipType type, out int index)
     {

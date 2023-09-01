@@ -11,7 +11,7 @@ public class Player : ISkillStatus
 {
     public enum Job
     {
-        전사 = 0, 도적, 마법사, 대마법사, 버서커, 암살자
+        전사 = 0, 도적, 마법사, 대마법사, 버서커, 암살자, 왕대마법사, 왕버서커, 왕암살자
     }
     public Player()
     {
@@ -148,7 +148,8 @@ public class Player : ISkillStatus
         Def += 1;
         Critical += 3;
         Dodge += 1;
-        DataManager.Instance.ClassUp(this);
+        if(DataManager.Instance.ClassUpCheck(this))
+            Console.WriteLine("뭔가 전직할때가 된 것 같애");
     }
 
     public void TurnCheck()
