@@ -12,14 +12,18 @@ namespace BasicTeamProject.Scene
         protected override void SetFunctionList()
         {
             _FunctionList.Add("MainScene");
+            _FunctionList.Add("CreateUserScene");
         }
 
         protected override void WriteView()
         {
-            _dataManager.DataLoad();
+            _dataManager.InputMemory.InputComplete = true;
+            if (!_dataManager.DataLoad())
+            {
+                _dataManager.InputMemory.PreInput = 2;
+            }
             Console.WriteLine("불러오기가 완료되었습니다.");
             Console.ReadLine();
-            _dataManager.InputMemory.InputComplete = true;
             _dataManager.InputMemory.PreInput = 1;
         }
     }

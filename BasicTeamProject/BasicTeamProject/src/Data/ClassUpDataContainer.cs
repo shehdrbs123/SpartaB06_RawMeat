@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,29 +32,46 @@ namespace BasicTeamProject.Data
             }
         }
 
-        public void ClassUp(Player player)
+        public int GetClassUpLevel(Player player)
         {
-            int i = 0;
+            if (_levelData.ContainsKey(player.job))
+            {
+                return _levelData[player.job];
+            }
+            return 0;
+        }
+        public bool ClassUpCheck(Player player)
+        {
             if (_levelData.ContainsKey(player.job))
             {
                 if (player.Level >= _levelData[player.job])
                 {
-                    Console.WriteLine("이상한 기운이 감돈다!!!");
-                    Console.ReadLine();
-                    Console.WriteLine("전직할것같애!");
-                    Console.ReadLine();
-                    Console.WriteLine("으악!");
-                    Console.ReadLine();
-                    Console.WriteLine($"{player.job.ToString()} -> {_jobData[player.job].ToString()} 으로 전직했다!");
-                    Console.ReadLine();
-                    player.Skills.Clear();
-                    foreach(var skill in _skillData[player.job])
-                    {
-                        player.Skills.Add(new Skill(skill));
-                    }
-                    player.job = _jobData[player.job];
+                    return true;
                 }
             }
+            return false;
+        }
+        public void ClassUp(Player player)
+        {
+            int i = 0;
+            if (ClassUpCheck(player))
+            {
+                Console.WriteLine("이상한 기운이 감돈다!!!");
+                Console.ReadLine();
+                Console.WriteLine("전직할것같애!");
+                Console.ReadLine();
+                Console.WriteLine("으악!");
+                Console.ReadLine();
+                Console.WriteLine($"{player.job.ToString()} -> {_jobData[player.job].ToString()} 으로 전직했다!");
+                Console.ReadLine();
+                player.Skills.Clear();
+                foreach (var skill in _skillData[player.job])
+                {
+                    player.Skills.Add(new Skill(skill));
+                }
+                player.job = _jobData[player.job];
+            }
+
         }
     }
 }

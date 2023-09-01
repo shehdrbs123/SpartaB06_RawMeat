@@ -118,10 +118,22 @@ namespace BasicTeamProject.Data
 
         public bool DataLoad()
         {
-            StreamReader sr = new StreamReader("Data\\SaveData.txt");
+            StreamReader? sr = null;
+            try
+            {
+                sr = new StreamReader("Data\\SaveData.txt");
+            }
+            catch
+            {
+                return false;
+            }
+            if (sr == null)
+                return false;
+
             string inputData = sr.ReadLine();
             if (inputData == "")
                 return false;
+
             string[] data = inputData.Split('|');
             Player.SetData(data);
             inputData = sr.ReadLine();
@@ -138,6 +150,16 @@ namespace BasicTeamProject.Data
         {
             _classUpDataContainer.ClassUp(player);
         }
+
+        public bool ClassUpCheck(Player player)
+        {
+            return _classUpDataContainer.ClassUpCheck(player);
+        }
+        public int GetClassUpLevel(Player player)
+        {
+            return _classUpDataContainer.GetClassUpLevel(player);
+        }
+
         MonsterDataContainer        _monsterDataContainer;
         LevelDataContainer          _levelDataContainer;
         RewardDataContainer         _rewardDataContainer;

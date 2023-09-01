@@ -65,6 +65,7 @@ namespace BasicTeamProject.Scene
                 Console.ReadLine(); 
                 _dataManager.InputMemory.PreInput = 2;
                 BattleSelectScene.selectedMonster = 1;
+                _dataManager.Player.Attack = false;
             }
             else
                _dataManager.InputMemory.PreInput = 1;
