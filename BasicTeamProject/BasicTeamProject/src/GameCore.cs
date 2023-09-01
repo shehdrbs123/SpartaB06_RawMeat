@@ -13,7 +13,7 @@ namespace BasicTeamProject
         {
             _manager = DataManager.Instance;
             _input = DataManager.Instance.InputMemory;
-            Console.SetWindowSize(100,80);
+            //Console.SetWindowSize(100,80);
         }
         public void Play(bool isTest)
         {

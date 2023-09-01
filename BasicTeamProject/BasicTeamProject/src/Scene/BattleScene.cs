@@ -4,7 +4,7 @@ namespace BasicTeamProject.Scene
 {
     public class BattleScene : Scene
     {
-        private int currentStage = 1;
+        public static int currentStage = 1;
 
         protected override void SetFunctionList()
         {
@@ -27,6 +27,8 @@ namespace BasicTeamProject.Scene
         protected override void WriteView()
         {
             Console.WriteLine("Battle Start!!");
+            enter();
+            Console.WriteLine($"현재 층: {currentStage - 1}층");
             enter();
             Console.WriteLine("[몬스터]");
             int j = 1;
