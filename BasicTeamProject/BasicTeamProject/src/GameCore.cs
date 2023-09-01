@@ -14,6 +14,8 @@ namespace BasicTeamProject
             _manager = DataManager.Instance;
             _input = DataManager.Instance.InputMemory;
             Console.SetWindowSize(Console.LargestWindowWidth/4,Console.LargestWindowHeight);
+            MusicPlayer mp = new MusicPlayer();
+            mp.Play();
         }
         public void Play(bool isTest)
         {
