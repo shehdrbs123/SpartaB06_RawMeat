@@ -36,7 +36,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="Data\BGM\test.wav">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Data\ClassUpData.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
